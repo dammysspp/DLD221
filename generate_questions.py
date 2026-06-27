@@ -1109,7 +1109,7 @@ def build_html():
     z-index: 0;
   }
 
-  .app { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
+  .app { position: relative; z-index: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; box-sizing: border-box; }
 
   /* ---- HEADER ---- */
   header {
@@ -1144,18 +1144,22 @@ def build_html():
 
   /* ---- STATS BAR ---- */
   .stats-bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin-bottom: 28px;
-    flex-wrap: wrap;
+    width: 100%;
+  }
+  @media (min-width: 600px) {
+    .stats-bar {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
   .stat {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 14px 20px;
-    flex: 1;
-    min-width: 120px;
     backdrop-filter: blur(10px);
   }
   .stat-val {
@@ -1697,15 +1701,16 @@ def build_html():
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
   /* Responsive */
-  @media (max-width: 800px) {
+  @media (max-width: 1024px) {
     .q-layout { grid-template-columns: 1fr; }
     .map-wrapper { max-height: 250px; }
-    .q-map { grid-template-columns: repeat(10, 1fr); }
+    .q-map { grid-template-columns: repeat(12, 1fr); }
   }
   @media (max-width: 600px) {
     .q-card { padding: 20px 16px; }
     header { padding: 32px 0 24px; }
     .q-map { grid-template-columns: repeat(8, 1fr); }
+    .pwa-banner { flex-direction: column; gap: 10px; text-align: center; }
   }
 </style>
 </head>
@@ -2099,7 +2104,11 @@ function renderQuestion() {
   typeBadge.textContent = typeMap[q.type] || q.type;
   typeBadge.className = 'q-type-badge ' + (typeClass[q.type] || '');
 
-  document.getElementById('q-text').textContent = q.text;
+  if (q.type === 'fill') {
+    document.getElementById('q-text').textContent = '';
+  } else {
+    document.getElementById('q-text').textContent = q.text;
+  }
   document.getElementById('q-explanation').className = 'explanation';
   document.getElementById('q-explanation').innerHTML = '';
 
