@@ -7,6 +7,92 @@ output_html_path = r"c:\Users\HP\.gemini\antigravity\scratch\DLD221\index.html"
 
 # Handcrafted core questions (complex, specific, and testing obscure details)
 HANDCRAFTED_QUESTIONS = [
+    # ================= MATCHING QUESTIONS =================
+    {
+        "topic": "l1",
+        "type": "matching",
+        "text": "Match each of the five Covenant Terms to its correct DLD221 definition:",
+        "pairs": {
+            "Vision": "A discovery of God's plan and purpose; answers 'What must I do?'",
+            "Wisdom": "Acquired sense and the specific know-how to execute your calling",
+            "Self-Discipline": "Doing what is demanded, not what is convenient or pleasurable",
+            "Diligence": "Practical and sustained commitment to work; laboring with focus",
+            "Sacrifice": "Paying the abnormal price and going beyond one's best"
+        },
+        "explanation": "These are the 5 terms from the Covenant Model of Leadership (Ecc 10:5-18)."
+    },
+    {
+        "topic": "l2",
+        "type": "matching",
+        "text": "Match the Solution-Focused tool/framework to its core function:",
+        "pairs": {
+            "Miracle Question": "Unlocks the preferred future and shifts from problem ownership to authorship",
+            "Scaling Questions": "Creates safe traction and progress vocabulary without full diagnosis",
+            "Exception-Finding": "Surfaces existing solutions by looking for when the problem didn't happen",
+            "SIMPLE Framework": "Solutions, In-between, Make use, Possibilities, Language, Every case different"
+        },
+        "explanation": "These tools bypass deep problem diagnostics to build rapid, collaborative solutions."
+    },
+    {
+        "topic": "l3",
+        "type": "matching",
+        "text": "Match the change management model component to its description:",
+        "pairs": {
+            "Awareness (ADKAR)": "Understanding the need for change (macro/micro)",
+            "Desire (ADKAR)": "Personal decision to support and participate in the change",
+            "Burning Platform": "A metaphor showing that staying in the present is unsustainable",
+            "Guiding Coalition (Kotter)": "A group of influential leaders with power, expertise, and credibility"
+        },
+        "explanation": "These concepts represent change management frameworks at the macro (Kotter) and micro (ADKAR) levels."
+    },
+    {
+        "topic": "l4",
+        "type": "matching",
+        "text": "Match the Director's Duty to its correct legal description:",
+        "pairs": {
+            "Duty of Care": "Diligence of a prudent person: read papers, attend meetings, ask questions",
+            "Duty of Loyalty": "Placing the organization above self; declaring conflict of interest",
+            "Duty of Obedience": "Acting within the boundaries of the law and the constitution",
+            "Duty of Independent Judgement": "Having the courage to dissent and challenge before voting"
+        },
+        "explanation": "These are among the 7 non-negotiable duties of a director in corporate governance."
+    },
+    {
+        "topic": "l6",
+        "type": "matching",
+        "text": "Match the Team Leadership Pillar to its core explanation:",
+        "pairs": {
+            "Psychological Safety": "Belief that the team is safe for interpersonal risk-taking",
+            "Orpheus Principle": "Rotational leadership based on competence, not formal hierarchy",
+            "Role Clarity": "Ensures every member understands their specific task and boundary",
+            "Shared Vision": "Why the team exists, documented in a team charter"
+        },
+        "explanation": "These represent pillars of high-performing teams, drawing from Tuckman, Google, and Orpheus."
+    },
+    {
+        "topic": "l7",
+        "type": "matching",
+        "text": "Match the Moral Reasoning Framework to its core ethical test:",
+        "pairs": {
+            "Utilitarianism": "Choose the action that creates the greatest good for the greatest number",
+            "Deontology": "Follow rules and duties; act according to categorical imperatives",
+            "Virtue Ethics": "Focus on the character, integrity, and virtues of the leader",
+            "Care Ethics": "Focus on relationships, empathy, and protecting the vulnerable"
+        },
+        "explanation": "These represent the 4 main moral reasoning frameworks used to make complex ethical decisions."
+    },
+    {
+        "topic": "l8",
+        "type": "matching",
+        "text": "Match the Source of Conflict to its correct definition/example:",
+        "pairs": {
+            "Data Conflict": "Arises from different information or interpretation of facts",
+            "Structural Conflict": "Arises from roles, authority, resources, or reporting lines",
+            "Interest Conflict": "Arises from competing substantive, procedural, or psychological needs",
+            "Values Conflict": "Arises from fundamental differences in belief, ethics, or mission"
+        },
+        "explanation": "Dr. Susan S. Raines defines these 5 sources of conflict in leadership."
+    },
     # ================= LECTURE 1 =================
     {
         "topic": "l1",
@@ -919,6 +1005,62 @@ def build_html():
   #quiz-panel { display: block; }
   #flash-panel, #result-panel { display: none; }
 
+  .matching-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .targets-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+    margin-bottom: 4px;
+  }
+  .target-item {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--text);
+  }
+  .target-item strong {
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+  }
+  .premises-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .matching-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+  .premise-label {
+    color: var(--white);
+    font-weight: 500;
+  }
+  .match-select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    cursor: pointer;
+  }
+  .match-select:focus {
+    border-color: var(--gold);
+  }
+
   .q-layout {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -1827,6 +1969,68 @@ function renderQuestion() {
     }
     textarea.oninput = (e) => saveFillAnswer(e.target.value);
     optContainer.appendChild(textarea);
+  } else if (q.type === 'matching') {
+    const container = document.createElement('div');
+    container.className = 'matching-container';
+    const premises = Object.keys(q.pairs);
+    const targets = Object.values(q.pairs);
+    if (!q.shuffledTargets) {
+      q.shuffledTargets = [...targets];
+      shuffle(q.shuffledTargets);
+    }
+    const targetMap = {};
+    q.shuffledTargets.forEach((target, idx) => {
+      const letter = String.fromCharCode(65 + idx);
+      targetMap[letter] = target;
+    });
+    const targetsList = document.createElement('div');
+    targetsList.className = 'targets-list';
+    q.shuffledTargets.forEach((target, idx) => {
+      const item = document.createElement('div');
+      item.className = 'target-item';
+      item.innerHTML = `<strong>${String.fromCharCode(65 + idx)}:</strong> ${target}`;
+      targetsList.appendChild(item);
+    });
+    container.appendChild(targetsList);
+    const premisesList = document.createElement('div');
+    premisesList.className = 'premises-list';
+    premises.forEach((premise, idx) => {
+      const row = document.createElement('div');
+      row.className = 'matching-row';
+      const label = document.createElement('span');
+      label.className = 'premise-label';
+      label.textContent = `${idx + 1}. ${premise}`;
+      row.appendChild(label);
+      const select = document.createElement('select');
+      select.className = 'match-select';
+      const defaultOpt = document.createElement('option');
+      defaultOpt.value = '';
+      defaultOpt.textContent = 'Select...';
+      select.appendChild(defaultOpt);
+      q.shuffledTargets.forEach((_, tIdx) => {
+        const letter = String.fromCharCode(65 + tIdx);
+        const opt = document.createElement('option');
+        opt.value = letter;
+        opt.textContent = letter;
+        select.appendChild(opt);
+      });
+      if (saved !== undefined) {
+        select.value = saved.val[idx] || '';
+        if (saved.checked) {
+          select.disabled = true;
+          const selectedTarget = targetMap[select.value];
+          const correctTarget = q.pairs[premise];
+          const isRowCorrect = (selectedTarget === correctTarget);
+          select.style.borderColor = isRowCorrect ? 'var(--green)' : 'var(--red)';
+          select.style.color = isRowCorrect ? 'var(--green)' : 'var(--red)';
+        }
+      }
+      select.onchange = () => saveMatchAnswer(idx, select.value);
+      row.appendChild(select);
+      premisesList.appendChild(row);
+    });
+    container.appendChild(premisesList);
+    optContainer.appendChild(container);
   }
 
   // Show explanation if checked
@@ -1887,6 +2091,23 @@ function saveFillAnswer(val) {
   }
 }
 
+function saveMatchAnswer(premiseIdx, letterVal) {
+  if (answers[current] && answers[current].checked) return;
+  if (!answers[current]) {
+    answers[current] = { val: {}, checked: false };
+  }
+  answers[current].val[premiseIdx] = letterVal;
+  
+  const q = sessionQs[current];
+  const totalPremises = Object.keys(q.pairs).length;
+  const selections = Object.keys(answers[current].val).filter(k => answers[current].val[k] !== '');
+  
+  document.getElementById('btn-check').disabled = (selections.length < totalPremises);
+  if (examMode) {
+    updateDot(current, selections.length === totalPremises ? 'selected' : '');
+  }
+}
+
 function checkAnswer() {
   const q = sessionQs[current];
   const saved = answers[current];
@@ -1905,6 +2126,23 @@ function checkAnswer() {
     isCorrect = (saved.val.trim().toLowerCase() === q.answer.toLowerCase());
   } else if (q.type === 'short') {
     isCorrect = true; // Short answer is self-graded/informative
+  } else if (q.type === 'matching') {
+    const premises = Object.keys(q.pairs);
+    let allCorrect = true;
+    const targetMap = {};
+    q.shuffledTargets.forEach((target, idx) => {
+      const letter = String.fromCharCode(65 + idx);
+      targetMap[letter] = target;
+    });
+    premises.forEach((premise, idx) => {
+      const selectedLetter = saved.val[idx];
+      const selectedTarget = targetMap[selectedLetter];
+      const correctTarget = q.pairs[premise];
+      if (selectedTarget !== correctTarget) {
+        allCorrect = false;
+      }
+    });
+    isCorrect = allCorrect;
   }
   
   if (isCorrect) score++;
@@ -1929,6 +2167,8 @@ function showExplanation(q) {
     refText = `<strong>Correct Answer:</strong> ${q.answer}<br/>`;
   } else if (q.type === 'short') {
     refText = `<strong>Suggested Guidelines:</strong> ${q.answer}<br/>`;
+  } else if (q.type === 'matching') {
+    refText = `<strong>Correct Pairs:</strong><br/>` + Object.entries(q.pairs).map(([p, t]) => `• ${p} ➔ ${t}`).join('<br/>') + `<br/>`;
   }
   
   expBox.innerHTML = `${refText}<strong>Explanation:</strong> ${q.explanation}`;
@@ -2032,6 +2272,23 @@ function submitExam(timeOut = false) {
       isCorrect = (ans.val.trim().toLowerCase() === q.answer.toLowerCase());
     } else if (q.type === 'short') {
       isCorrect = true; // Auto-marked as correct in exam for simplicity
+    } else if (q.type === 'matching') {
+      const premises = Object.keys(q.pairs);
+      let allCorrect = true;
+      const targetMap = {};
+      q.shuffledTargets.forEach((target, idx) => {
+        const letter = String.fromCharCode(65 + idx);
+        targetMap[letter] = target;
+      });
+      premises.forEach((premise, idx) => {
+        const selectedLetter = ans.val[idx];
+        const selectedTarget = targetMap[selectedLetter];
+        const correctTarget = q.pairs[premise];
+        if (selectedTarget !== correctTarget) {
+          allCorrect = false;
+        }
+      });
+      isCorrect = allCorrect;
     }
     
     if (isCorrect) score++;
