@@ -461,6 +461,88 @@ HANDCRAFTED_QUESTIONS = [
     }
 ]
 
+# Helper functions for generating bulky multi-gap fill questions
+def clean_sentence_to_statement(sentence, answer, gap_id):
+    import re
+    text = sentence.strip()
+    if "_______" in text:
+        return text.replace("_______", f"[{gap_id}]")
+        
+    # Check if answer is in the text
+    if answer.lower() in text.lower():
+        pattern = re.compile(re.escape(answer), re.IGNORECASE)
+        text = pattern.sub(f"[{gap_id}]", text)
+        return text
+        
+    prefixes_replacements = [
+        ("who is ", "the "),
+        ("who was ", "the "),
+        ("what is ", "the "),
+        ("what was ", "the "),
+        ("which is ", "the "),
+        ("which was ", "the "),
+        ("which scriptural reference ", "the scriptural reference that "),
+        ("who ", "the person who "),
+        ("what ", "the concept that "),
+        ("which ", "the item that ")
+    ]
+    
+    for prefix, replacement in prefixes_replacements:
+        if text.lower().startswith(prefix):
+            cleaned = text[len(prefix):].strip()
+            if cleaned.endswith("?"):
+                cleaned = cleaned[:-1].strip()
+            if cleaned.lower().startswith("the ") and replacement == "the ":
+                return f"{cleaned} is [{gap_id}]"
+            return f"{replacement}{cleaned} is [{gap_id}]"
+            
+    if text.endswith("?"):
+        text = text[:-1].strip()
+    return f"{text} is [{gap_id}]"
+
+def build_bulky_fill_question(lec_num, chunk, all_answers):
+    import random
+    parts = []
+    gaps = []
+    
+    for idx, (keyword, q_text, answer) in enumerate(chunk):
+        gap_id = f"gap{idx+1}"
+        statement = clean_sentence_to_statement(q_text, answer, gap_id)
+        parts.append(statement)
+        
+        # Select distractors from all_answers
+        topic_answers = [ans for ans in all_answers if ans.lower() != answer.lower()]
+        fallback = ["Vision", "Wisdom", "Strategy", "Management", "Governance", "Ethics", "Influence", "Accountability"]
+        while len(topic_answers) < 3:
+            topic_answers.append(random.choice(fallback))
+            topic_answers = list(set(topic_answers))
+        distractors = random.sample(topic_answers, 3)
+        options = [answer] + distractors
+        random.shuffle(options)
+        
+        gaps.append({
+            "id": gap_id,
+            "options": options,
+            "correct": answer
+        })
+        
+    capitalized_parts = []
+    for p in parts:
+        p = p.strip()
+        if p:
+            capitalized_parts.append(p[0].upper() + p[1:])
+            
+    paragraph = f"According to Lecture {lec_num}: " + ". ".join(capitalized_parts) + "."
+    explanation = f"Correct answers for Lecture {lec_num}: " + ", ".join([f"{g['id']}: {g['correct']}" for g in gaps]) + "."
+    
+    return {
+        "topic": f"l{lec_num}",
+        "type": "fill",
+        "text": paragraph,
+        "gaps": gaps,
+        "explanation": explanation
+    }
+
 # We will read each lecture text, find specific keywords, and generate 400 questions!
 # Let's define the generation logic.
 def generate_questions():
@@ -687,17 +769,16 @@ def generate_questions():
     # Generate questions from lecture_concepts (Lectures 1-4)
     for lec_num, concepts in lecture_concepts.items():
         topic_id = f"l{lec_num}"
-        for keyword, q_text, answer in concepts:
-            # We can create a Fill-in-the-gap (fill) question
-            questions.append({
-                "topic": topic_id,
-                "type": "fill",
-                "text": q_text,
-                "answer": answer,
-                "explanation": f"According to Lecture {lec_num}: '{q_text}' corresponds to '{answer}'."
-            })
+        all_answers = [c[2] for c in concepts]
+        
+        # 1. Generate bulky fill questions (chunk size 3)
+        chunks = [concepts[i:i + 3] for i in range(0, len(concepts), 3)]
+        for chunk in chunks:
+            bulky_fill = build_bulky_fill_question(lec_num, chunk, all_answers)
+            questions.append(bulky_fill)
             
-            # We can also create a Short Answer (short) question
+        # 2. Generate short answer questions for each concept
+        for keyword, q_text, answer in concepts:
             questions.append({
                 "topic": topic_id,
                 "type": "short",
@@ -767,17 +848,16 @@ def generate_questions():
     # Generate questions from lecture_concepts_5_8 (Lectures 5-8)
     for lec_num, concepts in lecture_concepts_5_8.items():
         topic_id = f"l{lec_num}"
-        for keyword, q_text, answer in concepts:
-            # Fill-in-the-gap
-            questions.append({
-                "topic": topic_id,
-                "type": "fill",
-                "text": q_text,
-                "answer": answer,
-                "explanation": f"According to Lecture {lec_num}: '{q_text}' corresponds to '{answer}'."
-            })
+        all_answers = [c[2] for c in concepts]
+        
+        # 1. Generate bulky fill questions (chunk size 3)
+        chunks = [concepts[i:i + 3] for i in range(0, len(concepts), 3)]
+        for chunk in chunks:
+            bulky_fill = build_bulky_fill_question(lec_num, chunk, all_answers)
+            questions.append(bulky_fill)
             
-            # Short Answer
+        # 2. Generate short answer questions for each concept
+        for keyword, q_text, answer in concepts:
             questions.append({
                 "topic": topic_id,
                 "type": "short",
