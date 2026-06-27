@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temp / Scratch files
+temp_*
+*.png
+*.txt
+Windows.winmd
+run_ocr_args.ps1
+ocr_test*
+list_methods.ps1
+get_members.ps1
+find_astask.ps1
+OcrHelper.*
