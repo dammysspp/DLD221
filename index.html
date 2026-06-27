@@ -4665,10 +4665,24 @@ function flashNav(dir) {
 //  NAVIGATION & PANELS
 // ============================================================
 function showPanel(panelName) {
-  document.getElementById('landing').style.display = panelName === 'landing' ? 'block' : 'none';
-  document.getElementById('quiz-panel').style.display = panelName === 'quiz' ? 'block' : 'none';
-  document.getElementById('flash-panel').style.display = panelName === 'flash' ? 'block' : 'none';
-  document.getElementById('result-panel').style.display = panelName === 'result' ? 'block' : 'none';
+  const panels = {
+    landing: document.getElementById('landing'),
+    quiz: document.getElementById('quiz-panel'),
+    flash: document.getElementById('flash-panel'),
+    result: document.getElementById('result-panel')
+  };
+  
+  for (const [name, el] of Object.entries(panels)) {
+    if (el) {
+      if (name === panelName) {
+        el.classList.remove('hidden');
+        el.style.display = 'block';
+      } else {
+        el.classList.add('hidden');
+        el.style.display = 'none';
+      }
+    }
+  }
 }
 
 function endSession() {
