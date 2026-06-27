@@ -345,6 +345,28 @@
   }
   .fill-input:focus { border-color: var(--gold); }
 
+  .inline-select {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  .inline-select:focus {
+    border-color: var(--gold);
+  }
+  .fill-text-line {
+    font-size: clamp(14px, 2.5vw, 16px);
+    line-height: 2;
+    color: var(--text);
+  }
+
   /* explanation */
   .explanation {
     margin-top: 16px;
@@ -807,6 +829,146 @@ const TOPICS = [
 const QUESTIONS = [
   {
     "topic": "l1",
+    "type": "fill",
+    "text": "The five terms that govern leadership emergence in DLD221 are [gap1], Wisdom, [gap2], Diligence, and Sacrifice.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Vision",
+          "Influence",
+          "Emergence",
+          "Command"
+        ],
+        "correct": "Vision"
+      },
+      {
+        "id": "gap2",
+        "options": [
+          "Self-Discipline",
+          "Prestige",
+          "Title",
+          "Authority"
+        ],
+        "correct": "Self-Discipline"
+      }
+    ],
+    "explanation": "The 5 Terms are: Vision, Wisdom, Self-Discipline, Diligence, and Sacrifice in sequence."
+  },
+  {
+    "topic": "l2",
+    "type": "fill",
+    "text": "In the SIMPLE framework of Solution-Focused Leadership, S stands for [gap1] and I stands for [gap2].",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Solutions, Not problems",
+          "Strategy",
+          "Systems",
+          "Self-governance"
+        ],
+        "correct": "Solutions, Not problems"
+      },
+      {
+        "id": "gap2",
+        "options": [
+          "In-between: Progress already happening",
+          "Interpersonal safety",
+          "Influence",
+          "Individual focus"
+        ],
+        "correct": "In-between: Progress already happening"
+      }
+    ],
+    "explanation": "SIMPLE stands for: Solutions, In-between, Make use, Possibilities, Language, Every case different."
+  },
+  {
+    "topic": "l3",
+    "type": "fill",
+    "text": "Satya Nadella shifted Microsoft's culture from a [gap1] mindset to a [gap2] mindset.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "know-it-all",
+          "do-it-all",
+          "sell-it-all",
+          "ignore-it-all"
+        ],
+        "correct": "know-it-all"
+      },
+      {
+        "id": "gap2",
+        "options": [
+          "learn-it-all",
+          "own-it-all",
+          "succeed-at-all",
+          "command-all"
+        ],
+        "correct": "learn-it-all"
+      }
+    ],
+    "explanation": "Nadella changed the toxic 'know-it-all' culture into a growth-oriented 'learn-it-all' culture."
+  },
+  {
+    "topic": "l4",
+    "type": "fill",
+    "text": "Ethics represents the [gap1] of leadership (which is invisible), while Governance represents the [gap2] (which is visible).",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "spirit",
+          "rules",
+          "statutes",
+          "metrics"
+        ],
+        "correct": "spirit"
+      },
+      {
+        "id": "gap2",
+        "options": [
+          "skeleton",
+          "muscles",
+          "structure",
+          "boardroom"
+        ],
+        "correct": "skeleton"
+      }
+    ],
+    "explanation": "Ethics is the invisible spirit formed in private; governance is the visible skeleton written in policy."
+  },
+  {
+    "topic": "l8",
+    "type": "fill",
+    "text": "In the Orange Story, Sister A wanted the [gap1] for baking, while Sister B wanted the [gap2] for drinking.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "peel",
+          "juice",
+          "whole fruit",
+          "seeds"
+        ],
+        "correct": "peel"
+      },
+      {
+        "id": "gap2",
+        "options": [
+          "juice",
+          "peel",
+          "whole fruit",
+          "pulp"
+        ],
+        "correct": "juice"
+      }
+    ],
+    "explanation": "Sister A wanted the peel (zest) and Sister B wanted the juice, showing positions hide underlying interests."
+  },
+  {
+    "topic": "l1",
     "type": "matching",
     "text": "Match each of the five Covenant Terms to its correct DLD221 definition:",
     "pairs": {
@@ -992,9 +1154,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "In the daily uniform principle under Self-Discipline, Albert Einstein wore the same grey suit every day, Steve Jobs wore a black turtleneck and blue jeans, and Barack Obama wore only blue or grey suits to eliminate decision _______.",
-    "answer": "fatigue",
-    "explanation": "The daily uniform principle aims to eliminate decision fatigue and preserve mental energy for consequential choices. (Page 21)."
+    "text": "In the daily uniform principle under Self-Discipline, Albert Einstein wore the same grey suit every day, Steve Jobs wore a black turtleneck and blue jeans, and Barack Obama wore only blue or grey suits to eliminate decision [gap1].",
+    "explanation": "The daily uniform principle aims to eliminate decision fatigue and preserve mental energy for consequential choices. (Page 21).",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "What must I do?",
+          "resource management",
+          "fatigue",
+          "Leadership"
+        ],
+        "correct": "fatigue"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -1068,9 +1241,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "The tool used to bypass problem ownership and unlock the preferred future by asking 'Suppose tonight, while you sleep, a miracle happens and the problem is solved. When you wake up, what would be different?' is called the _______ Question.",
-    "answer": "Miracle",
-    "explanation": "The Miracle Question, developed by Steve de Shazer and Insoo Kim Berg, shifts people from problem ownership to preferred-future authorship. (Page 14)."
+    "text": "The tool used to bypass problem ownership and unlock the preferred future by asking 'Suppose tonight, while you sleep, a miracle happens and the problem is solved. When you wake up, what would be different?' is called the [gap1] Question.",
+    "explanation": "The Miracle Question, developed by Steve de Shazer and Insoo Kim Berg, shifts people from problem ownership to preferred-future authorship. (Page 14).",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "SF Stand-Ups",
+          "Being SF",
+          "Miracle",
+          "Language shapes reality"
+        ],
+        "correct": "Miracle"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -1146,9 +1330,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "While Kotter's 8-Step Model operates at the macro organisational level, Prosci's _______ model focuses on the individual level of change.",
-    "answer": "ADKAR",
-    "explanation": "ADKAR (Awareness, Desire, Knowledge, Ability, Reinforcement) is the individual change model, complementary to Kotter's macro model. (Page 14)."
+    "text": "While Kotter's 8-Step Model operates at the macro organisational level, Prosci's [gap1] model focuses on the individual level of change.",
+    "explanation": "ADKAR (Awareness, Desire, Knowledge, Ability, Reinforcement) is the individual change model, complementary to Kotter's macro model. (Page 14).",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Remove barriers",
+          "Communicable",
+          "Destination",
+          "ADKAR"
+        ],
+        "correct": "ADKAR"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -1225,9 +1420,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "In the comparison between Ethics and Governance, Ethics is described as the 'spirit' and is invisible, while Governance is described as the '_______' and is visible.",
-    "answer": "skeleton",
-    "explanation": "Ethics is the spirit (invisible, formed in private); Governance is the skeleton (visible, written in policy). (Page 7)."
+    "text": "In the comparison between Ethics and Governance, Ethics is described as the 'spirit' and is invisible, while Governance is described as the '[gap1]' and is visible.",
+    "explanation": "Ethics is the spirit (invisible, formed in private); Governance is the skeleton (visible, written in policy). (Page 7).",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Compliance",
+          "fire",
+          "skeleton",
+          "7"
+        ],
+        "correct": "skeleton"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -1609,9 +1815,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Which scriptural reference provides the five covenant terms for leadership emergence?",
-    "answer": "Ecclesiastes 10:5-18",
-    "explanation": "According to Lecture 1: 'Which scriptural reference provides the five covenant terms for leadership emergence?' corresponds to 'Ecclesiastes 10:5-18'."
+    "text": "Which scriptural reference provides the five covenant terms for leadership emergence? [gap1].",
+    "explanation": "According to Lecture 1: 'Which scriptural reference provides the five covenant terms for leadership emergence?' corresponds to 'Ecclesiastes 10:5-18'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Benjamin Franklin",
+          "22 years",
+          "disgrace",
+          "Ecclesiastes 10:5-18"
+        ],
+        "correct": "Ecclesiastes 10:5-18"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1623,9 +1840,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "According to Lecture 1, vision answers which question?",
-    "answer": "What must I do?",
-    "explanation": "According to Lecture 1: 'According to Lecture 1, vision answers which question?' corresponds to 'What must I do?'."
+    "text": "According to Lecture 1, vision answers which question? [gap1].",
+    "explanation": "According to Lecture 1: 'According to Lecture 1, vision answers which question?' corresponds to 'What must I do?'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "What must I do?",
+          "Laddership",
+          "the Covenant",
+          "Abraham Lincoln"
+        ],
+        "correct": "What must I do?"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1637,9 +1865,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What did Dr. Oyedepo describe as 'what makes a slave'?",
-    "answer": "A self-centred dream",
-    "explanation": "According to Lecture 1: 'What did Dr. Oyedepo describe as 'what makes a slave'?' corresponds to 'A self-centred dream'."
+    "text": "What did Dr. Oyedepo describe as 'what makes a slave'? [gap1].",
+    "explanation": "According to Lecture 1: 'What did Dr. Oyedepo describe as 'what makes a slave'?' corresponds to 'A self-centred dream'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "What must I do?",
+          "Leadership",
+          "task management",
+          "A self-centred dream"
+        ],
+        "correct": "A self-centred dream"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1651,9 +1890,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Complete the Dr. Oyedepo quote: 'Leaders are simply _______!'",
-    "answer": "need-meeters",
-    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Leaders are simply _______!'' corresponds to 'need-meeters'."
+    "text": "Complete the Dr. Oyedepo quote: 'Leaders are simply [gap1]!'",
+    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Leaders are simply _______!'' corresponds to 'need-meeters'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "need-meeters",
+          "N300",
+          "R.G. LeTourneau",
+          "disgrace"
+        ],
+        "correct": "need-meeters"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1665,9 +1915,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Complete the Dr. Oyedepo quote: 'Schooling is but for a season, but _______ is for a lifetime.'",
-    "answer": "learning",
-    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Schooling is but for a season, but _______ is for a lifetime.'' corresponds to 'learning'."
+    "text": "Complete the Dr. Oyedepo quote: 'Schooling is but for a season, but [gap1] is for a lifetime.'",
+    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Schooling is but for a season, but _______ is for a lifetime.'' corresponds to 'learning'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Covenant Model of Leadership",
+          "Benjamin Franklin",
+          "learning",
+          "self-management"
+        ],
+        "correct": "learning"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1679,9 +1940,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Who said: 'I don't think much of a man who is not wiser today than he was yesterday'?",
-    "answer": "Abraham Lincoln",
-    "explanation": "According to Lecture 1: 'Who said: 'I don't think much of a man who is not wiser today than he was yesterday'?' corresponds to 'Abraham Lincoln'."
+    "text": "Who said: 'I don't think much of a man who is not wiser today than he was yesterday'? [gap1].",
+    "explanation": "According to Lecture 1: 'Who said: 'I don't think much of a man who is not wiser today than he was yesterday'?' corresponds to 'Abraham Lincoln'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Jim Rohn",
+          "Abraham Lincoln",
+          "task management",
+          "What must I do?"
+        ],
+        "correct": "Abraham Lincoln"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1693,9 +1965,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Complete the Dr. Oyedepo quote: 'Every star has a _______.'",
-    "answer": "trade secret",
-    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Every star has a _______.'' corresponds to 'trade secret'."
+    "text": "Complete the Dr. Oyedepo quote: 'Every star has a [gap1].'",
+    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Every star has a _______.'' corresponds to 'trade secret'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "time management",
+          "trade secret",
+          "Ecclesiastes 10:5-18",
+          "task management"
+        ],
+        "correct": "trade secret"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1707,9 +1990,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Steve Jobs wore a black turtleneck and blue jeans every day to eliminate _______.",
-    "answer": "decision fatigue",
-    "explanation": "According to Lecture 1: 'Steve Jobs wore a black turtleneck and blue jeans every day to eliminate _______.' corresponds to 'decision fatigue'."
+    "text": "Steve Jobs wore a black turtleneck and blue jeans every day to eliminate [gap1].",
+    "explanation": "According to Lecture 1: 'Steve Jobs wore a black turtleneck and blue jeans every day to eliminate _______.' corresponds to 'decision fatigue'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "trade secret",
+          "Benjamin Franklin",
+          "Leadership",
+          "decision fatigue"
+        ],
+        "correct": "decision fatigue"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1721,9 +2015,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Who said: 'Discipline weighs ounces while regret weighs tonnes'?",
-    "answer": "Jim Rohn",
-    "explanation": "According to Lecture 1: 'Who said: 'Discipline weighs ounces while regret weighs tonnes'?' corresponds to 'Jim Rohn'."
+    "text": "Who said: 'Discipline weighs ounces while regret weighs tonnes'? [gap1].",
+    "explanation": "According to Lecture 1: 'Who said: 'Discipline weighs ounces while regret weighs tonnes'?' corresponds to 'Jim Rohn'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Jim Rohn",
+          "8,736 hours",
+          "scar",
+          "22 years"
+        ],
+        "correct": "Jim Rohn"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1735,9 +2040,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "According to Lecture 1, how many hours are in one year?",
-    "answer": "8,736 hours",
-    "explanation": "According to Lecture 1: 'According to Lecture 1, how many hours are in one year?' corresponds to '8,736 hours'."
+    "text": "According to Lecture 1, how many hours are in one year? [gap1].",
+    "explanation": "According to Lecture 1: 'According to Lecture 1, how many hours are in one year?' corresponds to '8,736 hours'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "resource management",
+          "8,736 hours",
+          "scar",
+          "learning"
+        ],
+        "correct": "8,736 hours"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1749,9 +2065,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Complete the Dr. Oyedepo quote: 'Grace without labour results in _______.'",
-    "answer": "disgrace",
-    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Grace without labour results in _______.'' corresponds to 'disgrace'."
+    "text": "Complete the Dr. Oyedepo quote: 'Grace without labour results in [gap1].'",
+    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'Grace without labour results in _______.'' corresponds to 'disgrace'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Ecclesiastes 10:5-18",
+          "disgrace",
+          "Abraham Lincoln",
+          "N300"
+        ],
+        "correct": "disgrace"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1763,9 +2090,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Who was the roadside mechanic with no formal engineering training who invented the Digger and supplied 50% of earth-moving equipment?",
-    "answer": "R.G. LeTourneau",
-    "explanation": "According to Lecture 1: 'Who was the roadside mechanic with no formal engineering training who invented the Digger and supplied 50% of earth-moving equipment?' corresponds to 'R.G. LeTourneau'."
+    "text": "Who was the roadside mechanic with no formal engineering training who invented the Digger and supplied 50% of earth-moving equipment? [gap1].",
+    "explanation": "According to Lecture 1: 'Who was the roadside mechanic with no formal engineering training who invented the Digger and supplied 50% of earth-moving equipment?' corresponds to 'R.G. LeTourneau'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "R.G. LeTourneau",
+          "resource management",
+          "agreement",
+          "the Bible"
+        ],
+        "correct": "R.G. LeTourneau"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1777,9 +2115,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "With how much money did Cosmas Maduka start Coscharis?",
-    "answer": "N300",
-    "explanation": "According to Lecture 1: 'With how much money did Cosmas Maduka start Coscharis?' corresponds to 'N300'."
+    "text": "With how much money did Cosmas Maduka start Coscharis? [gap1].",
+    "explanation": "According to Lecture 1: 'With how much money did Cosmas Maduka start Coscharis?' corresponds to 'N300'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "need-meeters",
+          "N300",
+          "learning",
+          "scar"
+        ],
+        "correct": "N300"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1791,9 +2140,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Complete the Dr. Oyedepo quote: 'There is no star without a _______.'",
-    "answer": "scar",
-    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'There is no star without a _______.'' corresponds to 'scar'."
+    "text": "Complete the Dr. Oyedepo quote: 'There is no star without a [gap1].'",
+    "explanation": "According to Lecture 1: 'Complete the Dr. Oyedepo quote: 'There is no star without a _______.'' corresponds to 'scar'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "task management",
+          "scar",
+          "fatigue",
+          "resource management"
+        ],
+        "correct": "scar"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1805,9 +2165,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "For how many years was James Owen's long jump record unbroken?",
-    "answer": "22 years",
-    "explanation": "According to Lecture 1: 'For how many years was James Owen's long jump record unbroken?' corresponds to '22 years'."
+    "text": "For how many years was James Owen's long jump record unbroken? [gap1].",
+    "explanation": "According to Lecture 1: 'For how many years was James Owen's long jump record unbroken?' corresponds to '22 years'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Benjamin Franklin",
+          "scar",
+          "disgrace",
+          "22 years"
+        ],
+        "correct": "22 years"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1819,9 +2190,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What is the name of the leadership model taught in DLD221?",
-    "answer": "Covenant Model of Leadership",
-    "explanation": "According to Lecture 1: 'What is the name of the leadership model taught in DLD221?' corresponds to 'Covenant Model of Leadership'."
+    "text": "What is the name of the leadership model taught in DLD221? [gap1].",
+    "explanation": "According to Lecture 1: 'What is the name of the leadership model taught in DLD221?' corresponds to 'Covenant Model of Leadership'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Benjamin Franklin",
+          "Michael Faraday",
+          "Covenant Model of Leadership",
+          "time management"
+        ],
+        "correct": "Covenant Model of Leadership"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1833,9 +2215,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What is the correct sequential order of the five Covenant Terms?",
-    "answer": "Vision -> Wisdom -> Self-Discipline -> Diligence -> Sacrifice",
-    "explanation": "According to Lecture 1: 'What is the correct sequential order of the five Covenant Terms?' corresponds to 'Vision -> Wisdom -> Self-Discipline -> Diligence -> Sacrifice'."
+    "text": "What is the correct sequential order of the five Covenant Terms? [gap1].",
+    "explanation": "According to Lecture 1: 'What is the correct sequential order of the five Covenant Terms?' corresponds to 'Vision -> Wisdom -> Self-Discipline -> Diligence -> Sacrifice'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "task management",
+          "Vision -> Wisdom -> Self-Discipline -> Diligence -> Sacrifice",
+          "the Covenant",
+          "Covenant Model of Leadership"
+        ],
+        "correct": "Vision -> Wisdom -> Self-Discipline -> Diligence -> Sacrifice"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1847,9 +2240,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Who is the apprentice bookbinder who outshone his chemistry professor?",
-    "answer": "Michael Faraday",
-    "explanation": "According to Lecture 1: 'Who is the apprentice bookbinder who outshone his chemistry professor?' corresponds to 'Michael Faraday'."
+    "text": "Who is the apprentice bookbinder who outshone his chemistry professor? [gap1].",
+    "explanation": "According to Lecture 1: 'Who is the apprentice bookbinder who outshone his chemistry professor?' corresponds to 'Michael Faraday'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "the Bible",
+          "the Covenant",
+          "A self-centred dream",
+          "Michael Faraday"
+        ],
+        "correct": "Michael Faraday"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1861,9 +2265,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Which leader bought books instead of lunch as an apprentice?",
-    "answer": "Benjamin Franklin",
-    "explanation": "According to Lecture 1: 'Which leader bought books instead of lunch as an apprentice?' corresponds to 'Benjamin Franklin'."
+    "text": "Which leader bought books instead of lunch as an apprentice? [gap1].",
+    "explanation": "According to Lecture 1: 'Which leader bought books instead of lunch as an apprentice?' corresponds to 'Benjamin Franklin'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "the Covenant",
+          "Benjamin Franklin",
+          "learning",
+          "Abraham Lincoln"
+        ],
+        "correct": "Benjamin Franklin"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1875,9 +2290,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Who started with a small-town store he couldn't fully stock and built Walmart?",
-    "answer": "Sam Walton",
-    "explanation": "According to Lecture 1: 'Who started with a small-town store he couldn't fully stock and built Walmart?' corresponds to 'Sam Walton'."
+    "text": "Who started with a small-town store he couldn't fully stock and built Walmart? [gap1].",
+    "explanation": "According to Lecture 1: 'Who started with a small-town store he couldn't fully stock and built Walmart?' corresponds to 'Sam Walton'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "A self-centred dream",
+          "Sam Walton",
+          "fatigue",
+          "need-meeters"
+        ],
+        "correct": "Sam Walton"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1889,9 +2315,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Who went bankrupt on his first venture and went on to build Heinz Ketchup?",
-    "answer": "Henry Heinz",
-    "explanation": "According to Lecture 1: 'Who went bankrupt on his first venture and went on to build Heinz Ketchup?' corresponds to 'Henry Heinz'."
+    "text": "Who went bankrupt on his first venture and went on to build Heinz Ketchup? [gap1].",
+    "explanation": "According to Lecture 1: 'Who went bankrupt on his first venture and went on to build Heinz Ketchup?' corresponds to 'Henry Heinz'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "disgrace",
+          "purity and purpose",
+          "scar",
+          "Henry Heinz"
+        ],
+        "correct": "Henry Heinz"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1903,9 +2340,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "A covenant is defined as a formal, sealed _______ with mutual obligations.",
-    "answer": "agreement",
-    "explanation": "According to Lecture 1: 'A covenant is defined as a formal, sealed _______ with mutual obligations.' corresponds to 'agreement'."
+    "text": "A covenant is defined as a formal, sealed [gap1] with mutual obligations.",
+    "explanation": "According to Lecture 1: 'A covenant is defined as a formal, sealed _______ with mutual obligations.' corresponds to 'agreement'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "self-management",
+          "R.G. LeTourneau",
+          "agreement",
+          "the Covenant"
+        ],
+        "correct": "agreement"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1917,9 +2365,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What must a leader govern before governing anything else?",
-    "answer": "self-management",
-    "explanation": "According to Lecture 1: 'What must a leader govern before governing anything else?' corresponds to 'self-management'."
+    "text": "What must a leader govern before governing anything else? [gap1].",
+    "explanation": "According to Lecture 1: 'What must a leader govern before governing anything else?' corresponds to 'self-management'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "agreement",
+          "need-meeters",
+          "self-management",
+          "purity and purpose"
+        ],
+        "correct": "self-management"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1931,9 +2390,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Which of the four zones represents managing 8,736 hours?",
-    "answer": "time management",
-    "explanation": "According to Lecture 1: 'Which of the four zones represents managing 8,736 hours?' corresponds to 'time management'."
+    "text": "Which of the four zones represents managing 8,736 hours? [gap1].",
+    "explanation": "According to Lecture 1: 'Which of the four zones represents managing 8,736 hours?' corresponds to 'time management'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Henry Heinz",
+          "Abraham Lincoln",
+          "need-meeters",
+          "time management"
+        ],
+        "correct": "time management"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1945,9 +2415,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Which of the four zones represents protecting your core assignment fiercely?",
-    "answer": "task management",
-    "explanation": "According to Lecture 1: 'Which of the four zones represents protecting your core assignment fiercely?' corresponds to 'task management'."
+    "text": "Which of the four zones represents protecting your core assignment fiercely? [gap1].",
+    "explanation": "According to Lecture 1: 'Which of the four zones represents protecting your core assignment fiercely?' corresponds to 'task management'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Covenant Model of Leadership",
+          "Henry Heinz",
+          "Jim Rohn",
+          "task management"
+        ],
+        "correct": "task management"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1959,9 +2440,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "Which of the four zones represents managing well in order to grow big?",
-    "answer": "resource management",
-    "explanation": "According to Lecture 1: 'Which of the four zones represents managing well in order to grow big?' corresponds to 'resource management'."
+    "text": "Which of the four zones represents managing well in order to grow big? [gap1].",
+    "explanation": "According to Lecture 1: 'Which of the four zones represents managing well in order to grow big?' corresponds to 'resource management'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "decision fatigue",
+          "22 years",
+          "8,736 hours",
+          "resource management"
+        ],
+        "correct": "resource management"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1973,9 +2465,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What is another name for mentorship used in Lecture 1?",
-    "answer": "Laddership",
-    "explanation": "According to Lecture 1: 'What is another name for mentorship used in Lecture 1?' corresponds to 'Laddership'."
+    "text": "What is another name for mentorship used in Lecture 1? [gap1].",
+    "explanation": "According to Lecture 1: 'What is another name for mentorship used in Lecture 1?' corresponds to 'Laddership'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "decision fatigue",
+          "Abraham Lincoln",
+          "Laddership",
+          "learning"
+        ],
+        "correct": "Laddership"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -1987,9 +2490,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What is described as 'the most reliable text on leadership' in Lecture 1?",
-    "answer": "the Bible",
-    "explanation": "According to Lecture 1: 'What is described as 'the most reliable text on leadership' in Lecture 1?' corresponds to 'the Bible'."
+    "text": "What is described as 'the most reliable text on leadership' in Lecture 1? [gap1].",
+    "explanation": "According to Lecture 1: 'What is described as 'the most reliable text on leadership' in Lecture 1?' corresponds to 'the Bible'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "the Bible",
+          "agreement",
+          "Covenant Model of Leadership",
+          "Jim Rohn"
+        ],
+        "correct": "the Bible"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -2001,9 +2515,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What revelation did Dr. Oyedepo state did a lot for him?",
-    "answer": "the Covenant",
-    "explanation": "According to Lecture 1: 'What revelation did Dr. Oyedepo state did a lot for him?' corresponds to 'the Covenant'."
+    "text": "What revelation did Dr. Oyedepo state did a lot for him? [gap1].",
+    "explanation": "According to Lecture 1: 'What revelation did Dr. Oyedepo state did a lot for him?' corresponds to 'the Covenant'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Laddership",
+          "trade secret",
+          "the Covenant",
+          "self-management"
+        ],
+        "correct": "the Covenant"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -2015,9 +2540,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What is the primary characteristic of the Leadership Covenant?",
-    "answer": "purity and purpose",
-    "explanation": "According to Lecture 1: 'What is the primary characteristic of the Leadership Covenant?' corresponds to 'purity and purpose'."
+    "text": "What is the primary characteristic of the Leadership Covenant? [gap1].",
+    "explanation": "According to Lecture 1: 'What is the primary characteristic of the Leadership Covenant?' corresponds to 'purity and purpose'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "A self-centred dream",
+          "purity and purpose",
+          "self-management",
+          "decision fatigue"
+        ],
+        "correct": "purity and purpose"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -2029,9 +2565,20 @@ const QUESTIONS = [
   {
     "topic": "l1",
     "type": "fill",
-    "text": "What did the African Head of State identify as the number one problem?",
-    "answer": "Leadership",
-    "explanation": "According to Lecture 1: 'What did the African Head of State identify as the number one problem?' corresponds to 'Leadership'."
+    "text": "What did the African Head of State identify as the number one problem? [gap1].",
+    "explanation": "According to Lecture 1: 'What did the African Head of State identify as the number one problem?' corresponds to 'Leadership'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "A self-centred dream",
+          "22 years",
+          "Michael Faraday",
+          "Leadership"
+        ],
+        "correct": "Leadership"
+      }
+    ]
   },
   {
     "topic": "l1",
@@ -2043,9 +2590,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Who are the primary developers of the Solution-Focused approach?",
-    "answer": "Steve de Shazer & Insoo Kim Berg",
-    "explanation": "According to Lecture 2: 'Who are the primary developers of the Solution-Focused approach?' corresponds to 'Steve de Shazer & Insoo Kim Berg'."
+    "text": "Who are the primary developers of the Solution-Focused approach? [gap1].",
+    "explanation": "According to Lecture 2: 'Who are the primary developers of the Solution-Focused approach?' corresponds to 'Steve de Shazer & Insoo Kim Berg'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Steve de Shazer & Insoo Kim Berg",
+          "Rider",
+          "Solutions, Not problems",
+          "Exceptions to the problem"
+        ],
+        "correct": "Steve de Shazer & Insoo Kim Berg"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2057,9 +2615,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Where was the Solution-Focused approach originally developed in the 1980s?",
-    "answer": "Brief Family Therapy Center",
-    "explanation": "According to Lecture 2: 'Where was the Solution-Focused approach originally developed in the 1980s?' corresponds to 'Brief Family Therapy Center'."
+    "text": "Where was the Solution-Focused approach originally developed in the 1980s? [gap1].",
+    "explanation": "According to Lecture 2: 'Where was the Solution-Focused approach originally developed in the 1980s?' corresponds to 'Brief Family Therapy Center'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Rider",
+          "Brief Family Therapy Center",
+          "Technical problem-solving",
+          "Elephant"
+        ],
+        "correct": "Brief Family Therapy Center"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2071,9 +2640,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "In which city was the Brief Family Therapy Center founded?",
-    "answer": "Milwaukee",
-    "explanation": "According to Lecture 2: 'In which city was the Brief Family Therapy Center founded?' corresponds to 'Milwaukee'."
+    "text": "In which city was the Brief Family Therapy Center founded? [gap1].",
+    "explanation": "According to Lecture 2: 'In which city was the Brief Family Therapy Center founded?' corresponds to 'Milwaukee'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Milwaukee",
+          "Every case is different",
+          "Make use of what's there",
+          "Path"
+        ],
+        "correct": "Milwaukee"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2085,9 +2665,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What is the framework formalised by Jackson & McKergow in the 1990s?",
-    "answer": "SIMPLE framework",
-    "explanation": "According to Lecture 2: 'What is the framework formalised by Jackson & McKergow in the 1990s?' corresponds to 'SIMPLE framework'."
+    "text": "What is the framework formalised by Jackson & McKergow in the 1990s? [gap1].",
+    "explanation": "According to Lecture 2: 'What is the framework formalised by Jackson & McKergow in the 1990s?' corresponds to 'SIMPLE framework'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Every case is different",
+          "SIMPLE framework",
+          "SF Retrospectives",
+          "Exception-Finding"
+        ],
+        "correct": "SIMPLE framework"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2099,9 +2690,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'S' stand for in the SIMPLE framework?",
-    "answer": "Solutions, Not problems",
-    "explanation": "According to Lecture 2: 'What does the 'S' stand for in the SIMPLE framework?' corresponds to 'Solutions, Not problems'."
+    "text": "What does the 'S' stand for in the SIMPLE framework? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'S' stand for in the SIMPLE framework?' corresponds to 'Solutions, Not problems'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Solutions, Not problems",
+          "Cultural context",
+          "Strengths Amplification",
+          "Miracle"
+        ],
+        "correct": "Solutions, Not problems"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2113,9 +2715,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'I' stand for in the SIMPLE framework?",
-    "answer": "In-between: Progress already happening",
-    "explanation": "According to Lecture 2: 'What does the 'I' stand for in the SIMPLE framework?' corresponds to 'In-between: Progress already happening'."
+    "text": "What does the 'I' stand for in the SIMPLE framework? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'I' stand for in the SIMPLE framework?' corresponds to 'In-between: Progress already happening'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Brief Family Therapy Center",
+          "SF Compliment",
+          "Path",
+          "In-between: Progress already happening"
+        ],
+        "correct": "In-between: Progress already happening"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2127,9 +2740,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'M' stand for in the SIMPLE framework?",
-    "answer": "Make use of what's there",
-    "explanation": "According to Lecture 2: 'What does the 'M' stand for in the SIMPLE framework?' corresponds to 'Make use of what's there'."
+    "text": "What does the 'M' stand for in the SIMPLE framework? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'M' stand for in the SIMPLE framework?' corresponds to 'Make use of what's there'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "seeds of the solution",
+          "Make use of what's there",
+          "Jerry Sternin",
+          "Miracle Question"
+        ],
+        "correct": "Make use of what's there"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2141,9 +2765,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'P' stand for in the SIMPLE framework?",
-    "answer": "Possibilities: Future-focused",
-    "explanation": "According to Lecture 2: 'What does the 'P' stand for in the SIMPLE framework?' corresponds to 'Possibilities: Future-focused'."
+    "text": "What does the 'P' stand for in the SIMPLE framework? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'P' stand for in the SIMPLE framework?' corresponds to 'Possibilities: Future-focused'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Exception-Finding",
+          "Premature SF",
+          "Rider",
+          "Possibilities: Future-focused"
+        ],
+        "correct": "Possibilities: Future-focused"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2155,9 +2790,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'L' stand for in the SIMPLE framework?",
-    "answer": "Language shapes reality",
-    "explanation": "According to Lecture 2: 'What does the 'L' stand for in the SIMPLE framework?' corresponds to 'Language shapes reality'."
+    "text": "What does the 'L' stand for in the SIMPLE framework? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'L' stand for in the SIMPLE framework?' corresponds to 'Language shapes reality'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Chief Question-Asker",
+          "Language shapes reality",
+          "Miracle Question",
+          "Milwaukee"
+        ],
+        "correct": "Language shapes reality"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2169,9 +2815,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'E' stand for in the SIMPLE framework?",
-    "answer": "Every case is different",
-    "explanation": "According to Lecture 2: 'What does the 'E' stand for in the SIMPLE framework?' corresponds to 'Every case is different'."
+    "text": "What does the 'E' stand for in the SIMPLE framework? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'E' stand for in the SIMPLE framework?' corresponds to 'Every case is different'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Rider",
+          "Every case is different",
+          "Steve de Shazer & Insoo Kim Berg",
+          "Solutions, Not problems"
+        ],
+        "correct": "Every case is different"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2183,9 +2840,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What is the core premise of the Solution-Focused (SF) lens?",
-    "answer": "What you focus on grows",
-    "explanation": "According to Lecture 2: 'What is the core premise of the Solution-Focused (SF) lens?' corresponds to 'What you focus on grows'."
+    "text": "What is the core premise of the Solution-Focused (SF) lens? [gap1].",
+    "explanation": "According to Lecture 2: 'What is the core premise of the Solution-Focused (SF) lens?' corresponds to 'What you focus on grows'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "SF Retrospectives",
+          "SF Compliment",
+          "Premature SF",
+          "What you focus on grows"
+        ],
+        "correct": "What you focus on grows"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2197,9 +2865,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What are 'Bright Spots' in Solution-Focused terminology?",
-    "answer": "Exceptions to the problem",
-    "explanation": "According to Lecture 2: 'What are 'Bright Spots' in Solution-Focused terminology?' corresponds to 'Exceptions to the problem'."
+    "text": "What are 'Bright Spots' in Solution-Focused terminology? [gap1].",
+    "explanation": "According to Lecture 2: 'What are 'Bright Spots' in Solution-Focused terminology?' corresponds to 'Exceptions to the problem'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Switch",
+          "Miracle Question",
+          "seeds of the solution",
+          "Exceptions to the problem"
+        ],
+        "correct": "Exceptions to the problem"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2211,9 +2890,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Who reduced childhood malnutrition in Vietnam by finding bright spots?",
-    "answer": "Jerry Sternin",
-    "explanation": "According to Lecture 2: 'Who reduced childhood malnutrition in Vietnam by finding bright spots?' corresponds to 'Jerry Sternin'."
+    "text": "Who reduced childhood malnutrition in Vietnam by finding bright spots? [gap1].",
+    "explanation": "According to Lecture 2: 'Who reduced childhood malnutrition in Vietnam by finding bright spots?' corresponds to 'Jerry Sternin'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Solutions, Not problems",
+          "Rider",
+          "Jerry Sternin",
+          "Make use of what's there"
+        ],
+        "correct": "Jerry Sternin"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2225,9 +2915,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'MQ' stand for in SF leadership?",
-    "answer": "Miracle Question",
-    "explanation": "According to Lecture 2: 'What does the 'MQ' stand for in SF leadership?' corresponds to 'Miracle Question'."
+    "text": "What does the 'MQ' stand for in SF leadership? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'MQ' stand for in SF leadership?' corresponds to 'Miracle Question'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Miracle Question",
+          "Steve de Shazer & Insoo Kim Berg",
+          "Premature SF",
+          "Technical problem-solving"
+        ],
+        "correct": "Miracle Question"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2239,9 +2940,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'SQ' stand for in SF leadership?",
-    "answer": "Scaling Questions",
-    "explanation": "According to Lecture 2: 'What does the 'SQ' stand for in SF leadership?' corresponds to 'Scaling Questions'."
+    "text": "What does the 'SQ' stand for in SF leadership? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'SQ' stand for in SF leadership?' corresponds to 'Scaling Questions'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Scaling Questions",
+          "seeds of the solution",
+          "SF Compliment",
+          "Rider"
+        ],
+        "correct": "Scaling Questions"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2253,9 +2965,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What does the 'EF' stand for in SF leadership?",
-    "answer": "Exception-Finding",
-    "explanation": "According to Lecture 2: 'What does the 'EF' stand for in SF leadership?' corresponds to 'Exception-Finding'."
+    "text": "What does the 'EF' stand for in SF leadership? [gap1].",
+    "explanation": "According to Lecture 2: 'What does the 'EF' stand for in SF leadership?' corresponds to 'Exception-Finding'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Make use of what's there",
+          "Cultural context",
+          "Exception-Finding",
+          "Brief Family Therapy Center"
+        ],
+        "correct": "Exception-Finding"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2267,9 +2990,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What tool is used to name specific, observed strengths to reinforce competence?",
-    "answer": "Strengths Amplification",
-    "explanation": "According to Lecture 2: 'What tool is used to name specific, observed strengths to reinforce competence?' corresponds to 'Strengths Amplification'."
+    "text": "What tool is used to name specific, observed strengths to reinforce competence? [gap1].",
+    "explanation": "According to Lecture 2: 'What tool is used to name specific, observed strengths to reinforce competence?' corresponds to 'Strengths Amplification'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Strengths Amplification",
+          "SF Compliment",
+          "Exceptions to the problem",
+          "SF Retrospectives"
+        ],
+        "correct": "Strengths Amplification"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2281,9 +3015,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Which part of the brain represents the rational mind and needs direction?",
-    "answer": "Rider",
-    "explanation": "According to Lecture 2: 'Which part of the brain represents the rational mind and needs direction?' corresponds to 'Rider'."
+    "text": "Which part of the brain represents the rational mind and needs direction? [gap1].",
+    "explanation": "According to Lecture 2: 'Which part of the brain represents the rational mind and needs direction?' corresponds to 'Rider'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Possibilities: Future-focused",
+          "Exceptions to the problem",
+          "Rider",
+          "Milwaukee"
+        ],
+        "correct": "Rider"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2295,9 +3040,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Which part of the brain represents the emotional mind and needs motivation?",
-    "answer": "Elephant",
-    "explanation": "According to Lecture 2: 'Which part of the brain represents the emotional mind and needs motivation?' corresponds to 'Elephant'."
+    "text": "Which part of the brain represents the emotional mind and needs motivation? [gap1].",
+    "explanation": "According to Lecture 2: 'Which part of the brain represents the emotional mind and needs motivation?' corresponds to 'Elephant'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Jerry Sternin",
+          "SF Retrospectives",
+          "Make use of what's there",
+          "Elephant"
+        ],
+        "correct": "Elephant"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2309,9 +3065,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Which part of the environment represents making the right behaviour easier?",
-    "answer": "Path",
-    "explanation": "According to Lecture 2: 'Which part of the environment represents making the right behaviour easier?' corresponds to 'Path'."
+    "text": "Which part of the environment represents making the right behaviour easier? [gap1].",
+    "explanation": "According to Lecture 2: 'Which part of the environment represents making the right behaviour easier?' corresponds to 'Path'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Milwaukee",
+          "Cultural context",
+          "Steve de Shazer & Insoo Kim Berg",
+          "Path"
+        ],
+        "correct": "Path"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2323,9 +3090,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What is the 5-minute meeting ritual that shifts focus from blockers to wins?",
-    "answer": "SF Stand-Ups",
-    "explanation": "According to Lecture 2: 'What is the 5-minute meeting ritual that shifts focus from blockers to wins?' corresponds to 'SF Stand-Ups'."
+    "text": "What is the 5-minute meeting ritual that shifts focus from blockers to wins? [gap1].",
+    "explanation": "According to Lecture 2: 'What is the 5-minute meeting ritual that shifts focus from blockers to wins?' corresponds to 'SF Stand-Ups'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "What you focus on grows",
+          "Miracle Question",
+          "SF Stand-Ups",
+          "Make use of what's there"
+        ],
+        "correct": "SF Stand-Ups"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2337,9 +3115,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What retrospective format uses 'What worked well? What made it work? What would we carry forward?'",
-    "answer": "SF Retrospectives",
-    "explanation": "According to Lecture 2: 'What retrospective format uses 'What worked well? What made it work? What would we carry forward?'' corresponds to 'SF Retrospectives'."
+    "text": "What retrospective format uses 'What worked well? What made it work? What would we carry forward?' [gap1].",
+    "explanation": "According to Lecture 2: 'What retrospective format uses 'What worked well? What made it work? What would we carry forward?'' corresponds to 'SF Retrospectives'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Jerry Sternin",
+          "SF Compliment",
+          "SIMPLE framework",
+          "SF Retrospectives"
+        ],
+        "correct": "SF Retrospectives"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2351,9 +3140,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What role does the SF leader adopt in the team?",
-    "answer": "Chief Question-Asker",
-    "explanation": "According to Lecture 2: 'What role does the SF leader adopt in the team?' corresponds to 'Chief Question-Asker'."
+    "text": "What role does the SF leader adopt in the team? [gap1].",
+    "explanation": "According to Lecture 2: 'What role does the SF leader adopt in the team?' corresponds to 'Chief Question-Asker'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Chief Question-Asker",
+          "Exception-Finding",
+          "SF Retrospectives",
+          "Milwaukee"
+        ],
+        "correct": "Chief Question-Asker"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2365,9 +3165,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What represents making solution-focused thinking an instinctive reflex rather than an occasional tool?",
-    "answer": "Being SF",
-    "explanation": "According to Lecture 2: 'What represents making solution-focused thinking an instinctive reflex rather than an occasional tool?' corresponds to 'Being SF'."
+    "text": "What represents making solution-focused thinking an instinctive reflex rather than an occasional tool? [gap1].",
+    "explanation": "According to Lecture 2: 'What represents making solution-focused thinking an instinctive reflex rather than an occasional tool?' corresponds to 'Being SF'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "SIMPLE framework",
+          "Brief Family Therapy Center",
+          "Cultural context",
+          "Being SF"
+        ],
+        "correct": "Being SF"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2379,9 +3190,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "In which situation does the Solution-Focused approach have limits and need root-cause analysis instead?",
-    "answer": "Technical problem-solving",
-    "explanation": "According to Lecture 2: 'In which situation does the Solution-Focused approach have limits and need root-cause analysis instead?' corresponds to 'Technical problem-solving'."
+    "text": "In which situation does the Solution-Focused approach have limits and need root-cause analysis instead? [gap1].",
+    "explanation": "According to Lecture 2: 'In which situation does the Solution-Focused approach have limits and need root-cause analysis instead?' corresponds to 'Technical problem-solving'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "seeds of the solution",
+          "Technical problem-solving",
+          "In-between: Progress already happening",
+          "Scaling Questions"
+        ],
+        "correct": "Technical problem-solving"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2393,9 +3215,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What is the risk of using SF tools before giving space for acknowledgement or grief?",
-    "answer": "Premature SF",
-    "explanation": "According to Lecture 2: 'What is the risk of using SF tools before giving space for acknowledgement or grief?' corresponds to 'Premature SF'."
+    "text": "What is the risk of using SF tools before giving space for acknowledgement or grief? [gap1].",
+    "explanation": "According to Lecture 2: 'What is the risk of using SF tools before giving space for acknowledgement or grief?' corresponds to 'Premature SF'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Premature SF",
+          "Elephant",
+          "Miracle Question",
+          "Solutions, Not problems"
+        ],
+        "correct": "Premature SF"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2407,9 +3240,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What can undermine solution-focused behavior even when direction is clear and people are motivated?",
-    "answer": "poorly designed environments",
-    "explanation": "According to Lecture 2: 'What can undermine solution-focused behavior even when direction is clear and people are motivated?' corresponds to 'poorly designed environments'."
+    "text": "What can undermine solution-focused behavior even when direction is clear and people are motivated? [gap1].",
+    "explanation": "According to Lecture 2: 'What can undermine solution-focused behavior even when direction is clear and people are motivated?' corresponds to 'poorly designed environments'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "poorly designed environments",
+          "seeds of the solution",
+          "Exception-Finding",
+          "Milwaukee"
+        ],
+        "correct": "poorly designed environments"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2421,9 +3265,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Why must SF tools be held with flexibility in environments that value collective decision-making?",
-    "answer": "Cultural context",
-    "explanation": "According to Lecture 2: 'Why must SF tools be held with flexibility in environments that value collective decision-making?' corresponds to 'Cultural context'."
+    "text": "Why must SF tools be held with flexibility in environments that value collective decision-making? [gap1].",
+    "explanation": "According to Lecture 2: 'Why must SF tools be held with flexibility in environments that value collective decision-making?' corresponds to 'Cultural context'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "What you focus on grows",
+          "Steve de Shazer & Insoo Kim Berg",
+          "Brief Family Therapy Center",
+          "Cultural context"
+        ],
+        "correct": "Cultural context"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2435,9 +3290,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Which 2010 book by Heath & Heath popularized the concept of 'bright spots'?",
-    "answer": "Switch",
-    "explanation": "According to Lecture 2: 'Which 2010 book by Heath & Heath popularized the concept of 'bright spots'?' corresponds to 'Switch'."
+    "text": "Which 2010 book by Heath & Heath popularized the concept of 'bright spots'? [gap1].",
+    "explanation": "According to Lecture 2: 'Which 2010 book by Heath & Heath popularized the concept of 'bright spots'?' corresponds to 'Switch'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Every case is different",
+          "Switch",
+          "Premature SF",
+          "Strengths Amplification"
+        ],
+        "correct": "Switch"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2449,9 +3315,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "Complete the sentence: 'Exceptions are rarely random \u2014 they contain the _______.'",
-    "answer": "seeds of the solution",
-    "explanation": "According to Lecture 2: 'Complete the sentence: 'Exceptions are rarely random \u2014 they contain the _______.'' corresponds to 'seeds of the solution'."
+    "text": "Complete the sentence: 'Exceptions are rarely random \u2014 they contain the [gap1].'",
+    "explanation": "According to Lecture 2: 'Complete the sentence: 'Exceptions are rarely random \u2014 they contain the _______.'' corresponds to 'seeds of the solution'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Technical problem-solving",
+          "Strengths Amplification",
+          "seeds of the solution",
+          "Exceptions to the problem"
+        ],
+        "correct": "seeds of the solution"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2463,9 +3340,20 @@ const QUESTIONS = [
   {
     "topic": "l2",
     "type": "fill",
-    "text": "What type of compliment is specific, observed, and connected to an outcome?",
-    "answer": "SF Compliment",
-    "explanation": "According to Lecture 2: 'What type of compliment is specific, observed, and connected to an outcome?' corresponds to 'SF Compliment'."
+    "text": "What type of compliment is specific, observed, and connected to an outcome? [gap1].",
+    "explanation": "According to Lecture 2: 'What type of compliment is specific, observed, and connected to an outcome?' corresponds to 'SF Compliment'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Milwaukee",
+          "SF Compliment",
+          "SF Stand-Ups",
+          "SF Retrospectives"
+        ],
+        "correct": "SF Compliment"
+      }
+    ]
   },
   {
     "topic": "l2",
@@ -2477,9 +3365,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does change adjust, as opposed to transformation?",
-    "answer": "existing processes",
-    "explanation": "According to Lecture 3: 'What does change adjust, as opposed to transformation?' corresponds to 'existing processes'."
+    "text": "What does change adjust, as opposed to transformation? [gap1].",
+    "explanation": "According to Lecture 3: 'What does change adjust, as opposed to transformation?' corresponds to 'existing processes'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Satya Nadella",
+          "Prosci",
+          "Destination",
+          "existing processes"
+        ],
+        "correct": "existing processes"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2491,9 +3390,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does transformation do to the paradigm of an organisation?",
-    "answer": "Shifts the paradigm itself",
-    "explanation": "According to Lecture 3: 'What does transformation do to the paradigm of an organisation?' corresponds to 'Shifts the paradigm itself'."
+    "text": "What does transformation do to the paradigm of an organisation? [gap1].",
+    "explanation": "According to Lecture 3: 'What does transformation do to the paradigm of an organisation?' corresponds to 'Shifts the paradigm itself'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Shifts the paradigm itself",
+          "Generate short-term wins",
+          "commitment",
+          "Focused"
+        ],
+        "correct": "Shifts the paradigm itself"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2505,9 +3415,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "How long does a genuine transformation take to embed in an organisation?",
-    "answer": "5-10 years",
-    "explanation": "According to Lecture 3: 'How long does a genuine transformation take to embed in an organisation?' corresponds to '5-10 years'."
+    "text": "How long does a genuine transformation take to embed in an organisation? [gap1].",
+    "explanation": "According to Lecture 3: 'How long does a genuine transformation take to embed in an organisation?' corresponds to '5-10 years'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "existing processes",
+          "Remove barriers",
+          "5-10 years",
+          "Ability"
+        ],
+        "correct": "5-10 years"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2519,9 +3440,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "According to Kotter, what is the spark that ignites transformation?",
-    "answer": "Urgency",
-    "explanation": "According to Lecture 3: 'According to Kotter, what is the spark that ignites transformation?' corresponds to 'Urgency'."
+    "text": "According to Kotter, what is the spark that ignites transformation? [gap1].",
+    "explanation": "According to Lecture 3: 'According to Kotter, what is the spark that ignites transformation?' corresponds to 'Urgency'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Form a strategic vision",
+          "commitment",
+          "John Kotter",
+          "Urgency"
+        ],
+        "correct": "Urgency"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2533,9 +3465,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Who became the CEO of Microsoft in 2014 and restructured its culture?",
-    "answer": "Satya Nadella",
-    "explanation": "According to Lecture 3: 'Who became the CEO of Microsoft in 2014 and restructured its culture?' corresponds to 'Satya Nadella'."
+    "text": "Who became the CEO of Microsoft in 2014 and restructured its culture? [gap1].",
+    "explanation": "According to Lecture 3: 'Who became the CEO of Microsoft in 2014 and restructured its culture?' corresponds to 'Satya Nadella'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Satya Nadella",
+          "Institute the change",
+          "John Kotter",
+          "5-10 years"
+        ],
+        "correct": "Satya Nadella"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2547,9 +3490,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Nadella shifted Microsoft's culture from 'know-it-all' to '_______'.",
-    "answer": "learn-it-all",
-    "explanation": "According to Lecture 3: 'Nadella shifted Microsoft's culture from 'know-it-all' to '_______'.' corresponds to 'learn-it-all'."
+    "text": "Nadella shifted Microsoft's culture from 'know-it-all' to '[gap1]'.",
+    "explanation": "According to Lecture 3: 'Nadella shifted Microsoft's culture from 'know-it-all' to '_______'.' corresponds to 'learn-it-all'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Remove barriers",
+          "learn-it-all",
+          "Knowledge",
+          "existing processes"
+        ],
+        "correct": "learn-it-all"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2561,9 +3515,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which Kotter test ensures the vision creates a clear mental picture?",
-    "answer": "Imaginable",
-    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision creates a clear mental picture?' corresponds to 'Imaginable'."
+    "text": "Which Kotter test ensures the vision creates a clear mental picture? [gap1].",
+    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision creates a clear mental picture?' corresponds to 'Imaginable'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "John Kotter",
+          "Enlist a volunteer army",
+          "Reinforcement",
+          "Imaginable"
+        ],
+        "correct": "Imaginable"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2575,9 +3540,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which Kotter test ensures the vision appeals to stakeholders' interests?",
-    "answer": "Desirable",
-    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision appeals to stakeholders' interests?' corresponds to 'Desirable'."
+    "text": "Which Kotter test ensures the vision appeals to stakeholders' interests? [gap1].",
+    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision appeals to stakeholders' interests?' corresponds to 'Desirable'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Desirable",
+          "Urgency",
+          "John Kotter",
+          "Sustain acceleration"
+        ],
+        "correct": "Desirable"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2589,9 +3565,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which Kotter test ensures the vision is realistic and attainable?",
-    "answer": "Feasible",
-    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision is realistic and attainable?' corresponds to 'Feasible'."
+    "text": "Which Kotter test ensures the vision is realistic and attainable? [gap1].",
+    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision is realistic and attainable?' corresponds to 'Feasible'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Destination",
+          "Build a guiding coalition",
+          "Sustain acceleration",
+          "Feasible"
+        ],
+        "correct": "Feasible"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2603,9 +3590,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which Kotter test ensures the vision is clear enough to guide decisions?",
-    "answer": "Focused",
-    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision is clear enough to guide decisions?' corresponds to 'Focused'."
+    "text": "Which Kotter test ensures the vision is clear enough to guide decisions? [gap1].",
+    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision is clear enough to guide decisions?' corresponds to 'Focused'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Create urgency",
+          "Focused",
+          "existing processes",
+          "Build a guiding coalition"
+        ],
+        "correct": "Focused"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2617,9 +3615,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which Kotter test ensures the vision allows room for adjustment?",
-    "answer": "Flexible",
-    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision allows room for adjustment?' corresponds to 'Flexible'."
+    "text": "Which Kotter test ensures the vision allows room for adjustment? [gap1].",
+    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision allows room for adjustment?' corresponds to 'Flexible'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "existing processes",
+          "Desirable",
+          "Satya Nadella",
+          "Flexible"
+        ],
+        "correct": "Flexible"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2631,9 +3640,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which Kotter test ensures the vision can be explained in 5 minutes?",
-    "answer": "Communicable",
-    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision can be explained in 5 minutes?' corresponds to 'Communicable'."
+    "text": "Which Kotter test ensures the vision can be explained in 5 minutes? [gap1].",
+    "explanation": "According to Lecture 3: 'Which Kotter test ensures the vision can be explained in 5 minutes?' corresponds to 'Communicable'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Communicable",
+          "Remove barriers",
+          "Enlist a volunteer army",
+          "Desirable"
+        ],
+        "correct": "Communicable"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2645,9 +3665,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which organisation created the ADKAR model?",
-    "answer": "Prosci",
-    "explanation": "According to Lecture 3: 'Which organisation created the ADKAR model?' corresponds to 'Prosci'."
+    "text": "Which organisation created the ADKAR model? [gap1].",
+    "explanation": "According to Lecture 3: 'Which organisation created the ADKAR model?' corresponds to 'Prosci'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "5-10 years",
+          "Sustain acceleration",
+          "Prosci",
+          "Urgency"
+        ],
+        "correct": "Prosci"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2659,9 +3690,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does the 'A' stand for in ADKAR (first phase)?",
-    "answer": "Awareness",
-    "explanation": "According to Lecture 3: 'What does the 'A' stand for in ADKAR (first phase)?' corresponds to 'Awareness'."
+    "text": "What does the 'A' stand for in ADKAR (first phase)? [gap1].",
+    "explanation": "According to Lecture 3: 'What does the 'A' stand for in ADKAR (first phase)?' corresponds to 'Awareness'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Focused",
+          "Desire",
+          "Awareness",
+          "Urgency"
+        ],
+        "correct": "Awareness"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2673,9 +3715,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does the 'D' stand for in ADKAR?",
-    "answer": "Desire",
-    "explanation": "According to Lecture 3: 'What does the 'D' stand for in ADKAR?' corresponds to 'Desire'."
+    "text": "What does the 'D' stand for in ADKAR? [gap1].",
+    "explanation": "According to Lecture 3: 'What does the 'D' stand for in ADKAR?' corresponds to 'Desire'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Desire",
+          "Prosci",
+          "Remove barriers",
+          "Sustain acceleration"
+        ],
+        "correct": "Desire"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2687,9 +3740,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does the 'K' stand for in ADKAR?",
-    "answer": "Knowledge",
-    "explanation": "According to Lecture 3: 'What does the 'K' stand for in ADKAR?' corresponds to 'Knowledge'."
+    "text": "What does the 'K' stand for in ADKAR? [gap1].",
+    "explanation": "According to Lecture 3: 'What does the 'K' stand for in ADKAR?' corresponds to 'Knowledge'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Satya Nadella",
+          "Prosci",
+          "Knowledge",
+          "Urgency"
+        ],
+        "correct": "Knowledge"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2701,9 +3765,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does the 'A' stand for in ADKAR (second phase)?",
-    "answer": "Ability",
-    "explanation": "According to Lecture 3: 'What does the 'A' stand for in ADKAR (second phase)?' corresponds to 'Ability'."
+    "text": "What does the 'A' stand for in ADKAR (second phase)? [gap1].",
+    "explanation": "According to Lecture 3: 'What does the 'A' stand for in ADKAR (second phase)?' corresponds to 'Ability'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Feasible",
+          "Ability",
+          "Knowledge",
+          "Remove barriers"
+        ],
+        "correct": "Ability"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2715,9 +3790,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What does the 'R' stand for in ADKAR?",
-    "answer": "Reinforcement",
-    "explanation": "According to Lecture 3: 'What does the 'R' stand for in ADKAR?' corresponds to 'Reinforcement'."
+    "text": "What does the 'R' stand for in ADKAR? [gap1].",
+    "explanation": "According to Lecture 3: 'What does the 'R' stand for in ADKAR?' corresponds to 'Reinforcement'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Reinforcement",
+          "Flexible",
+          "Prosci",
+          "ADKAR"
+        ],
+        "correct": "Reinforcement"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2729,9 +3815,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 1 of Kotter's 8-Step Model?",
-    "answer": "Create urgency",
-    "explanation": "According to Lecture 3: 'What is Step 1 of Kotter's 8-Step Model?' corresponds to 'Create urgency'."
+    "text": "What is Step 1 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 1 of Kotter's 8-Step Model?' corresponds to 'Create urgency'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Destination",
+          "Create urgency",
+          "Imaginable",
+          "Burning Platform"
+        ],
+        "correct": "Create urgency"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2743,9 +3840,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 2 of Kotter's 8-Step Model?",
-    "answer": "Build a guiding coalition",
-    "explanation": "According to Lecture 3: 'What is Step 2 of Kotter's 8-Step Model?' corresponds to 'Build a guiding coalition'."
+    "text": "What is Step 2 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 2 of Kotter's 8-Step Model?' corresponds to 'Build a guiding coalition'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Build a guiding coalition",
+          "Create urgency",
+          "Knowledge",
+          "5-10 years"
+        ],
+        "correct": "Build a guiding coalition"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2757,9 +3865,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 3 of Kotter's 8-Step Model?",
-    "answer": "Form a strategic vision",
-    "explanation": "According to Lecture 3: 'What is Step 3 of Kotter's 8-Step Model?' corresponds to 'Form a strategic vision'."
+    "text": "What is Step 3 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 3 of Kotter's 8-Step Model?' corresponds to 'Form a strategic vision'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Form a strategic vision",
+          "Imaginable",
+          "Proverbs 29:18",
+          "ADKAR"
+        ],
+        "correct": "Form a strategic vision"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2771,9 +3890,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 4 of Kotter's 8-Step Model?",
-    "answer": "Enlist a volunteer army",
-    "explanation": "According to Lecture 3: 'What is Step 4 of Kotter's 8-Step Model?' corresponds to 'Enlist a volunteer army'."
+    "text": "What is Step 4 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 4 of Kotter's 8-Step Model?' corresponds to 'Enlist a volunteer army'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Form a strategic vision",
+          "Flexible",
+          "Enlist a volunteer army",
+          "Communicable"
+        ],
+        "correct": "Enlist a volunteer army"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2785,9 +3915,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 5 of Kotter's 8-Step Model?",
-    "answer": "Remove barriers",
-    "explanation": "According to Lecture 3: 'What is Step 5 of Kotter's 8-Step Model?' corresponds to 'Remove barriers'."
+    "text": "What is Step 5 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 5 of Kotter's 8-Step Model?' corresponds to 'Remove barriers'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Sustain acceleration",
+          "Create urgency",
+          "Remove barriers",
+          "Generate short-term wins"
+        ],
+        "correct": "Remove barriers"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2799,9 +3940,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 6 of Kotter's 8-Step Model?",
-    "answer": "Generate short-term wins",
-    "explanation": "According to Lecture 3: 'What is Step 6 of Kotter's 8-Step Model?' corresponds to 'Generate short-term wins'."
+    "text": "What is Step 6 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 6 of Kotter's 8-Step Model?' corresponds to 'Generate short-term wins'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "5-10 years",
+          "Create urgency",
+          "existing processes",
+          "Generate short-term wins"
+        ],
+        "correct": "Generate short-term wins"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2813,9 +3965,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 7 of Kotter's 8-Step Model?",
-    "answer": "Sustain acceleration",
-    "explanation": "According to Lecture 3: 'What is Step 7 of Kotter's 8-Step Model?' corresponds to 'Sustain acceleration'."
+    "text": "What is Step 7 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 7 of Kotter's 8-Step Model?' corresponds to 'Sustain acceleration'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Imaginable",
+          "Form a strategic vision",
+          "5-10 years",
+          "Sustain acceleration"
+        ],
+        "correct": "Sustain acceleration"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2827,9 +3990,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What is Step 8 of Kotter's 8-Step Model?",
-    "answer": "Institute the change",
-    "explanation": "According to Lecture 3: 'What is Step 8 of Kotter's 8-Step Model?' corresponds to 'Institute the change'."
+    "text": "What is Step 8 of Kotter's 8-Step Model? [gap1].",
+    "explanation": "According to Lecture 3: 'What is Step 8 of Kotter's 8-Step Model?' corresponds to 'Institute the change'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Institute the change",
+          "Communicable",
+          "Knowledge",
+          "commitment"
+        ],
+        "correct": "Institute the change"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2841,9 +4015,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Who wrote the 1996 landmark book 'Leading Change'?",
-    "answer": "John Kotter",
-    "explanation": "According to Lecture 3: 'Who wrote the 1996 landmark book 'Leading Change'?' corresponds to 'John Kotter'."
+    "text": "Who wrote the 1996 landmark book 'Leading Change'? [gap1].",
+    "explanation": "According to Lecture 3: 'Who wrote the 1996 landmark book 'Leading Change'?' corresponds to 'John Kotter'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "John Kotter",
+          "Prosci",
+          "Reinforcement",
+          "Burning Platform"
+        ],
+        "correct": "John Kotter"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2855,9 +4040,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Visions rooted in genuine need attract genuine _______.",
-    "answer": "commitment",
-    "explanation": "According to Lecture 3: 'Visions rooted in genuine need attract genuine _______.' corresponds to 'commitment'."
+    "text": "Visions rooted in genuine need attract genuine [gap1].",
+    "explanation": "According to Lecture 3: 'Visions rooted in genuine need attract genuine _______.' corresponds to 'commitment'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "learn-it-all",
+          "Build a guiding coalition",
+          "commitment",
+          "Knowledge"
+        ],
+        "correct": "commitment"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2869,9 +4065,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "What metaphor describes when staying is more dangerous than jumping?",
-    "answer": "Burning Platform",
-    "explanation": "According to Lecture 3: 'What metaphor describes when staying is more dangerous than jumping?' corresponds to 'Burning Platform'."
+    "text": "What metaphor describes when staying is more dangerous than jumping? [gap1].",
+    "explanation": "According to Lecture 3: 'What metaphor describes when staying is more dangerous than jumping?' corresponds to 'Burning Platform'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "John Kotter",
+          "Burning Platform",
+          "Ability",
+          "Enlist a volunteer army"
+        ],
+        "correct": "Burning Platform"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2883,9 +4090,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Which scriptural reference states: 'Where there is no vision, the people perish'?",
-    "answer": "Proverbs 29:18",
-    "explanation": "According to Lecture 3: 'Which scriptural reference states: 'Where there is no vision, the people perish'?' corresponds to 'Proverbs 29:18'."
+    "text": "Which scriptural reference states: 'Where there is no vision, the people perish'? [gap1].",
+    "explanation": "According to Lecture 3: 'Which scriptural reference states: 'Where there is no vision, the people perish'?' corresponds to 'Proverbs 29:18'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Shifts the paradigm itself",
+          "Communicable",
+          "Proverbs 29:18",
+          "Awareness"
+        ],
+        "correct": "Proverbs 29:18"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2897,9 +4115,20 @@ const QUESTIONS = [
   {
     "topic": "l3",
     "type": "fill",
-    "text": "Without a clear picture of the future, what you have is disruption without _______.",
-    "answer": "Destination",
-    "explanation": "According to Lecture 3: 'Without a clear picture of the future, what you have is disruption without _______.' corresponds to 'Destination'."
+    "text": "Without a clear picture of the future, what you have is disruption without [gap1].",
+    "explanation": "According to Lecture 3: 'Without a clear picture of the future, what you have is disruption without _______.' corresponds to 'Destination'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Desirable",
+          "Destination",
+          "Desire",
+          "Communicable"
+        ],
+        "correct": "Destination"
+      }
+    ]
   },
   {
     "topic": "l3",
@@ -2911,9 +4140,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What are the two questions represented by the two chairmen in Lecture 4?",
-    "answer": "Compliance vs. Conscience",
-    "explanation": "According to Lecture 4: 'What are the two questions represented by the two chairmen in Lecture 4?' corresponds to 'Compliance vs. Conscience'."
+    "text": "What are the two questions represented by the two chairmen in Lecture 4? [gap1].",
+    "explanation": "According to Lecture 4: 'What are the two questions represented by the two chairmen in Lecture 4?' corresponds to 'Compliance vs. Conscience'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Compliance vs. Conscience",
+          "Billy Graham",
+          "Duty of Conflict Disclosure",
+          "Fairness"
+        ],
+        "correct": "Compliance vs. Conscience"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -2925,9 +4165,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which boardroom pillar requires alignment between word, thought, and action?",
-    "answer": "Integrity",
-    "explanation": "According to Lecture 4: 'Which boardroom pillar requires alignment between word, thought, and action?' corresponds to 'Integrity'."
+    "text": "Which boardroom pillar requires alignment between word, thought, and action? [gap1].",
+    "explanation": "According to Lecture 4: 'Which boardroom pillar requires alignment between word, thought, and action?' corresponds to 'Integrity'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Integrity",
+          "skeleton",
+          "Accountability",
+          "dissent"
+        ],
+        "correct": "Integrity"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -2939,9 +4190,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which boardroom pillar requires taking ownership of decisions and consequences?",
-    "answer": "Accountability",
-    "explanation": "According to Lecture 4: 'Which boardroom pillar requires taking ownership of decisions and consequences?' corresponds to 'Accountability'."
+    "text": "Which boardroom pillar requires taking ownership of decisions and consequences? [gap1].",
+    "explanation": "According to Lecture 4: 'Which boardroom pillar requires taking ownership of decisions and consequences?' corresponds to 'Accountability'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Stakeholder Sensitivity",
+          "George Washington",
+          "Transparency",
+          "Accountability"
+        ],
+        "correct": "Accountability"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -2953,9 +4215,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which boardroom pillar represents Sunlight as the best disinfectant?",
-    "answer": "Transparency",
-    "explanation": "According to Lecture 4: 'Which boardroom pillar represents Sunlight as the best disinfectant?' corresponds to 'Transparency'."
+    "text": "Which boardroom pillar represents Sunlight as the best disinfectant? [gap1].",
+    "explanation": "According to Lecture 4: 'Which boardroom pillar represents Sunlight as the best disinfectant?' corresponds to 'Transparency'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Conflict Disclosure",
+          "skeleton",
+          "Compliance",
+          "Transparency"
+        ],
+        "correct": "Transparency"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -2967,9 +4240,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which boardroom pillar ensures the minority voice is heard as clearly as the majority?",
-    "answer": "Fairness",
-    "explanation": "According to Lecture 4: 'Which boardroom pillar ensures the minority voice is heard as clearly as the majority?' corresponds to 'Fairness'."
+    "text": "Which boardroom pillar ensures the minority voice is heard as clearly as the majority? [gap1].",
+    "explanation": "According to Lecture 4: 'Which boardroom pillar ensures the minority voice is heard as clearly as the majority?' corresponds to 'Fairness'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Compliance",
+          "Duty of Confidentiality",
+          "Duty of Obedience",
+          "Fairness"
+        ],
+        "correct": "Fairness"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -2981,9 +4265,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires reading papers, attending meetings, and asking questions?",
-    "answer": "Duty of Care",
-    "explanation": "According to Lecture 4: 'Which director duty requires reading papers, attending meetings, and asking questions?' corresponds to 'Duty of Care'."
+    "text": "Which director duty requires reading papers, attending meetings, and asking questions? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires reading papers, attending meetings, and asking questions?' corresponds to 'Duty of Care'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Conflict of Interest",
+          "Duty of Loyalty",
+          "disinfectant",
+          "Duty of Care"
+        ],
+        "correct": "Duty of Care"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -2995,9 +4290,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires placing the organisation's interests above self?",
-    "answer": "Duty of Loyalty",
-    "explanation": "According to Lecture 4: 'Which director duty requires placing the organisation's interests above self?' corresponds to 'Duty of Loyalty'."
+    "text": "Which director duty requires placing the organisation's interests above self? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires placing the organisation's interests above self?' corresponds to 'Duty of Loyalty'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "dissent",
+          "Stewards",
+          "Accountability",
+          "Duty of Loyalty"
+        ],
+        "correct": "Duty of Loyalty"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3009,9 +4315,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires acting within the law and constitution?",
-    "answer": "Duty of Obedience",
-    "explanation": "According to Lecture 4: 'Which director duty requires acting within the law and constitution?' corresponds to 'Duty of Obedience'."
+    "text": "Which director duty requires acting within the law and constitution? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires acting within the law and constitution?' corresponds to 'Duty of Obedience'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Confidentiality",
+          "Duty of Loyalty",
+          "loyalty",
+          "Duty of Obedience"
+        ],
+        "correct": "Duty of Obedience"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3023,9 +4340,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires guarding boardroom conversations from the public?",
-    "answer": "Duty of Confidentiality",
-    "explanation": "According to Lecture 4: 'Which director duty requires guarding boardroom conversations from the public?' corresponds to 'Duty of Confidentiality'."
+    "text": "Which director duty requires guarding boardroom conversations from the public? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires guarding boardroom conversations from the public?' corresponds to 'Duty of Confidentiality'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Confidentiality",
+          "George Washington",
+          "7",
+          "Sarbanes-Oxley Act"
+        ],
+        "correct": "Duty of Confidentiality"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3037,9 +4365,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires declaring any material personal interest?",
-    "answer": "Duty of Conflict Disclosure",
-    "explanation": "According to Lecture 4: 'Which director duty requires declaring any material personal interest?' corresponds to 'Duty of Conflict Disclosure'."
+    "text": "Which director duty requires declaring any material personal interest? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires declaring any material personal interest?' corresponds to 'Duty of Conflict Disclosure'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Conflict Disclosure",
+          "The South Sea Bubble",
+          "Duty of Care",
+          "corporate governance"
+        ],
+        "correct": "Duty of Conflict Disclosure"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3051,9 +4390,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires considering the impact of decisions on employees and community?",
-    "answer": "Duty of Stakeholder Sensitivity",
-    "explanation": "According to Lecture 4: 'Which director duty requires considering the impact of decisions on employees and community?' corresponds to 'Duty of Stakeholder Sensitivity'."
+    "text": "Which director duty requires considering the impact of decisions on employees and community? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires considering the impact of decisions on employees and community?' corresponds to 'Duty of Stakeholder Sensitivity'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Billy Graham",
+          "Fairness",
+          "7",
+          "Duty of Stakeholder Sensitivity"
+        ],
+        "correct": "Duty of Stakeholder Sensitivity"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3065,9 +4415,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which director duty requires the courage to dissent and think before voting?",
-    "answer": "Duty of Independent Judgement",
-    "explanation": "According to Lecture 4: 'Which director duty requires the courage to dissent and think before voting?' corresponds to 'Duty of Independent Judgement'."
+    "text": "Which director duty requires the courage to dissent and think before voting? [gap1].",
+    "explanation": "According to Lecture 4: 'Which director duty requires the courage to dissent and think before voting?' corresponds to 'Duty of Independent Judgement'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Independent Judgement",
+          "Conscience",
+          "corporate governance",
+          "Stewards"
+        ],
+        "correct": "Duty of Independent Judgement"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3079,9 +4440,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Who said: 'Responsibility is the price of greatness'?",
-    "answer": "George Washington",
-    "explanation": "According to Lecture 4: 'Who said: 'Responsibility is the price of greatness'?' corresponds to 'George Washington'."
+    "text": "Who said: 'Responsibility is the price of greatness'? [gap1].",
+    "explanation": "According to Lecture 4: 'Who said: 'Responsibility is the price of greatness'?' corresponds to 'George Washington'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "4",
+          "George Washington",
+          "fire",
+          "Enron"
+        ],
+        "correct": "George Washington"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3093,9 +4465,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Who said: 'If you lose your character, you have lost everything'?",
-    "answer": "Billy Graham",
-    "explanation": "According to Lecture 4: 'Who said: 'If you lose your character, you have lost everything'?' corresponds to 'Billy Graham'."
+    "text": "Who said: 'If you lose your character, you have lost everything'? [gap1].",
+    "explanation": "According to Lecture 4: 'Who said: 'If you lose your character, you have lost everything'?' corresponds to 'Billy Graham'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "loyalty",
+          "Sarbanes-Oxley Act",
+          "Accountability",
+          "Billy Graham"
+        ],
+        "correct": "Billy Graham"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3107,9 +4490,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What occurred in 1720 as one of the first corporate governance crises?",
-    "answer": "The South Sea Bubble",
-    "explanation": "According to Lecture 4: 'What occurred in 1720 as one of the first corporate governance crises?' corresponds to 'The South Sea Bubble'."
+    "text": "What occurred in 1720 as one of the first corporate governance crises? [gap1].",
+    "explanation": "According to Lecture 4: 'What occurred in 1720 as one of the first corporate governance crises?' corresponds to 'The South Sea Bubble'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "The South Sea Bubble",
+          "Duty of Conflict Disclosure",
+          "4",
+          "corporate governance"
+        ],
+        "correct": "The South Sea Bubble"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3121,9 +4515,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which energy company collapsed in 2001 due to accounting fraud?",
-    "answer": "Enron",
-    "explanation": "According to Lecture 4: 'Which energy company collapsed in 2001 due to accounting fraud?' corresponds to 'Enron'."
+    "text": "Which energy company collapsed in 2001 due to accounting fraud? [gap1].",
+    "explanation": "According to Lecture 4: 'Which energy company collapsed in 2001 due to accounting fraud?' corresponds to 'Enron'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Enron",
+          "dissent",
+          "Conflict of Interest",
+          "The South Sea Bubble"
+        ],
+        "correct": "Enron"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3135,9 +4540,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Which corporate governance legislation was born out of the 2001 Enron crisis?",
-    "answer": "Sarbanes-Oxley Act",
-    "explanation": "According to Lecture 4: 'Which corporate governance legislation was born out of the 2001 Enron crisis?' corresponds to 'Sarbanes-Oxley Act'."
+    "text": "Which corporate governance legislation was born out of the 2001 Enron crisis? [gap1].",
+    "explanation": "According to Lecture 4: 'Which corporate governance legislation was born out of the 2001 Enron crisis?' corresponds to 'Sarbanes-Oxley Act'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "fire",
+          "Duty of Conflict Disclosure",
+          "Duty of Independent Judgement",
+          "Sarbanes-Oxley Act"
+        ],
+        "correct": "Sarbanes-Oxley Act"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3149,9 +4565,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What is defined as 'conforming to a rule, such as a specification, policy, standard or law'?",
-    "answer": "Compliance",
-    "explanation": "According to Lecture 4: 'What is defined as 'conforming to a rule, such as a specification, policy, standard or law'?' corresponds to 'Compliance'."
+    "text": "What is defined as 'conforming to a rule, such as a specification, policy, standard or law'? [gap1].",
+    "explanation": "According to Lecture 4: 'What is defined as 'conforming to a rule, such as a specification, policy, standard or law'?' corresponds to 'Compliance'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Stewards",
+          "Compliance",
+          "skeleton",
+          "Sarbanes-Oxley"
+        ],
+        "correct": "Compliance"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3163,9 +4590,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What represents the moral sense of right and wrong, affecting behaviour?",
-    "answer": "Conscience",
-    "explanation": "According to Lecture 4: 'What represents the moral sense of right and wrong, affecting behaviour?' corresponds to 'Conscience'."
+    "text": "What represents the moral sense of right and wrong, affecting behaviour? [gap1].",
+    "explanation": "According to Lecture 4: 'What represents the moral sense of right and wrong, affecting behaviour?' corresponds to 'Conscience'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Integrity",
+          "Conscience",
+          "Compliance",
+          "loyalty"
+        ],
+        "correct": "Conscience"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3177,9 +4615,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "In the governance framework, Ethics is the spirit, while Governance is the _______.",
-    "answer": "skeleton",
-    "explanation": "According to Lecture 4: 'In the governance framework, Ethics is the spirit, while Governance is the _______.' corresponds to 'skeleton'."
+    "text": "In the governance framework, Ethics is the spirit, while Governance is the [gap1].",
+    "explanation": "According to Lecture 4: 'In the governance framework, Ethics is the spirit, while Governance is the _______.' corresponds to 'skeleton'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "skeleton",
+          "dissent",
+          "Duty of Loyalty",
+          "Duty of Stakeholder Sensitivity"
+        ],
+        "correct": "skeleton"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3191,9 +4640,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Complete the quote: 'Sunlight is the best _______.'",
-    "answer": "disinfectant",
-    "explanation": "According to Lecture 4: 'Complete the quote: 'Sunlight is the best _______.'' corresponds to 'disinfectant'."
+    "text": "Complete the quote: 'Sunlight is the best [gap1].'",
+    "explanation": "According to Lecture 4: 'Complete the quote: 'Sunlight is the best _______.'' corresponds to 'disinfectant'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Conscience",
+          "Duty of Independent Judgement",
+          "Duty of Confidentiality",
+          "disinfectant"
+        ],
+        "correct": "disinfectant"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3205,9 +4665,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Directors are _______, not owners of the company.",
-    "answer": "Stewards",
-    "explanation": "According to Lecture 4: 'Directors are _______, not owners of the company.' corresponds to 'Stewards'."
+    "text": "Directors are [gap1], not owners of the company.",
+    "explanation": "According to Lecture 4: 'Directors are _______, not owners of the company.' corresponds to 'Stewards'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "corporate governance",
+          "4",
+          "Stewards",
+          "Duty of Obedience"
+        ],
+        "correct": "Stewards"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3219,9 +4690,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What arises when a director's personal interest sways or appears to sway their duty?",
-    "answer": "Conflict of Interest",
-    "explanation": "According to Lecture 4: 'What arises when a director's personal interest sways or appears to sway their duty?' corresponds to 'Conflict of Interest'."
+    "text": "What arises when a director's personal interest sways or appears to sway their duty? [gap1].",
+    "explanation": "According to Lecture 4: 'What arises when a director's personal interest sways or appears to sway their duty?' corresponds to 'Conflict of Interest'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "7",
+          "Duty of Independent Judgement",
+          "Compliance",
+          "Conflict of Interest"
+        ],
+        "correct": "Conflict of Interest"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3233,9 +4715,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What is a reasoned disagreement or challenge to a majority vote called?",
-    "answer": "dissent",
-    "explanation": "According to Lecture 4: 'What is a reasoned disagreement or challenge to a majority vote called?' corresponds to 'dissent'."
+    "text": "What is a reasoned disagreement or challenge to a majority vote called? [gap1].",
+    "explanation": "According to Lecture 4: 'What is a reasoned disagreement or challenge to a majority vote called?' corresponds to 'dissent'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "4",
+          "George Washington",
+          "dissent",
+          "fire"
+        ],
+        "correct": "dissent"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3247,9 +4740,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "What does SOX stand for in corporate governance?",
-    "answer": "Sarbanes-Oxley",
-    "explanation": "According to Lecture 4: 'What does SOX stand for in corporate governance?' corresponds to 'Sarbanes-Oxley'."
+    "text": "What does SOX stand for in corporate governance? [gap1].",
+    "explanation": "According to Lecture 4: 'What does SOX stand for in corporate governance?' corresponds to 'Sarbanes-Oxley'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Confidentiality",
+          "loyalty",
+          "Sarbanes-Oxley",
+          "Conscience"
+        ],
+        "correct": "Sarbanes-Oxley"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3261,9 +4765,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "When personal gain and organisational interest collide, _______ wins.",
-    "answer": "loyalty",
-    "explanation": "According to Lecture 4: 'When personal gain and organisational interest collide, _______ wins.' corresponds to 'loyalty'."
+    "text": "When personal gain and organisational interest collide, [gap1] wins.",
+    "explanation": "According to Lecture 4: 'When personal gain and organisational interest collide, _______ wins.' corresponds to 'loyalty'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Sarbanes-Oxley Act",
+          "Duty of Obedience",
+          "loyalty",
+          "Duty of Loyalty"
+        ],
+        "correct": "loyalty"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3275,9 +4790,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Corruption feeds on darkness. _______ turns on the lights.",
-    "answer": "Transparency",
-    "explanation": "According to Lecture 4: 'Corruption feeds on darkness. _______ turns on the lights.' corresponds to 'Transparency'."
+    "text": "Corruption feeds on darkness. [gap1] turns on the lights.",
+    "explanation": "According to Lecture 4: 'Corruption feeds on darkness. _______ turns on the lights.' corresponds to 'Transparency'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "corporate governance",
+          "Sarbanes-Oxley Act",
+          "Transparency",
+          "Duty of Independent Judgement"
+        ],
+        "correct": "Transparency"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3289,9 +4815,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "Accountability asks 'What did we miss?' before asking 'Who do we _______?'",
-    "answer": "fire",
-    "explanation": "According to Lecture 4: 'Accountability asks 'What did we miss?' before asking 'Who do we _______?'' corresponds to 'fire'."
+    "text": "Accountability asks 'What did we miss?' before asking 'Who do we [gap1]?'",
+    "explanation": "According to Lecture 4: 'Accountability asks 'What did we miss?' before asking 'Who do we _______?'' corresponds to 'fire'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "4",
+          "fire",
+          "Duty of Confidentiality",
+          "Conscience"
+        ],
+        "correct": "fire"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3303,9 +4840,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "How many core pillars of ethical leadership are discussed in Lecture 4?",
-    "answer": "4",
-    "explanation": "According to Lecture 4: 'How many core pillars of ethical leadership are discussed in Lecture 4?' corresponds to '4'."
+    "text": "How many core pillars of ethical leadership are discussed in Lecture [gap1]?",
+    "explanation": "According to Lecture 4: 'How many core pillars of ethical leadership are discussed in Lecture 4?' corresponds to '4'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "4",
+          "Transparency",
+          "dissent",
+          "The South Sea Bubble"
+        ],
+        "correct": "4"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3317,9 +4865,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "How many non-negotiable duties of a director are listed in Lecture 4?",
-    "answer": "7",
-    "explanation": "According to Lecture 4: 'How many non-negotiable duties of a director are listed in Lecture 4?' corresponds to '7'."
+    "text": "How many non-negotiable duties of a director are listed in Lecture 4? [gap1].",
+    "explanation": "According to Lecture 4: 'How many non-negotiable duties of a director are listed in Lecture 4?' corresponds to '7'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Billy Graham",
+          "dissent",
+          "7",
+          "Duty of Independent Judgement"
+        ],
+        "correct": "7"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3331,9 +4890,20 @@ const QUESTIONS = [
   {
     "topic": "l4",
     "type": "fill",
-    "text": "The system of rules, practices, and processes by which an organisation is directed and controlled is called _______.",
-    "answer": "corporate governance",
-    "explanation": "According to Lecture 4: 'The system of rules, practices, and processes by which an organisation is directed and controlled is called _______.' corresponds to 'corporate governance'."
+    "text": "The system of rules, practices, and processes by which an organisation is directed and controlled is called [gap1].",
+    "explanation": "According to Lecture 4: 'The system of rules, practices, and processes by which an organisation is directed and controlled is called _______.' corresponds to 'corporate governance'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Duty of Confidentiality",
+          "corporate governance",
+          "dissent",
+          "George Washington"
+        ],
+        "correct": "corporate governance"
+      }
+    ]
   },
   {
     "topic": "l4",
@@ -3345,9 +4915,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What is the primary regulatory act governing non-profits in Nigeria?",
-    "answer": "CAMA 2020",
-    "explanation": "According to Lecture 5: 'What is the primary regulatory act governing non-profits in Nigeria?' corresponds to 'CAMA 2020'."
+    "text": "What is the primary regulatory act governing non-profits in Nigeria? [gap1].",
+    "explanation": "According to Lecture 5: 'What is the primary regulatory act governing non-profits in Nigeria?' corresponds to 'CAMA 2020'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "CAMA 2020",
+          "meaning",
+          "Incorporated Trustees",
+          "Peter Drucker"
+        ],
+        "correct": "CAMA 2020"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3359,9 +4940,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What does Ltd/Gte stand for in CAMA non-profit registration?",
-    "answer": "Company Limited by Guarantee",
-    "explanation": "According to Lecture 5: 'What does Ltd/Gte stand for in CAMA non-profit registration?' corresponds to 'Company Limited by Guarantee'."
+    "text": "What does Ltd/Gte stand for in CAMA non-profit registration? [gap1].",
+    "explanation": "According to Lecture 5: 'What does Ltd/Gte stand for in CAMA non-profit registration?' corresponds to 'Company Limited by Guarantee'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Peter Drucker",
+          "No Single Bottom Line",
+          "Company Limited by Guarantee",
+          "Social Impact"
+        ],
+        "correct": "Company Limited by Guarantee"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3373,9 +4965,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What is the registration type for churches and associations under CAMA?",
-    "answer": "Incorporated Trustees",
-    "explanation": "According to Lecture 5: 'What is the registration type for churches and associations under CAMA?' corresponds to 'Incorporated Trustees'."
+    "text": "What is the registration type for churches and associations under CAMA? [gap1].",
+    "explanation": "According to Lecture 5: 'What is the registration type for churches and associations under CAMA?' corresponds to 'Incorporated Trustees'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Social Impact",
+          "Incorporated Trustees",
+          "Company Limited by Guarantee",
+          "CAMA 2020"
+        ],
+        "correct": "Incorporated Trustees"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3387,9 +4990,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "Who said: 'Non-profits are the most demanding organizations to lead'?",
-    "answer": "Peter Drucker",
-    "explanation": "According to Lecture 5: 'Who said: 'Non-profits are the most demanding organizations to lead'?' corresponds to 'Peter Drucker'."
+    "text": "Who said: 'Non-profits are the most demanding organizations to lead'? [gap1].",
+    "explanation": "According to Lecture 5: 'Who said: 'Non-profits are the most demanding organizations to lead'?' corresponds to 'Peter Drucker'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "meaning",
+          "Company Limited by Guarantee",
+          "Peter Drucker",
+          "CAMA 2020"
+        ],
+        "correct": "Peter Drucker"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3401,9 +5015,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What is the primary measure of success for a non-profit organization?",
-    "answer": "Social Impact",
-    "explanation": "According to Lecture 5: 'What is the primary measure of success for a non-profit organization?' corresponds to 'Social Impact'."
+    "text": "What is the primary measure of success for a non-profit organization? [gap1].",
+    "explanation": "According to Lecture 5: 'What is the primary measure of success for a non-profit organization?' corresponds to 'Social Impact'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Social Impact",
+          "Peter Drucker",
+          "CAMA 2020",
+          "Moral Credibility"
+        ],
+        "correct": "Social Impact"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3415,9 +5040,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What is the primary source of authority for non-profit leaders?",
-    "answer": "Moral Credibility",
-    "explanation": "According to Lecture 5: 'What is the primary source of authority for non-profit leaders?' corresponds to 'Moral Credibility'."
+    "text": "What is the primary source of authority for non-profit leaders? [gap1].",
+    "explanation": "According to Lecture 5: 'What is the primary source of authority for non-profit leaders?' corresponds to 'Moral Credibility'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "money",
+          "Moral Credibility",
+          "Social Impact",
+          "CAMA 2020"
+        ],
+        "correct": "Moral Credibility"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3429,9 +5065,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "Peter Drucker noted that people do not work in non-profits for money, they work for _______.",
-    "answer": "meaning",
-    "explanation": "According to Lecture 5: 'Peter Drucker noted that people do not work in non-profits for money, they work for _______.' corresponds to 'meaning'."
+    "text": "Peter Drucker noted that people do not work in non-profits for money, they work for [gap1].",
+    "explanation": "According to Lecture 5: 'Peter Drucker noted that people do not work in non-profits for money, they work for _______.' corresponds to 'meaning'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "No Single Bottom Line",
+          "meaning",
+          "Donor Relationships",
+          "CAMA 2020"
+        ],
+        "correct": "meaning"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3443,9 +5090,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What represents the resource model for non-profits instead of customer transactions?",
-    "answer": "Donor Relationships",
-    "explanation": "According to Lecture 5: 'What represents the resource model for non-profits instead of customer transactions?' corresponds to 'Donor Relationships'."
+    "text": "What represents the resource model for non-profits instead of customer transactions? [gap1].",
+    "explanation": "According to Lecture 5: 'What represents the resource model for non-profits instead of customer transactions?' corresponds to 'Donor Relationships'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Peter Drucker",
+          "money",
+          "Moral Credibility",
+          "Donor Relationships"
+        ],
+        "correct": "Donor Relationships"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3457,9 +5115,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "The motto of non-profit management is: 'Mission first, _______ second.'",
-    "answer": "money",
-    "explanation": "According to Lecture 5: 'The motto of non-profit management is: 'Mission first, _______ second.'' corresponds to 'money'."
+    "text": "The motto of non-profit management is: 'Mission first, [gap1] second.'",
+    "explanation": "According to Lecture 5: 'The motto of non-profit management is: 'Mission first, _______ second.'' corresponds to 'money'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Moral Credibility",
+          "money",
+          "CAMA 2020",
+          "Company Limited by Guarantee"
+        ],
+        "correct": "money"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3471,9 +5140,20 @@ const QUESTIONS = [
   {
     "topic": "l5",
     "type": "fill",
-    "text": "What did Drucker describe as the reason non-profits have no single measure of success?",
-    "answer": "No Single Bottom Line",
-    "explanation": "According to Lecture 5: 'What did Drucker describe as the reason non-profits have no single measure of success?' corresponds to 'No Single Bottom Line'."
+    "text": "What did Drucker describe as the reason non-profits have no single measure of success? [gap1].",
+    "explanation": "According to Lecture 5: 'What did Drucker describe as the reason non-profits have no single measure of success?' corresponds to 'No Single Bottom Line'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Incorporated Trustees",
+          "No Single Bottom Line",
+          "Company Limited by Guarantee",
+          "Donor Relationships"
+        ],
+        "correct": "No Single Bottom Line"
+      }
+    ]
   },
   {
     "topic": "l5",
@@ -3485,9 +5165,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What model describes the four stages of team development (Forming, Storming, Norming, Performing)?",
-    "answer": "Tuckman Model",
-    "explanation": "According to Lecture 6: 'What model describes the four stages of team development (Forming, Storming, Norming, Performing)?' corresponds to 'Tuckman Model'."
+    "text": "What model describes the four stages of team development (Forming, Storming, Norming, Performing)? [gap1].",
+    "explanation": "According to Lecture 6: 'What model describes the four stages of team development (Forming, Storming, Norming, Performing)?' corresponds to 'Tuckman Model'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Tuckman Model",
+          "Psychological Safety",
+          "Norming",
+          "Team Charter"
+        ],
+        "correct": "Tuckman Model"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3499,9 +5190,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What is the first stage of the Tuckman Model?",
-    "answer": "Forming",
-    "explanation": "According to Lecture 6: 'What is the first stage of the Tuckman Model?' corresponds to 'Forming'."
+    "text": "What is the first stage of the Tuckman Model? [gap1].",
+    "explanation": "According to Lecture 6: 'What is the first stage of the Tuckman Model?' corresponds to 'Forming'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Psychological Safety",
+          "Project Aristotle",
+          "Orpheus Chamber Orchestra",
+          "Forming"
+        ],
+        "correct": "Forming"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3513,9 +5215,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What is the second stage of the Tuckman Model, characterised by conflict?",
-    "answer": "Storming",
-    "explanation": "According to Lecture 6: 'What is the second stage of the Tuckman Model, characterised by conflict?' corresponds to 'Storming'."
+    "text": "What is the second stage of the Tuckman Model, characterised by conflict? [gap1].",
+    "explanation": "According to Lecture 6: 'What is the second stage of the Tuckman Model, characterised by conflict?' corresponds to 'Storming'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Storming",
+          "Performing",
+          "Orpheus Chamber Orchestra",
+          "Tuckman Model"
+        ],
+        "correct": "Storming"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3527,9 +5240,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What is the third stage of the Tuckman Model, where roles and norms are established?",
-    "answer": "Norming",
-    "explanation": "According to Lecture 6: 'What is the third stage of the Tuckman Model, where roles and norms are established?' corresponds to 'Norming'."
+    "text": "What is the third stage of the Tuckman Model, where roles and norms are established? [gap1].",
+    "explanation": "According to Lecture 6: 'What is the third stage of the Tuckman Model, where roles and norms are established?' corresponds to 'Norming'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Norming",
+          "Orpheus Chamber Orchestra",
+          "Orpheus Principle",
+          "Team Charter"
+        ],
+        "correct": "Norming"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3541,9 +5265,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What is the fourth and highest stage of the Tuckman Model?",
-    "answer": "Performing",
-    "explanation": "According to Lecture 6: 'What is the fourth and highest stage of the Tuckman Model?' corresponds to 'Performing'."
+    "text": "What is the fourth and highest stage of the Tuckman Model? [gap1].",
+    "explanation": "According to Lecture 6: 'What is the fourth and highest stage of the Tuckman Model?' corresponds to 'Performing'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Orpheus Principle",
+          "Performing",
+          "Orpheus Chamber Orchestra",
+          "Norming"
+        ],
+        "correct": "Performing"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3555,9 +5290,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What research study identified Psychological Safety as the #1 driver of team success?",
-    "answer": "Project Aristotle",
-    "explanation": "According to Lecture 6: 'What research study identified Psychological Safety as the #1 driver of team success?' corresponds to 'Project Aristotle'."
+    "text": "What research study identified Psychological Safety as the #1 driver of team success? [gap1].",
+    "explanation": "According to Lecture 6: 'What research study identified Psychological Safety as the #1 driver of team success?' corresponds to 'Project Aristotle'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Performing",
+          "Team Charter",
+          "Forming",
+          "Project Aristotle"
+        ],
+        "correct": "Project Aristotle"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3569,9 +5315,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What is the belief that a team is safe for interpersonal risk-taking?",
-    "answer": "Psychological Safety",
-    "explanation": "According to Lecture 6: 'What is the belief that a team is safe for interpersonal risk-taking?' corresponds to 'Psychological Safety'."
+    "text": "What is the belief that a team is safe for interpersonal risk-taking? [gap1].",
+    "explanation": "According to Lecture 6: 'What is the belief that a team is safe for interpersonal risk-taking?' corresponds to 'Psychological Safety'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "5 Pillars",
+          "Orpheus Principle",
+          "Psychological Safety",
+          "Norming"
+        ],
+        "correct": "Psychological Safety"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3583,9 +5340,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "Which music group operates on leadership rotation without a permanent conductor?",
-    "answer": "Orpheus Chamber Orchestra",
-    "explanation": "According to Lecture 6: 'Which music group operates on leadership rotation without a permanent conductor?' corresponds to 'Orpheus Chamber Orchestra'."
+    "text": "Which music group operates on leadership rotation without a permanent conductor? [gap1].",
+    "explanation": "According to Lecture 6: 'Which music group operates on leadership rotation without a permanent conductor?' corresponds to 'Orpheus Chamber Orchestra'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Forming",
+          "Orpheus Chamber Orchestra",
+          "Performing",
+          "Psychological Safety"
+        ],
+        "correct": "Orpheus Chamber Orchestra"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3597,9 +5365,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What principle states that leadership follows competence, not hierarchy?",
-    "answer": "Orpheus Principle",
-    "explanation": "According to Lecture 6: 'What principle states that leadership follows competence, not hierarchy?' corresponds to 'Orpheus Principle'."
+    "text": "What principle states that leadership follows competence, not hierarchy? [gap1].",
+    "explanation": "According to Lecture 6: 'What principle states that leadership follows competence, not hierarchy?' corresponds to 'Orpheus Principle'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Orpheus Chamber Orchestra",
+          "Performing",
+          "Orpheus Principle",
+          "Tuckman Model"
+        ],
+        "correct": "Orpheus Principle"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3611,9 +5390,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "What is a one-page document defining a team's purpose, metrics, and roles?",
-    "answer": "Team Charter",
-    "explanation": "According to Lecture 6: 'What is a one-page document defining a team's purpose, metrics, and roles?' corresponds to 'Team Charter'."
+    "text": "What is a one-page document defining a team's purpose, metrics, and roles? [gap1].",
+    "explanation": "According to Lecture 6: 'What is a one-page document defining a team's purpose, metrics, and roles?' corresponds to 'Team Charter'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Team Charter",
+          "Storming",
+          "Orpheus Chamber Orchestra",
+          "Forming"
+        ],
+        "correct": "Team Charter"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3625,9 +5415,20 @@ const QUESTIONS = [
   {
     "topic": "l6",
     "type": "fill",
-    "text": "Shared Vision, Psychological Safety, Role Clarity, Disciplined Communication, and Accountability are the _______.",
-    "answer": "5 Pillars",
-    "explanation": "According to Lecture 6: 'Shared Vision, Psychological Safety, Role Clarity, Disciplined Communication, and Accountability are the _______.' corresponds to '5 Pillars'."
+    "text": "Shared Vision, Psychological Safety, Role Clarity, Disciplined Communication, and Accountability are the [gap1].",
+    "explanation": "According to Lecture 6: 'Shared Vision, Psychological Safety, Role Clarity, Disciplined Communication, and Accountability are the _______.' corresponds to '5 Pillars'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Forming",
+          "Norming",
+          "5 Pillars",
+          "Orpheus Chamber Orchestra"
+        ],
+        "correct": "5 Pillars"
+      }
+    ]
   },
   {
     "topic": "l6",
@@ -3639,9 +5440,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "Who wrote 'The Ethics of Leadership' (2003)?",
-    "answer": "Joanne Ciulla",
-    "explanation": "According to Lecture 7: 'Who wrote 'The Ethics of Leadership' (2003)?' corresponds to 'Joanne Ciulla'."
+    "text": "Who wrote 'The Ethics of Leadership' (2003)? [gap1].",
+    "explanation": "According to Lecture 7: 'Who wrote 'The Ethics of Leadership' (2003)?' corresponds to 'Joanne Ciulla'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Contribution Mindset",
+          "Extraction Mindset",
+          "Joanne Ciulla",
+          "Hitler Problem"
+        ],
+        "correct": "Joanne Ciulla"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3653,9 +5465,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "What historical example shows a leader who was technically competent but morally catastrophic?",
-    "answer": "Hitler Problem",
-    "explanation": "According to Lecture 7: 'What historical example shows a leader who was technically competent but morally catastrophic?' corresponds to 'Hitler Problem'."
+    "text": "What historical example shows a leader who was technically competent but morally catastrophic? [gap1].",
+    "explanation": "According to Lecture 7: 'What historical example shows a leader who was technically competent but morally catastrophic?' corresponds to 'Hitler Problem'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Utilitarianism",
+          "Hitler Problem",
+          "Extraction Mindset",
+          "Deontology"
+        ],
+        "correct": "Hitler Problem"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3667,9 +5490,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "What mindset asks 'What can I get?' and views position as a prize?",
-    "answer": "Extraction Mindset",
-    "explanation": "According to Lecture 7: 'What mindset asks 'What can I get?' and views position as a prize?' corresponds to 'Extraction Mindset'."
+    "text": "What mindset asks 'What can I get?' and views position as a prize? [gap1].",
+    "explanation": "According to Lecture 7: 'What mindset asks 'What can I get?' and views position as a prize?' corresponds to 'Extraction Mindset'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Contribution Mindset",
+          "small compromise",
+          "Hitler Problem",
+          "Extraction Mindset"
+        ],
+        "correct": "Extraction Mindset"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3681,9 +5515,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "What mindset asks 'What can I give?' and views position as responsibility?",
-    "answer": "Contribution Mindset",
-    "explanation": "According to Lecture 7: 'What mindset asks 'What can I give?' and views position as responsibility?' corresponds to 'Contribution Mindset'."
+    "text": "What mindset asks 'What can I give?' and views position as responsibility? [gap1].",
+    "explanation": "According to Lecture 7: 'What mindset asks 'What can I give?' and views position as responsibility?' corresponds to 'Contribution Mindset'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Hitler Problem",
+          "small compromise",
+          "Extraction Mindset",
+          "Contribution Mindset"
+        ],
+        "correct": "Contribution Mindset"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3695,9 +5540,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "Which moral reasoning framework focuses on the greatest good for the greatest number?",
-    "answer": "Utilitarianism",
-    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on the greatest good for the greatest number?' corresponds to 'Utilitarianism'."
+    "text": "Which moral reasoning framework focuses on the greatest good for the greatest number? [gap1].",
+    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on the greatest good for the greatest number?' corresponds to 'Utilitarianism'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Utilitarianism",
+          "Virtue Ethics",
+          "Contribution Mindset",
+          "Care Ethics"
+        ],
+        "correct": "Utilitarianism"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3709,9 +5565,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "Which moral reasoning framework focuses on duty, rules, and categorical imperatives?",
-    "answer": "Deontology",
-    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on duty, rules, and categorical imperatives?' corresponds to 'Deontology'."
+    "text": "Which moral reasoning framework focuses on duty, rules, and categorical imperatives? [gap1].",
+    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on duty, rules, and categorical imperatives?' corresponds to 'Deontology'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Deontology",
+          "Virtue Ethics",
+          "corruption",
+          "Utilitarianism"
+        ],
+        "correct": "Deontology"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3723,9 +5590,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "Which moral reasoning framework focuses on the character and virtues of the actor?",
-    "answer": "Virtue Ethics",
-    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on the character and virtues of the actor?' corresponds to 'Virtue Ethics'."
+    "text": "Which moral reasoning framework focuses on the character and virtues of the actor? [gap1].",
+    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on the character and virtues of the actor?' corresponds to 'Virtue Ethics'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Joanne Ciulla",
+          "Utilitarianism",
+          "Virtue Ethics",
+          "Deontology"
+        ],
+        "correct": "Virtue Ethics"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3737,9 +5615,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "Which moral reasoning framework focuses on relationships, empathy, and protecting the vulnerable?",
-    "answer": "Care Ethics",
-    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on relationships, empathy, and protecting the vulnerable?' corresponds to 'Care Ethics'."
+    "text": "Which moral reasoning framework focuses on relationships, empathy, and protecting the vulnerable? [gap1].",
+    "explanation": "According to Lecture 7: 'Which moral reasoning framework focuses on relationships, empathy, and protecting the vulnerable?' corresponds to 'Care Ethics'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Virtue Ethics",
+          "Joanne Ciulla",
+          "Hitler Problem",
+          "Care Ethics"
+        ],
+        "correct": "Care Ethics"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3751,9 +5640,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "What is defined as the abuse of entrusted power for private gain?",
-    "answer": "corruption",
-    "explanation": "According to Lecture 7: 'What is defined as the abuse of entrusted power for private gain?' corresponds to 'corruption'."
+    "text": "What is defined as the abuse of entrusted power for private gain? [gap1].",
+    "explanation": "According to Lecture 7: 'What is defined as the abuse of entrusted power for private gain?' corresponds to 'corruption'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "corruption",
+          "Virtue Ethics",
+          "Contribution Mindset",
+          "small compromise"
+        ],
+        "correct": "corruption"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3765,9 +5665,20 @@ const QUESTIONS = [
   {
     "topic": "l7",
     "type": "fill",
-    "text": "Corruption rarely starts with grand theft. It starts with a _______.",
-    "answer": "small compromise",
-    "explanation": "According to Lecture 7: 'Corruption rarely starts with grand theft. It starts with a _______.' corresponds to 'small compromise'."
+    "text": "Corruption rarely starts with grand theft. It starts with a [gap1].",
+    "explanation": "According to Lecture 7: 'Corruption rarely starts with grand theft. It starts with a _______.' corresponds to 'small compromise'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Hitler Problem",
+          "Contribution Mindset",
+          "small compromise",
+          "Joanne Ciulla"
+        ],
+        "correct": "small compromise"
+      }
+    ]
   },
   {
     "topic": "l7",
@@ -3779,9 +5690,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What is defined as a perceived incompatibility of interests, needs, or goals?",
-    "answer": "Conflict",
-    "explanation": "According to Lecture 8: 'What is defined as a perceived incompatibility of interests, needs, or goals?' corresponds to 'Conflict'."
+    "text": "What is defined as a perceived incompatibility of interests, needs, or goals? [gap1].",
+    "explanation": "According to Lecture 8: 'What is defined as a perceived incompatibility of interests, needs, or goals?' corresponds to 'Conflict'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Conflict",
+          "Positional Bargaining",
+          "Values Conflict",
+          "Roger Fisher"
+        ],
+        "correct": "Conflict"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3793,9 +5715,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "Who defined conflict as 'a perceived incompatibility of interests, needs, or goals'?",
-    "answer": "Susan S. Raines",
-    "explanation": "According to Lecture 8: 'Who defined conflict as 'a perceived incompatibility of interests, needs, or goals'?' corresponds to 'Susan S. Raines'."
+    "text": "Who defined conflict as 'a perceived incompatibility of interests, needs, or goals'? [gap1].",
+    "explanation": "According to Lecture 8: 'Who defined conflict as 'a perceived incompatibility of interests, needs, or goals'?' corresponds to 'Susan S. Raines'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Orange Story",
+          "Getting to Yes",
+          "Interest Conflict",
+          "Susan S. Raines"
+        ],
+        "correct": "Susan S. Raines"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3807,9 +5740,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "Raines states: 'Conflict is not dysfunction. It is _______.'",
-    "answer": "diversity in motion",
-    "explanation": "According to Lecture 8: 'Raines states: 'Conflict is not dysfunction. It is _______.'' corresponds to 'diversity in motion'."
+    "text": "Raines states: 'Conflict is not dysfunction. It is [gap1].'",
+    "explanation": "According to Lecture 8: 'Raines states: 'Conflict is not dysfunction. It is _______.'' corresponds to 'diversity in motion'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Interest Conflict",
+          "diversity in motion",
+          "Orange Story",
+          "Best Alternative to a Negotiated Agreement"
+        ],
+        "correct": "diversity in motion"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3821,9 +5765,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What source of conflict arises from different information or interpretation of facts?",
-    "answer": "Data Conflict",
-    "explanation": "According to Lecture 8: 'What source of conflict arises from different information or interpretation of facts?' corresponds to 'Data Conflict'."
+    "text": "What source of conflict arises from different information or interpretation of facts? [gap1].",
+    "explanation": "According to Lecture 8: 'What source of conflict arises from different information or interpretation of facts?' corresponds to 'Data Conflict'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Relationship Conflict",
+          "Data Conflict",
+          "BATNA",
+          "Values Conflict"
+        ],
+        "correct": "Data Conflict"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3835,9 +5790,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What source of conflict arises from roles, authority, resources, and reporting lines?",
-    "answer": "Structural Conflict",
-    "explanation": "According to Lecture 8: 'What source of conflict arises from roles, authority, resources, and reporting lines?' corresponds to 'Structural Conflict'."
+    "text": "What source of conflict arises from roles, authority, resources, and reporting lines? [gap1].",
+    "explanation": "According to Lecture 8: 'What source of conflict arises from roles, authority, resources, and reporting lines?' corresponds to 'Structural Conflict'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "diversity in motion",
+          "Orange Story",
+          "Interest Conflict",
+          "Structural Conflict"
+        ],
+        "correct": "Structural Conflict"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3849,9 +5815,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What source of conflict arises from competing needs (substantive, procedural, psychological)?",
-    "answer": "Interest Conflict",
-    "explanation": "According to Lecture 8: 'What source of conflict arises from competing needs (substantive, procedural, psychological)?' corresponds to 'Interest Conflict'."
+    "text": "What source of conflict arises from competing needs (substantive, procedural, psychological)? [gap1].",
+    "explanation": "According to Lecture 8: 'What source of conflict arises from competing needs (substantive, procedural, psychological)?' corresponds to 'Interest Conflict'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Orange Story",
+          "Structural Conflict",
+          "Interest Conflict",
+          "Best Alternative to a Negotiated Agreement"
+        ],
+        "correct": "Interest Conflict"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3863,9 +5840,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What source of conflict arises from history, emotion, stereotypes, or broken trust?",
-    "answer": "Relationship Conflict",
-    "explanation": "According to Lecture 8: 'What source of conflict arises from history, emotion, stereotypes, or broken trust?' corresponds to 'Relationship Conflict'."
+    "text": "What source of conflict arises from history, emotion, stereotypes, or broken trust? [gap1].",
+    "explanation": "According to Lecture 8: 'What source of conflict arises from history, emotion, stereotypes, or broken trust?' corresponds to 'Relationship Conflict'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "diversity in motion",
+          "Conflict",
+          "Relationship Conflict",
+          "BATNA"
+        ],
+        "correct": "Relationship Conflict"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3877,9 +5865,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What source of conflict arises from differences in belief, ethics, or mission?",
-    "answer": "Values Conflict",
-    "explanation": "According to Lecture 8: 'What source of conflict arises from differences in belief, ethics, or mission?' corresponds to 'Values Conflict'."
+    "text": "What source of conflict arises from differences in belief, ethics, or mission? [gap1].",
+    "explanation": "According to Lecture 8: 'What source of conflict arises from differences in belief, ethics, or mission?' corresponds to 'Values Conflict'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Orange Story",
+          "Relationship Conflict",
+          "Values Conflict",
+          "Interest Conflict"
+        ],
+        "correct": "Values Conflict"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3891,9 +5890,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "Which story illustrates the difference between positions (demands) and interests (needs)?",
-    "answer": "Orange Story",
-    "explanation": "According to Lecture 8: 'Which story illustrates the difference between positions (demands) and interests (needs)?' corresponds to 'Orange Story'."
+    "text": "Which story illustrates the difference between positions (demands) and interests (needs)? [gap1].",
+    "explanation": "According to Lecture 8: 'Which story illustrates the difference between positions (demands) and interests (needs)?' corresponds to 'Orange Story'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Orange Story",
+          "Best Alternative to a Negotiated Agreement",
+          "Interest Conflict",
+          "need"
+        ],
+        "correct": "Orange Story"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3905,9 +5915,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "Positions are what people say. Interests are what people _______.",
-    "answer": "need",
-    "explanation": "According to Lecture 8: 'Positions are what people say. Interests are what people _______.' corresponds to 'need'."
+    "text": "Positions are what people say. Interests are what people [gap1].",
+    "explanation": "According to Lecture 8: 'Positions are what people say. Interests are what people _______.' corresponds to 'need'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Positional Bargaining",
+          "need",
+          "Orange Story",
+          "Data Conflict"
+        ],
+        "correct": "need"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3919,9 +5940,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "What is the landmark negotiation book written by Fisher, Ury, and Patton?",
-    "answer": "Getting to Yes",
-    "explanation": "According to Lecture 8: 'What is the landmark negotiation book written by Fisher, Ury, and Patton?' corresponds to 'Getting to Yes'."
+    "text": "What is the landmark negotiation book written by Fisher, Ury, and Patton? [gap1].",
+    "explanation": "According to Lecture 8: 'What is the landmark negotiation book written by Fisher, Ury, and Patton?' corresponds to 'Getting to Yes'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Positional Bargaining",
+          "Conflict",
+          "Best Alternative to a Negotiated Agreement",
+          "Getting to Yes"
+        ],
+        "correct": "Getting to Yes"
+      }
+    ]
   },
   {
     "topic": "l8",
@@ -3933,44 +5965,20 @@ const QUESTIONS = [
   {
     "topic": "l8",
     "type": "fill",
-    "text": "Who is one of the co-authors of 'Getting to Yes'?",
-    "answer": "Roger Fisher",
-    "explanation": "According to Lecture 8: 'Who is one of the co-authors of 'Getting to Yes'?' corresponds to 'Roger Fisher'."
-  },
-  {
-    "topic": "l8",
-    "type": "short",
-    "text": "Explain the meaning and context of: Roger Fisher as taught in Lecture 8.",
-    "answer": "In Lecture 8, Roger Fisher refers to Who is one of the co-authors of 'Getting to Yes'. It highlights the core concepts of the DLD221 curriculum.",
-    "explanation": "Refer to the slides of Lecture 8 on Roger Fisher."
-  },
-  {
-    "topic": "l8",
-    "type": "fill",
-    "text": "What does 'Best Alternative to a Negotiated Agreement' stand for?",
-    "answer": "BATNA",
-    "explanation": "According to Lecture 8: 'What does 'Best Alternative to a Negotiated Agreement' stand for?' corresponds to 'BATNA'."
-  },
-  {
-    "topic": "l8",
-    "type": "short",
-    "text": "Explain the meaning and context of: BATNA as taught in Lecture 8.",
-    "answer": "In Lecture 8, BATNA refers to What does 'Best Alternative to a Negotiated Agreement' stand for. It highlights the core concepts of the DLD221 curriculum.",
-    "explanation": "Refer to the slides of Lecture 8 on BATNA."
-  },
-  {
-    "topic": "l8",
-    "type": "fill",
-    "text": "What is the definition of BATNA?",
-    "answer": "Best Alternative to a Negotiated Agreement",
-    "explanation": "According to Lecture 8: 'What is the definition of BATNA?' corresponds to 'Best Alternative to a Negotiated Agreement'."
-  },
-  {
-    "topic": "l8",
-    "type": "short",
-    "text": "Explain the meaning and context of: Best Alternative to a Negotiated Agreement as taught in Lecture 8.",
-    "answer": "In Lecture 8, Best Alternative to a Negotiated Agreement refers to What is the definition of BATNA. It highlights the core concepts of the DLD221 curriculum.",
-    "explanation": "Refer to the slides of Lecture 8 on Best Alternative to a Negotiated Agreement."
+    "text": "Who is one of the co-authors of 'Getting to Yes'? [gap1].",
+    "explanation": "According to Lecture 8: 'Who is one of the co-authors of 'Getting to Yes'?' corresponds to 'Roger Fisher'.",
+    "gaps": [
+      {
+        "id": "gap1",
+        "options": [
+          "Conflict",
+          "Best Alternative to a Negotiated Agreement",
+          "Data Conflict",
+          "Roger Fisher"
+        ],
+        "correct": "Roger Fisher"
+      }
+    ]
   }
 ];
 
@@ -4434,18 +6442,35 @@ function renderQuestion() {
       optContainer.appendChild(btn);
     });
   } else if (q.type === 'fill') {
-    const input = document.createElement('input');
-    input.className = 'fill-input';
-    input.placeholder = 'Type your answer here...';
-    input.value = (saved !== undefined) ? saved.val : '';
-    if (saved !== undefined && saved.checked) {
-      input.disabled = true;
-      const isCorrect = input.value.trim().toLowerCase() === q.answer.toLowerCase();
-      input.style.borderColor = isCorrect ? 'var(--green)' : 'var(--red)';
-      input.style.color = isCorrect ? 'var(--green)' : 'var(--red)';
-    }
-    input.oninput = (e) => saveFillAnswer(e.target.value);
-    optContainer.appendChild(input);
+    const container = document.createElement('div');
+    container.className = 'fill-container';
+    let htmlText = q.text;
+    q.gaps.forEach(gap => {
+      const selectHtml = `<select class="inline-select" data-gap-id="${gap.id}">
+        <option value="">Select...</option>
+        ${gap.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+      </select>`;
+      htmlText = htmlText.replace(`[${gap.id}]`, selectHtml);
+    });
+    container.innerHTML = `<div class="fill-text-line">${htmlText}</div>`;
+    optContainer.appendChild(container);
+    
+    const selects = container.querySelectorAll('.inline-select');
+    selects.forEach(select => {
+      const gapId = select.dataset.gapId;
+      const saved = answers[current];
+      if (saved !== undefined) {
+        select.value = saved.val[gapId] || '';
+        if (saved.checked) {
+          select.disabled = true;
+          const gapData = q.gaps.find(g => g.id === gapId);
+          const isCorrect = (select.value === gapData.correct);
+          select.style.borderColor = isCorrect ? 'var(--green)' : 'var(--red)';
+          select.style.color = isCorrect ? 'var(--green)' : 'var(--red)';
+        }
+      }
+      select.onchange = () => saveInlineFillAnswer(gapId, select.value);
+    });
   } else if (q.type === 'short') {
     const textarea = document.createElement('textarea');
     textarea.className = 'short-input';
@@ -4578,6 +6603,23 @@ function saveFillAnswer(val) {
   }
 }
 
+function saveInlineFillAnswer(gapId, val) {
+  if (answers[current] && answers[current].checked) return;
+  if (!answers[current]) {
+    answers[current] = { val: {}, checked: false };
+  }
+  answers[current].val[gapId] = val;
+  
+  const q = sessionQs[current];
+  const totalGaps = q.gaps.length;
+  const selections = Object.keys(answers[current].val).filter(k => answers[current].val[k] !== '');
+  
+  document.getElementById('btn-check').disabled = (selections.length < totalGaps);
+  if (examMode) {
+    updateDot(current, selections.length === totalGaps ? 'selected' : '');
+  }
+}
+
 function saveMatchAnswer(premiseIdx, letterVal) {
   if (answers[current] && answers[current].checked) return;
   if (!answers[current]) {
@@ -4610,7 +6652,14 @@ function checkAnswer() {
     const sSorted = [...saved.val].sort().join(',');
     isCorrect = (cSorted === sSorted);
   } else if (q.type === 'fill') {
-    isCorrect = (saved.val.trim().toLowerCase() === q.answer.toLowerCase());
+    let allCorrect = true;
+    q.gaps.forEach(gap => {
+      const selected = saved.val[gap.id] || '';
+      if (selected !== gap.correct) {
+        allCorrect = false;
+      }
+    });
+    isCorrect = allCorrect;
   } else if (q.type === 'short') {
     isCorrect = true; // Short answer is self-graded/informative
   } else if (q.type === 'matching') {
@@ -4651,7 +6700,7 @@ function showExplanation(q) {
       refText = `<strong>Correct Option:</strong> ${String.fromCharCode(65 + q.correct)} (${q.options[q.correct]})<br/>`;
     }
   } else if (q.type === 'fill') {
-    refText = `<strong>Correct Answer:</strong> ${q.answer}<br/>`;
+    refText = `<strong>Correct Answers:</strong><br/>` + q.gaps.map(g => `• ${g.id}: ${g.correct}`).join('<br/>') + `<br/>`;
   } else if (q.type === 'short') {
     refText = `<strong>Suggested Guidelines:</strong> ${q.answer}<br/>`;
   } else if (q.type === 'matching') {
@@ -4756,7 +6805,14 @@ function submitExam(timeOut = false) {
       const sSorted = [...ans.val].sort().join(',');
       isCorrect = (cSorted === sSorted);
     } else if (q.type === 'fill') {
-      isCorrect = (ans.val.trim().toLowerCase() === q.answer.toLowerCase());
+      let allCorrect = true;
+      q.gaps.forEach(gap => {
+        const selected = ans.val[gap.id] || '';
+        if (selected !== gap.correct) {
+          allCorrect = false;
+        }
+      });
+      isCorrect = allCorrect;
     } else if (q.type === 'short') {
       isCorrect = true; // Auto-marked as correct in exam for simplicity
     } else if (q.type === 'matching') {

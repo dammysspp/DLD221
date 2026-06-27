@@ -7,7 +7,97 @@ output_html_path = r"c:\Users\HP\.gemini\antigravity\scratch\DLD221\index.html"
 
 # Handcrafted core questions (complex, specific, and testing obscure details)
 HANDCRAFTED_QUESTIONS = [
-    # ================= MATCHING QUESTIONS =================
+    # ================= MULTI-GAP FILL QUESTIONS =================
+    {
+        "topic": "l1",
+        "type": "fill",
+        "text": "The five terms that govern leadership emergence in DLD221 are [gap1], Wisdom, [gap2], Diligence, and Sacrifice.",
+        "gaps": [
+            {
+                "id": "gap1",
+                "options": ["Vision", "Influence", "Emergence", "Command"],
+                "correct": "Vision"
+            },
+            {
+                "id": "gap2",
+                "options": ["Self-Discipline", "Prestige", "Title", "Authority"],
+                "correct": "Self-Discipline"
+            }
+        ],
+        "explanation": "The 5 Terms are: Vision, Wisdom, Self-Discipline, Diligence, and Sacrifice in sequence."
+    },
+    {
+        "topic": "l2",
+        "type": "fill",
+        "text": "In the SIMPLE framework of Solution-Focused Leadership, S stands for [gap1] and I stands for [gap2].",
+        "gaps": [
+            {
+                "id": "gap1",
+                "options": ["Solutions, Not problems", "Strategy", "Systems", "Self-governance"],
+                "correct": "Solutions, Not problems"
+            },
+            {
+                "id": "gap2",
+                "options": ["In-between: Progress already happening", "Interpersonal safety", "Influence", "Individual focus"],
+                "correct": "In-between: Progress already happening"
+            }
+        ],
+        "explanation": "SIMPLE stands for: Solutions, In-between, Make use, Possibilities, Language, Every case different."
+    },
+    {
+        "topic": "l3",
+        "type": "fill",
+        "text": "Satya Nadella shifted Microsoft's culture from a [gap1] mindset to a [gap2] mindset.",
+        "gaps": [
+            {
+                "id": "gap1",
+                "options": ["know-it-all", "do-it-all", "sell-it-all", "ignore-it-all"],
+                "correct": "know-it-all"
+            },
+            {
+                "id": "gap2",
+                "options": ["learn-it-all", "own-it-all", "succeed-at-all", "command-all"],
+                "correct": "learn-it-all"
+            }
+        ],
+        "explanation": "Nadella changed the toxic 'know-it-all' culture into a growth-oriented 'learn-it-all' culture."
+    },
+    {
+        "topic": "l4",
+        "type": "fill",
+        "text": "Ethics represents the [gap1] of leadership (which is invisible), while Governance represents the [gap2] (which is visible).",
+        "gaps": [
+            {
+                "id": "gap1",
+                "options": ["spirit", "rules", "statutes", "metrics"],
+                "correct": "spirit"
+            },
+            {
+                "id": "gap2",
+                "options": ["skeleton", "muscles", "structure", "boardroom"],
+                "correct": "skeleton"
+            }
+        ],
+        "explanation": "Ethics is the invisible spirit formed in private; governance is the visible skeleton written in policy."
+    },
+    {
+        "topic": "l8",
+        "type": "fill",
+        "text": "In the Orange Story, Sister A wanted the [gap1] for baking, while Sister B wanted the [gap2] for drinking.",
+        "gaps": [
+            {
+                "id": "gap1",
+                "options": ["peel", "juice", "whole fruit", "seeds"],
+                "correct": "peel"
+            },
+            {
+                "id": "gap2",
+                "options": ["juice", "peel", "whole fruit", "pulp"],
+                "correct": "juice"
+            }
+        ],
+        "explanation": "Sister A wanted the peel (zest) and Sister B wanted the juice, showing positions hide underlying interests."
+    },
     {
         "topic": "l1",
         "type": "matching",
@@ -772,6 +862,56 @@ def generate_questions():
             })
             i += 1
     
+    # Collect all answers by topic for distractor generation
+    answers_by_topic = {}
+    for q in questions:
+        topic = q.get('topic')
+        if q.get('type') == 'fill' and 'answer' in q:
+            if topic not in answers_by_topic:
+                answers_by_topic[topic] = set()
+            answers_by_topic[topic].add(q['answer'])
+
+    # Convert all old-format fill questions to inline dropdown format
+    import random
+    for q in questions:
+        if q.get('type') == 'fill' and 'gaps' not in q:
+            topic = q['topic']
+            answer = q['answer']
+            text = q['text']
+            
+            # Replace blank lines with gap placeholder
+            if "_______" in text:
+                text = text.replace("_______", "[gap1]")
+            elif "[gap1]" not in text:
+                if answer in text:
+                    text = text.replace(answer, "[gap1]")
+                else:
+                    text = text + " [gap1]."
+            
+            # Select distractors from the same lecture
+            topic_answers = list(answers_by_topic.get(topic, set()))
+            topic_answers = [ans for ans in topic_answers if ans.lower() != answer.lower()]
+            
+            fallback = ["Vision", "Wisdom", "Strategy", "Management", "Governance", "Ethics", "Influence", "Accountability"]
+            while len(topic_answers) < 3:
+                topic_answers.append(random.choice(fallback))
+                topic_answers = list(set(topic_answers))
+                
+            distractors = random.sample(topic_answers, 3)
+            options = [answer] + distractors
+            random.shuffle(options)
+            
+            q['text'] = text
+            q['gaps'] = [
+                {
+                    "id": "gap1",
+                    "options": options,
+                    "correct": answer
+                }
+            ]
+            if 'answer' in q:
+                del q['answer']
+
     # If we have more than 400, truncate to exactly 400
     if len(questions) > 400:
         questions = questions[:400]
@@ -1186,6 +1326,28 @@ def build_html():
     transition: border-color 0.18s;
   }
   .fill-input:focus { border-color: var(--gold); }
+
+  .inline-select {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  .inline-select:focus {
+    border-color: var(--gold);
+  }
+  .fill-text-line {
+    font-size: clamp(14px, 2.5vw, 16px);
+    line-height: 2;
+    color: var(--text);
+  }
 
   /* explanation */
   .explanation {
@@ -1947,18 +2109,35 @@ function renderQuestion() {
       optContainer.appendChild(btn);
     });
   } else if (q.type === 'fill') {
-    const input = document.createElement('input');
-    input.className = 'fill-input';
-    input.placeholder = 'Type your answer here...';
-    input.value = (saved !== undefined) ? saved.val : '';
-    if (saved !== undefined && saved.checked) {
-      input.disabled = true;
-      const isCorrect = input.value.trim().toLowerCase() === q.answer.toLowerCase();
-      input.style.borderColor = isCorrect ? 'var(--green)' : 'var(--red)';
-      input.style.color = isCorrect ? 'var(--green)' : 'var(--red)';
-    }
-    input.oninput = (e) => saveFillAnswer(e.target.value);
-    optContainer.appendChild(input);
+    const container = document.createElement('div');
+    container.className = 'fill-container';
+    let htmlText = q.text;
+    q.gaps.forEach(gap => {
+      const selectHtml = `<select class="inline-select" data-gap-id="${gap.id}">
+        <option value="">Select...</option>
+        ${gap.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+      </select>`;
+      htmlText = htmlText.replace(`[${gap.id}]`, selectHtml);
+    });
+    container.innerHTML = `<div class="fill-text-line">${htmlText}</div>`;
+    optContainer.appendChild(container);
+    
+    const selects = container.querySelectorAll('.inline-select');
+    selects.forEach(select => {
+      const gapId = select.dataset.gapId;
+      const saved = answers[current];
+      if (saved !== undefined) {
+        select.value = saved.val[gapId] || '';
+        if (saved.checked) {
+          select.disabled = true;
+          const gapData = q.gaps.find(g => g.id === gapId);
+          const isCorrect = (select.value === gapData.correct);
+          select.style.borderColor = isCorrect ? 'var(--green)' : 'var(--red)';
+          select.style.color = isCorrect ? 'var(--green)' : 'var(--red)';
+        }
+      }
+      select.onchange = () => saveInlineFillAnswer(gapId, select.value);
+    });
   } else if (q.type === 'short') {
     const textarea = document.createElement('textarea');
     textarea.className = 'short-input';
@@ -2091,6 +2270,23 @@ function saveFillAnswer(val) {
   }
 }
 
+function saveInlineFillAnswer(gapId, val) {
+  if (answers[current] && answers[current].checked) return;
+  if (!answers[current]) {
+    answers[current] = { val: {}, checked: false };
+  }
+  answers[current].val[gapId] = val;
+  
+  const q = sessionQs[current];
+  const totalGaps = q.gaps.length;
+  const selections = Object.keys(answers[current].val).filter(k => answers[current].val[k] !== '');
+  
+  document.getElementById('btn-check').disabled = (selections.length < totalGaps);
+  if (examMode) {
+    updateDot(current, selections.length === totalGaps ? 'selected' : '');
+  }
+}
+
 function saveMatchAnswer(premiseIdx, letterVal) {
   if (answers[current] && answers[current].checked) return;
   if (!answers[current]) {
@@ -2123,7 +2319,14 @@ function checkAnswer() {
     const sSorted = [...saved.val].sort().join(',');
     isCorrect = (cSorted === sSorted);
   } else if (q.type === 'fill') {
-    isCorrect = (saved.val.trim().toLowerCase() === q.answer.toLowerCase());
+    let allCorrect = true;
+    q.gaps.forEach(gap => {
+      const selected = saved.val[gap.id] || '';
+      if (selected !== gap.correct) {
+        allCorrect = false;
+      }
+    });
+    isCorrect = allCorrect;
   } else if (q.type === 'short') {
     isCorrect = true; // Short answer is self-graded/informative
   } else if (q.type === 'matching') {
@@ -2164,7 +2367,7 @@ function showExplanation(q) {
       refText = `<strong>Correct Option:</strong> ${String.fromCharCode(65 + q.correct)} (${q.options[q.correct]})<br/>`;
     }
   } else if (q.type === 'fill') {
-    refText = `<strong>Correct Answer:</strong> ${q.answer}<br/>`;
+    refText = `<strong>Correct Answers:</strong><br/>` + q.gaps.map(g => `• ${g.id}: ${g.correct}`).join('<br/>') + `<br/>`;
   } else if (q.type === 'short') {
     refText = `<strong>Suggested Guidelines:</strong> ${q.answer}<br/>`;
   } else if (q.type === 'matching') {
@@ -2269,7 +2472,14 @@ function submitExam(timeOut = false) {
       const sSorted = [...ans.val].sort().join(',');
       isCorrect = (cSorted === sSorted);
     } else if (q.type === 'fill') {
-      isCorrect = (ans.val.trim().toLowerCase() === q.answer.toLowerCase());
+      let allCorrect = true;
+      q.gaps.forEach(gap => {
+        const selected = ans.val[gap.id] || '';
+        if (selected !== gap.correct) {
+          allCorrect = false;
+        }
+      });
+      isCorrect = allCorrect;
     } else if (q.type === 'short') {
       isCorrect = true; // Auto-marked as correct in exam for simplicity
     } else if (q.type === 'matching') {
