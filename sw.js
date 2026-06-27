@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dld221-cache-v1';
+const CACHE_NAME = 'dld221-cache-v2';
 const ASSETS = [
   './index.html',
   './manifest.json',
@@ -14,10 +14,23 @@ self.addEventListener('install', (e) => {
   );
 });
 
+// Network-first caching strategy
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
-      return cachedResponse || fetch(e.request);
-    })
+    fetch(e.request)
+      .then((response) => {
+        // If valid response, clone and update cache
+        if (response && response.status === 200 && response.type === 'basic') {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(e.request, responseClone);
+          });
+        }
+        return response;
+      })
+      .catch(() => {
+        // Offline fallback to cache
+        return caches.match(e.request);
+      })
   );
 });

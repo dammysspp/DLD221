@@ -4095,23 +4095,38 @@ let deferredPrompt = null;
 //  INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  buildTopicChips();
-  document.getElementById('stat-total').textContent = QUESTIONS.length;
-  document.getElementById('stat-flash').textContent = FLASHCARDS.length;
+  try {
+    buildTopicChips();
+    const totalEl = document.getElementById('stat-total');
+    if (totalEl) totalEl.textContent = QUESTIONS.length;
+    const flashEl = document.getElementById('stat-flash');
+    if (flashEl) flashEl.textContent = FLASHCARDS.length;
+  } catch (err) {
+    console.error('Error during DOMContentLoaded UI setup:', err);
+  }
   
-  // Register Service Worker
+  // Register Service Worker safely
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Service Worker Registered', reg))
-      .catch(err => console.log('Service Worker Failed to Register', err));
+    try {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker Registered', reg))
+        .catch(err => console.warn('Service Worker Failed to Register', err));
+    } catch (swErr) {
+      console.warn('Service Worker registration skipped or blocked:', swErr);
+    }
   }
   
   // Listen for PWA install prompt
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('pwa-banner').classList.remove('hidden');
-  });
+  try {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const banner = document.getElementById('pwa-banner');
+      if (banner) banner.classList.remove('hidden');
+    });
+  } catch (pwaErr) {
+    console.error('PWA install prompt listener failed:', pwaErr);
+  }
 });
 
 function triggerPwaInstall() {
@@ -4122,13 +4137,15 @@ function triggerPwaInstall() {
         console.log('User accepted the PWA install prompt');
       }
       deferredPrompt = null;
-      document.getElementById('pwa-banner').classList.add('hidden');
+      const banner = document.getElementById('pwa-banner');
+      if (banner) banner.classList.add('hidden');
     });
   }
 }
 
 function buildTopicChips() {
   const container = document.getElementById('topic-chips');
+  if (!container) return;
   container.innerHTML = '';
   TOPICS.forEach(t => {
     const chip = document.createElement('div');
@@ -4149,14 +4166,16 @@ function toggleTopic(id, el) {
     return;
   }
   selectedTopics = selectedTopics.filter(x => x !== 'all');
-  document.querySelector('#topic-chips .chip[data-id="all"]').classList.remove('active');
+  const allChip = document.querySelector('#topic-chips .chip[data-id="all"]');
+  if (allChip) allChip.classList.remove('active');
 
   if (selectedTopics.includes(id)) {
     selectedTopics = selectedTopics.filter(x => x !== id);
     el.classList.remove('active');
     if (selectedTopics.length === 0) {
       selectedTopics = ['all'];
-      document.querySelector('#topic-chips .chip[data-id="all"]').classList.add('active');
+      const defaultChip = document.querySelector('#topic-chips .chip[data-id="all"]');
+      if (defaultChip) defaultChip.classList.add('active');
     }
   } else {
     selectedTopics.push(id);
@@ -4168,56 +4187,80 @@ function selectMode(m, el) {
   mode = m;
   document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
-  document.getElementById('q-count').closest('div').style.display = m === 'flash' ? 'none' : 'block';
-  document.getElementById('timer-field').style.display = (m === 'exam') ? 'block' : 'none';
+  const countDiv = document.getElementById('q-count');
+  if (countDiv && countDiv.closest('div')) {
+    countDiv.closest('div').style.display = m === 'flash' ? 'none' : 'block';
+  }
+  const timerField = document.getElementById('timer-field');
+  if (timerField) {
+    timerField.style.display = (m === 'exam') ? 'block' : 'none';
+  }
 }
 
 // ============================================================
 //  SESSION START
 // ============================================================
 function startSession() {
-  const topicFilter = selectedTopics.includes('all') ? null : selectedTopics;
-  let pool = topicFilter ? QUESTIONS.filter(q => topicFilter.includes(q.topic)) : [...QUESTIONS];
+  try {
+    const topicFilter = selectedTopics.includes('all') ? null : selectedTopics;
+    let pool = topicFilter ? QUESTIONS.filter(q => topicFilter.includes(q.topic)) : [...QUESTIONS];
 
-  if (mode === 'flash') {
-    flashList = topicFilter ? FLASHCARDS.filter(f => {
-      return topicFilter.some(t => {
-        const map = { 
-          l1: 'Lecture 1', l2: 'Lecture 2', l3: 'Lecture 3', l4: 'Lecture 4', 
-          l5: 'Lecture 5', l6: 'Lecture 6', l7: 'Lecture 7', l8: 'Lecture 8'
-        };
-        return f.topic === map[t];
-      });
-    }) : [...FLASHCARDS];
-    shuffle(flashList);
-    flashIdx = 0;
-    showPanel('flash');
-    renderFlashcard();
-    return;
-  }
-
-  shuffle(pool);
-  const count = Math.min(parseInt(document.getElementById('q-count').value) || 25, pool.length);
-  sessionQs = pool.slice(0, count);
-  current = 0;
-  answers = {};
-  score = 0;
-  examMode = (mode === 'exam');
-
-  showPanel('quiz');
-  renderQuestion();
-  buildMap();
-
-  if (examMode) {
-    const mins = parseInt(document.getElementById('q-time').value) || 0;
-    if (mins > 0) {
-      secondsLeft = mins * 60;
-      startTimer();
+    if (mode === 'flash') {
+      flashList = topicFilter ? FLASHCARDS.filter(f => {
+        return topicFilter.some(t => {
+          const map = { 
+            l1: 'Lecture 1', l2: 'Lecture 2', l3: 'Lecture 3', l4: 'Lecture 4', 
+            l5: 'Lecture 5', l6: 'Lecture 6', l7: 'Lecture 7', l8: 'Lecture 8'
+          };
+          return f.topic === map[t];
+        });
+      }) : [...FLASHCARDS];
+      
+      if (!flashList || flashList.length === 0) {
+        alert("No flashcards found for selected topics.");
+        return;
+      }
+      shuffle(flashList);
+      flashIdx = 0;
+      showPanel('flash');
+      renderFlashcard();
+      return;
     }
+
+    if (!pool || pool.length === 0) {
+      alert("No questions found for the selected topics!");
+      return;
+    }
+
+    shuffle(pool);
+    const countEl = document.getElementById('q-count');
+    const count = Math.min(parseInt(countEl ? countEl.value : '25') || 25, pool.length);
+    sessionQs = pool.slice(0, count);
+    current = 0;
+    answers = {};
+    score = 0;
+    examMode = (mode === 'exam');
+
+    showPanel('quiz');
+    renderQuestion();
+    buildMap();
+
+    if (examMode) {
+      const timeEl = document.getElementById('q-time');
+      const mins = parseInt(timeEl ? timeEl.value : '30') || 0;
+      if (mins > 0) {
+        secondsLeft = mins * 60;
+        startTimer();
+      }
+    }
+  } catch (err) {
+    console.error("Error inside startSession():", err);
+    alert("Error starting review: " + err.message);
   }
 }
 
 function shuffle(arr) {
+  if (!arr) return;
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
