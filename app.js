@@ -932,7 +932,7 @@ function renderQ(){
     }
   }
   updCheck();
-  document.getElementById('btn-next').disabled=examMode?false:(saved===undefined);
+  document.getElementById('btn-next').disabled=false;
   updMap();
 }
 
