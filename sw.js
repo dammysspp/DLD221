@@ -1,5 +1,7 @@
 const CACHE_NAME = 'dld221-cache-v2';
 const ASSETS = [
+  './',
+  './index.html',
   './DLD221_Study_Companion.html',
   './style.css',
   './app.js',
