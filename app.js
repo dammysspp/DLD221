@@ -1095,6 +1095,50 @@ function gradeExam(){
   clearTimer();showResults();
 }
 
+function showResults(){
+  clearTimer();
+  const total=sessionQs.length,pct=Math.round(score/total*100);
+  document.getElementById('r-score').textContent=score;
+  document.getElementById('r-total').textContent=`/ ${total}`;
+  document.getElementById('r-msg').textContent=pct>=80?'Excellent Work!':pct>=60?'Good Effort!':'Keep Studying!';
+  document.getElementById('r-sub').textContent=`You scored ${score} of ${total} (${pct}%). `+(pct>=80?'Strong command of the material.':pct>=60?'Review the missed topics and try again.':'Go back through the lectures and try another session.');
+  document.getElementById('s-sess').textContent=`${score}/${total}`;
+  showArea('result');
+}
+
+// =====================================================================
+// QUESTION MAP
+// =====================================================================
+function buildMap(){
+  const m=document.getElementById('q-map');m.innerHTML='';
+  sessionQs.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='qdot'+(i===0?' cur':'');
+    d.textContent=i+1;
+    d.onclick=()=>{cur=i;renderQ();};
+    m.appendChild(d);
+  });
+}
+
+function updMap(){
+  document.querySelectorAll('.qdot').forEach((d,i)=>{
+    d.className='qdot';
+    if(i===cur)d.classList.add('cur');
+    if(answers[i]!==undefined){
+      if(examMode){d.classList.add('answered');}
+      else{
+        const q=sessionQs[i];let ok=false;
+        if(q.type==='mcq')ok=answers[i]===q.ans;
+        else if(q.type==='multi')ok=[...(answers[i]||[])].sort().join(',')===([...q.ans]).sort().join(',');
+        else if(q.type==='short')ok=String(answers[i]).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
+        else if(q.type==='fill')ok=Array.isArray(answers[i])&&answers[i].every((val,idx)=>val===q.ans[idx]);
+        else ok=true;
+        d.classList.add(ok?'ok':'wrong');
+      }
+    }
+  });
+}
+
 // =====================================================================
 // TIMER
 // =====================================================================
