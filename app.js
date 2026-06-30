@@ -1197,6 +1197,15 @@ function showArea(name){
   document.getElementById('result-area').style.display=name==='result'?'block':'none';
 }
 
+// Register service worker if supported
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Service Worker registered'))
+      .catch(err => console.log('Service Worker registration failed', err));
+  });
+}
+
 function endSession(){clearTimer();backToLanding();}
 
 function backToLanding(){
