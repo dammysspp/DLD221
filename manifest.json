@@ -2,7 +2,7 @@
   "name": "DLD221 Study Companion",
   "short_name": "DLD221",
   "description": "Progressive Web App Study Companion for DLD221 (Leadership Dynamics)",
-  "start_url": "./index.html",
+  "start_url": "./DLD221_Study_Companion.html",
   "display": "standalone",
   "background_color": "#0b0d13",
   "theme_color": "#d4af37",
