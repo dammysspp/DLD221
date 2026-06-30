@@ -932,6 +932,7 @@ function renderQ(){
     }
   }
   updCheck();
+  document.getElementById('btn-prev').disabled=(cur===0);
   document.getElementById('btn-next').disabled=false;
   updMap();
 }
@@ -1003,6 +1004,11 @@ function examSelectMCQ(btn,idx){
   answers[cur]=idx;
   updCheck();
   updMap();
+}
+
+// Previous question navigation
+function prevQ(){
+  if(cur>0){cur--;renderQ();}
 }
 
 function examToggleMulti(btn,idx){
