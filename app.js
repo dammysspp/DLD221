@@ -831,6 +831,21 @@ function startSession(){
   }
 }
 
+// Ensure map scroll remains synced with active index (safe in mock DOM)
+function syncMapScroll() {
+  const container = document.getElementById('q-map');
+  const activeDot = (container && typeof container.querySelector === 'function') ? container.querySelector('.cur') : null;
+  if (container && activeDot && typeof activeDot.getBoundingClientRect === 'function') {
+    const parentRect = container.getBoundingClientRect();
+    const activeRect = activeDot.getBoundingClientRect();
+    if (activeRect.top < parentRect.top || activeRect.bottom > parentRect.bottom) {
+      if (typeof activeDot.scrollIntoView === 'function') {
+        activeDot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }
+}
+
 function shuffle(a){
   for(let i=a.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
@@ -1040,6 +1055,7 @@ function renderQ(){
   document.getElementById('btn-next').disabled=false;
   triggerFeedback();
   updMap();
+  syncMapScroll();
 }
 
 function showExpl(q){

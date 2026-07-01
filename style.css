@@ -391,6 +391,19 @@ body{
   gap: 8px;
   width: 100%;
   margin-bottom: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.q-map::-webkit-scrollbar {
+  width: 6px;
+}
+.q-map::-webkit-scrollbar-track {
+  background: var(--paper-deep);
+}
+.q-map::-webkit-scrollbar-thumb {
+  background: var(--maroon);
+  border-radius: 3px;
 }
 
 /* ============ QUESTION MAP LEGEND COLOR MATCHING ============ */
