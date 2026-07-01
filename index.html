@@ -21,6 +21,7 @@
         <div class="course-code">DLD 221 — Diploma in Leadership Development</div>
         <div class="course-sub">A study companion bound from eight lectures</div>
       </div>
+      <button id="pwa-install-btn" class="btn-install" style="display:none; margin-left:auto;">Install App</button>
     </div>
     <h1>The Leadership <em>Covenant</em> &amp; the Solution-Focused Mind</h1>
     <div class="lecture-strip">
@@ -77,7 +78,7 @@
     </div>
   </div>
 
-  <div id="quiz-area">
+    <div id="quiz-area">
     <div class="quiz-top">
       <span class="quiz-counter" id="q-counter">Q 1 / 20</span>
       <div style="display:flex;gap:8px;align-items:center;">
@@ -86,23 +87,48 @@
       </div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-    <div class="q-map" id="q-map"></div>
-    <div class="q-card">
-      <div class="q-card-head">
-        <span class="q-topic-pill" id="q-topic-pill"></span>
-        <span class="q-type-pill" id="q-type-pill"></span>
+    
+    <div class="quiz-layout">
+      <!-- MAIN CARD AREA (LEFT) -->
+      <div class="quiz-main">
+        <div class="q-card">
+          <div id="q-feedback-banner" class="q-feedback-banner"></div>
+          <div class="q-card-head">
+            <span class="q-topic-pill" id="q-topic-pill"></span>
+            <span class="q-type-pill" id="q-type-pill"></span>
+          </div>
+          <div class="q-text" id="q-text"></div>
+          <div class="options" id="q-options"></div>
+          <div class="explanation" id="q-explanation"></div>
+        </div>
       </div>
-      <div class="q-text" id="q-text"></div>
-      <div class="options" id="q-options"></div>
-      <div class="explanation" id="q-explanation"></div>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-check" id="btn-check" onclick="checkAnswer()" disabled>Check Answer</button>
-      <button class="btn btn-secondary" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+      
+      <!-- SIDEBAR WITH CONTROLS AND MAP (RIGHT) -->
+      <div class="quiz-sidebar">
+        <div class="q-map-box">
+          <div class="q-map-title">📍 Question Map</div>
+          
+          <div class="q-map-legend">
+            <span class="legend-item"><span class="legend-dot legend-cur"></span>Current</span>
+            <span class="legend-item"><span class="legend-dot legend-ans"></span>Answered</span>
+            <span class="legend-item"><span class="legend-dot legend-ok"></span>Correct</span>
+            <span class="legend-item"><span class="legend-dot legend-wrong"></span>Wrong</span>
+          </div>
+          
+          <div class="q-map" id="q-map"></div>
+        </div>
+        
+        <button class="btn btn-check" id="btn-check" onclick="checkAnswer()" disabled>✓ Check Answer</button>
+        <div class="nav-row">
+          <button class="btn btn-secondary" id="btn-prev" onclick="prevQ()" disabled>← Prev</button>
+          <button class="btn btn-secondary" id="btn-next" onclick="nextQ()" disabled>Next →</button>
+        </div>
+        <button class="btn btn-finish" id="btn-finish">⚑ Finish Session</button>
+      </div>
     </div>
   </div>
 
-  <div id="flash-area">
+<div id="flash-area">
     <div class="flash-top">
       <span class="quiz-counter" id="fc-counter">Card 1 / 70</span>
       <button class="btn-end" onclick="endSession()">End Session</button>
