@@ -816,7 +816,7 @@ function startSession(){
   
   const finishBtn = document.getElementById('btn-finish');
   if (finishBtn) {
-    finishBtn.textContent = examMode ? '⚑ Finish Exam' : '⚑ Finish Session';
+    finishBtn.textContent = examMode ? '\u2691 Finish Exam' : '\u2691 Finish Session';
     finishBtn.onclick = examMode ? gradeExam : showResults;
   }
   
@@ -1366,6 +1366,9 @@ function updTimerColor(){
     box.classList.add('timer-danger');
   }
 }
+
+function clearTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}}
+function fmtSec(s){const m=Math.floor(s/60),sec=s%60;return `${m}:${sec<10?'0':''}${sec}`;}
 
 // =====================================================================
 // FLASHCARDS
