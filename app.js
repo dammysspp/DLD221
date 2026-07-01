@@ -704,18 +704,6 @@ window.addEventListener('keydown', (e) => {
 // PWA installation trigger
 window.addEventListener('beforeinstallprompt',(e)=>{
   e.preventDefault();deferredPrompt=e;
-  const btn=document.getElementById('pwa-install-btn');
-  if(btn){
-    btn.style.display='block';
-    btn.onclick=()=>{
-      btn.style.display='none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(res=>{
-        if(res.outcome==='accepted')console.log('App Installed');
-        deferredPrompt=null;
-      });
-    };
-  }
 });
 
 // =====================================================================
@@ -726,6 +714,24 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('s-fc').textContent=FC.length;
   document.getElementById('s-lec').textContent=TOPICS.length-1;
   buildChips();
+  
+  // Set up save offline button with fallback support
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) {
+    btn.onclick = () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(res => {
+          if (res.outcome === 'accepted') {
+            btn.style.display = 'none';
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        alert("Offline Access Instructions:\n\n1. Mobile (iOS/Android): Tap your browser's menu/share button and select 'Add to Home Screen'.\n2. Desktop: Click the install icon in your browser address bar, or press Ctrl+S to save the page to your computer.");
+      }
+    };
+  }
 });
 
 function buildChips(){
@@ -1426,3 +1432,15 @@ function backToLanding(){
 function updSess(){
   document.getElementById('s-sess').textContent=`${score}/${sessionQs.length}`;
 }
+
+// Live active learners counter simulation
+setInterval(() => {
+  const el = document.getElementById('live-count-val');
+  if (el) {
+    let count = parseInt(el.textContent) || 4;
+    const change = Math.random() > 0.5 ? 1 : -1;
+    count = Math.max(3, Math.min(14, count + change));
+    el.textContent = count;
+  }
+}, 5000);
+
