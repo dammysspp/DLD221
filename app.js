@@ -84,8 +84,8 @@ const QB=[
 {id:71,topic:'l1',type:'mcq',text:'The lecture\'s conclusion that "the playing field is more level than you think" is because:',opts:['Technology has democratised opportunity','Not talent, not luck, not background — the difference is the consistent, disciplined, sacrificial application of the 5 covenant terms over time','Government policy has created equal access to education','Social media has given everyone a platform'],ans:1,exp:'"Not talent — everyone has a brain of equal potential. Not luck — seedtime and harvest is law. Not background — Faraday, Franklin, LeTourneau prove otherwise. The difference is the consistent, disciplined, sacrificial application of the 5 covenant terms."'},
 {id:72,topic:'l1',type:'mcq',applied:true,text:'[APPLIED] A final-year student says: "I am not yet disciplined because I am still young and growing." Using Lecture 1, how would you respond?',opts:['This is reasonable — discipline develops naturally with age','The lecture says discipline is about possessing a sense of mission in pursuing any task; it does not require age but decision — the pain of discipline is lighter than the pain of regret; discipline starts with the choice to be a law to oneself today','The student is correct — self-discipline is the fourth covenant term and comes after vision and wisdom','The lecture only applies to established leaders, not students'],ans:1,exp:'Self-discipline does not wait for age. It is a decision: "operating as demanded, not as convenient." Jim Rohn: discipline weighs ounces while regret weighs tonnes. The four zones are applicable at any career stage.'},
 {id:73,topic:'l1',type:'mcq',text:'The lecture\'s definition of "Laddership" under wisdom tools means:',opts:['Leading from the bottom of an organisation upward','Every leader rises on the shoulders of those before them — mentorship as the ladder of leadership growth','Building a network of people beneath you who you mentor','A form of distributed leadership'],ans:1,exp:'"Mentorship — Laddership: Every leader rises on the shoulders of those before them." Laddership = using mentors as a ladder for your own growth.'},
-{id:74,topic:'l1',type:'short',text:'What does the African Head of State name as Africa\'s top three problems?',ans:'Leadership',exp:'The president replied: "Number 1, Leadership. Number 2, Leadership. Number 3, Leadership." The crisis is developmental.'},
-{id:75,topic:'l1',type:'mcq',text:'Which CORRECTLY matches all five covenant terms with their brief definitions as given in the Lecture 1 table?',opts:['Vision=knowing where you are going; Wisdom=learning what it takes; Self-Discipline=submitting to journey demands; Diligence=putting in all you\'ve got; Sacrifice=going the extra mile','Vision=having a dream; Wisdom=intelligence; Discipline=following rules; Diligence=working long hours; Sacrifice=suffering for a cause','Vision=strategy; Wisdom=experience; Discipline=obedience; Diligence=consistency; Sacrifice=giving to others','Vision=goals; Wisdom=education; Discipline=structure; Diligence=effort; Sacrifice=risk-taking'],ans:0,exp:'Exact table in Lecture 1: Vision=knowing where you are going; Wisdom=learning what it takes to get there; Self-Discipline=submitting to the demands of the journey; Diligence=putting in all you\'ve got; Sacrifice=going the extra mile.'},
+{id:74,topic:'l1',type:'match',text:'Match each Instrument of the Supernatural to its description:',left:['The Word', 'Faith', 'The Name of Jesus', 'Prayer & Fasting'],right:['The source of divine power and revelation', 'The shield that quenches all fiery darts', 'The name above all names that forces knee bending', 'The discipline that subdues the flesh and elevates spirit'],ans:[0, 1, 2, 3],exp:'The Word is the source of divine power; Faith is the shield that quenches all fiery darts; The Name of Jesus is the name above all names that forces knee bending; Prayer & Fasting is the discipline that subdues the flesh and elevates the spirit.'},
+{id:75,topic:'l1',type:'match',text:'Match each Covenant Term from Lecture 1 with its correct definition:',left:['Vision', 'Wisdom', 'Self-Discipline', 'Diligence', 'Sacrifice'],right:['Knowing where you are going', 'Learning what it takes to get there', 'Submitting to the demands of the journey', 'Putting in all you have got', 'Going the extra mile'],ans:[0, 1, 2, 3, 4],exp:'Vision = knowing where you are going; Wisdom = learning what it takes; Self-Discipline = submitting to journey demands; Diligence = putting in all you\'ve got; Sacrifice = going the extra mile.'},
 {id:76,topic:'l2',type:'mcq',text:'Lecture 2 describes every leader as carrying a lens. The two types of lenses are:',opts:['Macro and micro','Problem-focused (PF) and Solution-focused (SF)','Reactive and proactive','Internal and external'],ans:1,exp:'Leaders habitually see situations through either a problem-focused or solution-focused lens. The difference is not personality — it is discipline of attention.'},
 {id:77,topic:'l2',type:'mcq',text:'The Problem-Focused (PF) lens operates on the logic of:',opts:['What you focus on grows','Identify what\'s wrong → Diagnose → Fix — over time creating a problem-saturated environment','Celebrate wins before addressing challenges','Lead with strengths, then address weaknesses'],ans:1,exp:'PF lens: Identify → Diagnose → Fix. Creates a problem-saturated environment where difficulties are always spotlighted, strengths become invisible, and people feel perpetually inadequate.'},
 {id:78,topic:'l2',type:'mcq',text:'The core premise of the Solution-Focused (SF) lens is:',opts:['Ignore problems until they resolve themselves','Celebrate every achievement regardless of quality','What you focus on grows — begin with a different premise','Diagnosis must precede every intervention'],ans:2,exp:'The SF lens begins with: "What you focus on grows." Instead of spotlighting problems, it surfaces what is already working and amplifies those moments.'},
@@ -691,6 +691,7 @@ let examMode=false,timerInt=null,secLeft=0,reviewMode=false;
 let flashList=[],fcIdx=0;
 let selTopics=['all'];
 let deferredPrompt=null;
+let checked={}; // stores whether a question has been clicked 'Check Answer' in Study Mode
 
 // PWA installation trigger
 window.addEventListener('beforeinstallprompt',(e)=>{
@@ -801,9 +802,15 @@ function startSession(){
   }
   const n=Math.min(reqCount,pool.length);
   sessionQs=pool.slice(0,n);
-  cur=0;answers={};multiSel={};score=0;reviewMode=false;
+  cur=0;answers={};multiSel={};score=0;reviewMode=false;checked={};
   examMode=(mode==='exam'||mode==='scenario');
   showArea('quiz');buildMap();renderQ();
+  
+  const finishBtn = document.getElementById('btn-finish');
+  if (finishBtn) {
+    finishBtn.textContent = examMode ? '⚑ Finish Exam' : '⚑ Finish Session';
+    finishBtn.onclick = examMode ? gradeExam : showResults;
+  }
   
   if(examMode){
     let mins=30;
@@ -833,8 +840,8 @@ function renderQ(){
   const topicLabel=TOPICS.find(t=>t.id===q.topic)?.label||'';
   document.getElementById('q-topic-pill').textContent=topicLabel.includes(':')?topicLabel.split(':')[1].trim():topicLabel;
   const tp=document.getElementById('q-type-pill');
-  const typeMap={mcq:'MCQ',multi:'Multi-Select',short:'Short Answer',fill:'Fill-in'};
-  const tc={mcq:'mcq',multi:'multi',short:'short',fill:'fill'};
+  const typeMap={mcq:'MCQ',multi:'Multi-Select',short:'Short Answer',fill:'Fill-in',match:'Matching'};
+  const tc={mcq:'mcq',multi:'multi',short:'short',fill:'fill',match:'applied'};
   const label=q.applied?'APPLIED':typeMap[q.type];
   const cls=q.applied?'applied':tc[q.type];
   tp.textContent=label;tp.className='q-type-pill '+cls;
@@ -849,7 +856,7 @@ function renderQ(){
   }
   
   const saved=answers[cur];
-  const showExplanationMode=(saved!==undefined&&!examMode)||reviewMode;
+  const showExplanationMode=(checked[cur]&&!examMode)||reviewMode;
   
   if(q.type==='mcq'||q.type==='multi'){
     const isMulti=q.type==='multi';
@@ -862,7 +869,7 @@ function renderQ(){
         btn.disabled=true;
         if(i===q.ans||(isMulti&&q.ans.includes(i)))btn.classList.add('correct');
         else if(saved===i||(isMulti&&Array.isArray(saved)&&saved.includes(i)))btn.classList.add('wrong');
-      }else if(saved!==undefined&&examMode){
+      }else if(saved!==undefined){
         const isSel=isMulti?(multiSel[cur]||[]).includes(i):saved===i;
         if(isSel)btn.classList.add('selected');
       }
@@ -949,6 +956,76 @@ function renderQ(){
       expl.innerHTML=`<strong>Answer:</strong> ${q.ans.join(' / ')}<br><br>${q.exp}`;
       expl.classList.add('show');
     }
+  }else if(q.type==='match'){
+    document.getElementById('q-text').textContent=q.text;
+    const wrap=document.createElement('div');
+    wrap.className='match-wrap';
+    
+    const currentAnswers=saved||Array(q.left.length).fill('');
+    const matchOptions = q.right.map((val, idx) => ({text: val, index: idx}));
+    matchOptions.sort((a,b) => a.text.localeCompare(b.text));
+    
+    q.left.forEach((leftItem, i)=>{
+      const row=document.createElement('div');
+      row.className='match-row';
+      
+      const leftCol=document.createElement('div');
+      leftCol.className='match-left';
+      leftCol.textContent=leftItem;
+      
+      const arrow=document.createElement('span');
+      arrow.className='match-arrow';
+      arrow.textContent='→';
+      
+      const sel=document.createElement('select');
+      sel.className='match-select';
+      
+      const placeholder=document.createElement('option');
+      placeholder.value='';
+      placeholder.textContent='— Select —';
+      placeholder.disabled=true;
+      placeholder.selected=(currentAnswers[i]==='');
+      sel.appendChild(placeholder);
+      
+      matchOptions.forEach(optData=>{
+        const opt=document.createElement('option');
+        opt.value=optData.index;
+        opt.textContent=optData.text;
+        if(currentAnswers[i]!=='' && Number(currentAnswers[i])===optData.index){
+          opt.selected=true;
+        }
+        sel.appendChild(opt);
+      });
+      
+      sel.onchange=()=>{
+        if(!answers[cur])answers[cur]=Array(q.left.length).fill('');
+        answers[cur][i]=sel.value !== '' ? Number(sel.value) : '';
+        updCheck();
+      };
+      
+      if(showExplanationMode){
+        sel.disabled=true;
+        const correctIndex = q.ans[i];
+        if(currentAnswers[i]!=='' && Number(currentAnswers[i])===correctIndex){
+          sel.style.borderColor='var(--moss)';
+          sel.style.background='var(--moss-light)';
+        }else{
+          sel.style.borderColor='var(--maroon)';
+          sel.style.background='#f6e3e0';
+        }
+      }
+      
+      row.appendChild(leftCol);
+      row.appendChild(arrow);
+      row.appendChild(sel);
+      wrap.appendChild(row);
+    });
+    opts.appendChild(wrap);
+    if(showExplanationMode){
+      const matchLines = q.left.map((item, idx) => `<strong>${item}</strong> → ${q.right[q.ans[idx]]}`).join('<br>');
+      expl.innerHTML=`<strong>Correct Matches:</strong><br>${matchLines}<br><br><strong>Explanation:</strong> ${q.exp}`;
+      expl.classList.add('show');
+    }
   }
   updCheck();
   document.getElementById('btn-prev').disabled=(cur===0);
@@ -963,6 +1040,9 @@ function showExpl(q){
     el.innerHTML=`<strong>Answer:</strong> ${q.ans.join(' / ')}<br><br><strong>Explanation:</strong> ${q.exp}`;
   }else if(q.type==='short'){
     el.innerHTML=`<strong>Model Answer:</strong> ${q.ans}<br><br><strong>Explanation:</strong> ${q.exp}`;
+  }else if(q.type==='match'){
+    const matchLines = q.left.map((item, idx) => `<strong>${item}</strong> → ${q.right[q.ans[idx]]}`).join('<br>');
+    el.innerHTML=`<strong>Correct Matches:</strong><br>${matchLines}<br><br><strong>Explanation:</strong> ${q.exp}`;
   }else{
     el.innerHTML=`<strong>Explanation:</strong> ${q.exp}`;
   }
@@ -978,7 +1058,8 @@ function triggerFeedback(){
   fb.className='q-feedback-banner';
   fb.textContent='';
   
-  if(saved===undefined||examMode){
+  // Feedback banner only triggers if checked
+  if(!checked[cur]||examMode){
     return;
   }
   
@@ -987,6 +1068,7 @@ function triggerFeedback(){
   else if(q.type==='multi')ok=Array.isArray(saved)&&[...saved].sort().join(',')===([...q.ans]).sort().join(',');
   else if(q.type==='short')ok=String(saved).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
   else if(q.type==='fill')ok=Array.isArray(saved)&&saved.every((v,i)=>v===q.ans[i]);
+  else if(q.type==='match')ok=Array.isArray(saved)&&saved.every((v,i)=>v!==''&&Number(v)===q.ans[i]);
   
   if(ok){
     fb.classList.add('show-correct');
@@ -997,22 +1079,18 @@ function triggerFeedback(){
   }
 }
 
+// In study mode, selecting MCQ highlights the option and enables Check Answer (rather than immediately checking it)
 function selectMCQ(btn,idx,q){
-  if(answers[cur]!==undefined)return;
-  document.querySelectorAll('#q-options .opt').forEach(o=>{o.disabled=true;});
+  if(checked[cur])return;
   answers[cur]=idx;
-  if(idx===q.ans)score++;
-  btn.classList.add(idx===q.ans?'correct':'wrong');
-  document.querySelectorAll('#q-options .opt')[q.ans].classList.add('correct');
-  showExpl(q);
-  document.getElementById('btn-next').disabled=false;
-  document.getElementById('btn-check').disabled=true;
-  triggerFeedback();
-  updMap();updSess();
+  document.querySelectorAll('#q-options .opt').forEach(o=>o.classList.remove('selected'));
+  btn.classList.add('selected');
+  updCheck();
+  updMap();
 }
 
 function toggleMulti(btn,idx){
-  if(answers[cur]!==undefined)return;
+  if(checked[cur])return;
   if(!multiSel[cur])multiSel[cur]=[];
   const s=multiSel[cur];
   if(s.includes(idx)){
@@ -1022,22 +1100,17 @@ function toggleMulti(btn,idx){
     s.push(idx);
     btn.classList.add('selected');
   }
+  answers[cur]=multiSel[cur];
   updCheck();
 }
 
-// Check answer validation for study mode
+// Check answer validation for study mode (always active for unchecked questions)
 function updCheck(){
   const q=sessionQs[cur];
   const btn=document.getElementById('btn-check');
-  if(q.type==='mcq'){
-    btn.classList.add('hidden');
-    return;
-  }
-  btn.classList.remove('hidden');
   if(examMode||reviewMode){btn.disabled=true;return;}
-  if(answers[cur]!==undefined){btn.disabled=true;return;}
+  if(checked[cur]){btn.disabled=true;return;}
   
-  // Check Answer works without selecting/answering
   btn.disabled=false;
 }
 
@@ -1071,7 +1144,20 @@ function examToggleMulti(btn,idx){
 
 function checkAnswer(){
   const q=sessionQs[cur];
-  if(q.type==='multi'){
+  checked[cur]=true;
+  
+  if(q.type==='mcq'){
+    const val=answers[cur];
+    if(val===q.ans)score++;
+    document.querySelectorAll('#q-options .opt').forEach((o,i)=>{
+      o.disabled=true;
+      if(i===q.ans)o.classList.add('correct');
+      else if(val===i)o.classList.add('wrong');
+    });
+    showExpl(q);
+    document.getElementById('btn-next').disabled=false;
+    document.getElementById('btn-check').disabled=true;
+  }else if(q.type==='multi'){
     const sel=(multiSel[cur]||[]).slice().sort().join(',');
     const correct=[...q.ans].sort().join(',');
     answers[cur]=multiSel[cur]||[];
@@ -1121,6 +1207,24 @@ function checkAnswer(){
     showExpl(q);
     document.getElementById('btn-next').disabled=false;
     document.getElementById('btn-check').disabled=true;
+  }else if(q.type==='match'){
+    const val=answers[cur]||Array(q.left.length).fill('');
+    answers[cur]=val;
+    const isCorrect=Array.isArray(val)&&val.length===q.ans.length&&val.every((v,i)=>v!==''&&Number(v)===q.ans[i]);
+    if(isCorrect)score++;
+    document.querySelectorAll('.match-select').forEach((sel,i)=>{
+      sel.disabled=true;
+      if(val[i]!==''&&Number(val[i])===q.ans[i]){
+        sel.style.borderColor='var(--moss)';
+        sel.style.background='var(--moss-light)';
+      }else{
+        sel.style.borderColor='var(--maroon)';
+        sel.style.background='#f6e3e0';
+      }
+    });
+    showExpl(q);
+    document.getElementById('btn-next').disabled=false;
+    document.getElementById('btn-check').disabled=true;
   }
   triggerFeedback();
   updMap();updSess();
@@ -1142,6 +1246,8 @@ function gradeExam(){
       if(a&&String(a).trim().toLowerCase()===String(q.ans).trim().toLowerCase())score++;
     }else if(q.type==='fill'){
       if(Array.isArray(a)&&a.length===q.ans.length&&a.every((val,idx)=>val===q.ans[idx]))score++;
+    }else if(q.type==='match'){
+      if(Array.isArray(a)&&a.length===q.ans.length&&a.every((val,idx)=>val!==''&&Number(val)===q.ans[idx]))score++;
     }
   });
   clearTimer();showResults();
@@ -1191,13 +1297,17 @@ function updMap(){
     if(answers[i]!==undefined){
       if(examMode){d.classList.add('answered');}
       else{
-        const q=sessionQs[i];let ok=false;
-        if(q.type==='mcq')ok=answers[i]===q.ans;
-        else if(q.type==='multi')ok=Array.isArray(answers[i])&&[...answers[i]].sort().join(',')===([...q.ans]).sort().join(',');
-        else if(q.type==='short')ok=String(answers[i]).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
-        else if(q.type==='fill')ok=Array.isArray(answers[i])&&answers[i].every((val,idx)=>val===q.ans[idx]);
-        else ok=true;
-        d.classList.add(ok?'ok':'wrong');
+        if(checked[i]){
+          const q=sessionQs[i];let ok=false;
+          if(q.type==='mcq')ok=answers[i]===q.ans;
+          else if(q.type==='multi')ok=Array.isArray(answers[i])&&[...answers[i]].sort().join(',')===([...q.ans]).sort().join(',');
+          else if(q.type==='short')ok=String(answers[i]).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
+          else if(q.type==='fill')ok=Array.isArray(answers[i])&&answers[i].every((val,idx)=>val===q.ans[idx]);
+          else if(q.type==='match')ok=Array.isArray(answers[i])&&answers[i].every((val,idx)=>val!==''&&Number(val)===q.ans[idx]);
+          d.classList.add(ok?'ok':'wrong');
+        }else{
+          d.classList.add('answered');
+        }
       }
     }
   });
@@ -1283,7 +1393,7 @@ if ('serviceWorker' in navigator) {
 function endSession(){clearTimer();backToLanding();}
 
 function backToLanding(){
-  clearTimer();multiSel={};reviewMode=false;
+  clearTimer();multiSel={};reviewMode=false;checked={};
   const box=document.getElementById('timer-box');
   box.classList.add('hidden');box.classList.remove('urgent','timer-safe','timer-warning','timer-danger');
   showArea('landing');
