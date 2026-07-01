@@ -744,6 +744,7 @@ function toggleChip(id,el){
   }else{selTopics.push(id);el.classList.add('active');}
 }
 
+// Check validation of active session count/timer settings
 function pickMode(m,el){
   mode=m;
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
@@ -899,10 +900,8 @@ function renderQ(){
     const parts=q.text.split('_______');
     const wrap=document.createElement('div');wrap.className='fill-wrap';
     
-    if(answers[cur]===undefined){
-      answers[cur]=Array(q.dropdowns.length).fill('');
-    }
-    const currentAnswers=answers[cur];
+    // Read selections without saving array on render to prevent automatic answer state tracking
+    const currentAnswers=saved||Array(q.dropdowns.length).fill('');
     
     parts.forEach((part,i)=>{
       wrap.appendChild(document.createTextNode(part));
@@ -928,6 +927,7 @@ function renderQ(){
           sel.appendChild(opt);
         });
         sel.onchange=()=>{
+          if(!answers[cur])answers[cur]=Array(q.dropdowns.length).fill('');
           answers[cur][i]=sel.value;
           updCheck();
         };
