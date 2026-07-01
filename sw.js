@@ -18,6 +18,21 @@ self.addEventListener('install', (e) => {
   );
 });
 
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log('Service Worker: Clearing Old Cache', key);
+            return caches.delete(key);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
 // Network-first caching strategy
 self.addEventListener('fetch', (e) => {
   e.respondWith(

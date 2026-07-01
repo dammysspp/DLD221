@@ -1085,7 +1085,8 @@ function checkAnswer(){
     document.getElementById('btn-next').disabled=false;
     document.getElementById('btn-check').disabled=true;
   }else if(q.type==='fill'){
-    const val=answers[cur]||[];
+    const val=answers[cur]||Array(q.dropdowns.length).fill('');
+    answers[cur]=val;
     const isCorrect=Array.isArray(val)&&val.length===q.ans.length&&val.every((v,i)=>v===q.ans[i]);
     if(isCorrect)score++;
     document.querySelectorAll('.fill-select').forEach((sel,i)=>{
@@ -1103,6 +1104,7 @@ function checkAnswer(){
     document.getElementById('btn-check').disabled=true;
   }else if(q.type==='short'){
     const val=answers[cur]||'';
+    answers[cur]=val;
     const isCorrect=String(val).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
     if(isCorrect)score++;
     const inp=document.querySelector('.fill-inp');
