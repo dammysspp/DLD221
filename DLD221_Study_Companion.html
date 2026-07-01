@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+<div id="portrait-warning">
+  <div class="warning-glyph">⟲</div>
+  <h2>Landscape Mode Required</h2>
+  <p>Please rotate your device to landscape orientation to use the study companion.</p>
+</div>
 <header class="site-header">
   <div class="header-inner">
     <div class="eyebrow-row">
@@ -83,6 +88,7 @@
     <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
     <div class="q-map" id="q-map"></div>
     <div class="q-card">
+      <div id="q-feedback-banner" class="q-feedback-banner"></div>
       <div class="q-card-head">
         <span class="q-topic-pill" id="q-topic-pill"></span>
         <span class="q-type-pill" id="q-type-pill"></span>
@@ -131,20 +137,14 @@
     </div>
     <div class="result-msg" id="r-msg"></div>
     <div class="result-sub" id="r-sub"></div>
-    <button class="btn btn-primary" onclick="backToLanding()">← New Session</button>
+    <div class="btn-row" style="justify-content:center;gap:12px;">
+      <button class="btn btn-secondary" id="btn-review" onclick="reviewSession()">Review Answers →</button>
+      <button class="btn btn-primary" onclick="backToLanding()">← New Session</button>
+    </div>
   </div>
 
 </div>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker registered'))
-        .catch(err => console.log('Service Worker registration failed', err));
-    });
-  }
-</script>
 <footer class="site-footer">made by samsco 2026</footer>
 <script src="app.js" defer></script>
 </body>

@@ -687,9 +687,27 @@ const FC=[
 ];
 
 let mode='study',sessionQs=[],cur=0,answers={},multiSel={},score=0;
-let examMode=false,timerInt=null,secLeft=0;
+let examMode=false,timerInt=null,secLeft=0,reviewMode=false;
 let flashList=[],fcIdx=0;
 let selTopics=['all'];
+let deferredPrompt=null;
+
+// PWA installation trigger
+window.addEventListener('beforeinstallprompt',(e)=>{
+  e.preventDefault();deferredPrompt=e;
+  const btn=document.getElementById('pwa-install-btn');
+  if(btn){
+    btn.style.display='block';
+    btn.onclick=()=>{
+      btn.style.display='none';
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(res=>{
+        if(res.outcome==='accepted')console.log('App Installed');
+        deferredPrompt=null;
+      });
+    };
+  }
+});
 
 // =====================================================================
 // INIT
@@ -782,7 +800,7 @@ function startSession(){
   }
   const n=Math.min(reqCount,pool.length);
   sessionQs=pool.slice(0,n);
-  cur=0;answers={};multiSel={};score=0;
+  cur=0;answers={};multiSel={};score=0;reviewMode=false;
   examMode=(mode==='exam'||mode==='scenario');
   showArea('quiz');buildMap();renderQ();
   
@@ -830,6 +848,7 @@ function renderQ(){
   }
   
   const saved=answers[cur];
+  const showExplanationMode=(saved!==undefined&&!examMode)||reviewMode;
   
   if(q.type==='mcq'||q.type==='multi'){
     const isMulti=q.type==='multi';
@@ -838,7 +857,7 @@ function renderQ(){
       btn.className='opt';
       const ltr=String.fromCharCode(65+i);
       btn.innerHTML=`<span class="opt-key">${ltr}</span><span style="flex:1">${optText}</span>`;
-      if(saved!==undefined&&!examMode){
+      if(showExplanationMode){
         btn.disabled=true;
         if(i===q.ans||(isMulti&&q.ans.includes(i)))btn.classList.add('correct');
         else if(saved===i||(isMulti&&Array.isArray(saved)&&saved.includes(i)))btn.classList.add('wrong');
@@ -847,7 +866,7 @@ function renderQ(){
         if(isSel)btn.classList.add('selected');
       }
       btn.onclick=()=>{
-        if(!examMode&&saved!==undefined)return;
+        if(showExplanationMode)return;
         if(!examMode&&!isMulti)selectMCQ(btn,i,q);
         else if(!examMode&&isMulti)toggleMulti(btn,i);
         else if(examMode&&!isMulti)examSelectMCQ(btn,i);
@@ -855,15 +874,15 @@ function renderQ(){
       };
       opts.appendChild(btn);
     });
-    if(saved!==undefined&&!examMode)showExpl(q);
+    if(showExplanationMode)showExpl(q);
   }else if(q.type==='short'){
     const ta=document.createElement('input');
     ta.type='text';ta.className='fill-inp';ta.placeholder='Type your 1-2 word answer...';
     ta.value=saved||'';
     ta.oninput=()=>{answers[cur]=ta.value;updCheck();};
-    if(saved!==undefined&&!examMode){
+    if(showExplanationMode){
       ta.disabled=true;
-      const isCorrect=String(saved).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
+      const isCorrect=String(saved||'').trim().toLowerCase()===String(q.ans).trim().toLowerCase();
       if(isCorrect){
         ta.style.borderColor='var(--moss)';
         ta.style.background='var(--moss-light)';
@@ -912,7 +931,7 @@ function renderQ(){
           answers[cur][i]=sel.value;
           updCheck();
         };
-        if(saved!==undefined&&!examMode){
+        if(showExplanationMode){
           sel.disabled=true;
           if(currentAnswers[i]===q.ans[i]){
             sel.style.borderColor='var(--moss)';
@@ -926,7 +945,7 @@ function renderQ(){
       }
     });
     opts.appendChild(wrap);
-    if(saved!==undefined&&!examMode){
+    if(showExplanationMode){
       expl.innerHTML=`<strong>Answer:</strong> ${q.ans.join(' / ')}<br><br>${q.exp}`;
       expl.classList.add('show');
     }
@@ -934,6 +953,7 @@ function renderQ(){
   updCheck();
   document.getElementById('btn-prev').disabled=(cur===0);
   document.getElementById('btn-next').disabled=false;
+  triggerFeedback();
   updMap();
 }
 
@@ -949,6 +969,34 @@ function showExpl(q){
   el.classList.add('show');
 }
 
+function triggerFeedback(){
+  const q=sessionQs[cur];
+  const saved=answers[cur];
+  const fb=document.getElementById('q-feedback-banner');
+  if(!fb)return;
+  
+  fb.className='q-feedback-banner';
+  fb.textContent='';
+  
+  if(saved===undefined||examMode){
+    return;
+  }
+  
+  let ok=false;
+  if(q.type==='mcq')ok=saved===q.ans;
+  else if(q.type==='multi')ok=Array.isArray(saved)&&[...saved].sort().join(',')===([...q.ans]).sort().join(',');
+  else if(q.type==='short')ok=String(saved).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
+  else if(q.type==='fill')ok=Array.isArray(saved)&&saved.every((v,i)=>v===q.ans[i]);
+  
+  if(ok){
+    fb.classList.add('show-correct');
+    fb.textContent='✓ Correct Decision — Excellent Leadership!';
+  }else{
+    fb.classList.add('show-wrong');
+    fb.textContent='✗ Learning Opportunity — Study the Concept Below';
+  }
+}
+
 function selectMCQ(btn,idx,q){
   if(answers[cur]!==undefined)return;
   document.querySelectorAll('#q-options .opt').forEach(o=>{o.disabled=true;});
@@ -959,6 +1007,7 @@ function selectMCQ(btn,idx,q){
   showExpl(q);
   document.getElementById('btn-next').disabled=false;
   document.getElementById('btn-check').disabled=true;
+  triggerFeedback();
   updMap();updSess();
 }
 
@@ -985,17 +1034,11 @@ function updCheck(){
     return;
   }
   btn.classList.remove('hidden');
-  if(examMode){btn.disabled=true;return;}
+  if(examMode||reviewMode){btn.disabled=true;return;}
   if(answers[cur]!==undefined){btn.disabled=true;return;}
   
-  if(q.type==='multi'){
-    btn.disabled=!(multiSel[cur]&&multiSel[cur].length>0);
-  }else if(q.type==='fill'){
-    const val=answers[cur];
-    btn.disabled=!(Array.isArray(val) && val.length===q.dropdowns.length && val.every(v=>v!==''));
-  }else{
-    btn.disabled=!answers[cur]||String(answers[cur]).trim()==='';
-  }
+  // Check Answer works without selecting/answering
+  btn.disabled=false;
 }
 
 function examSelectMCQ(btn,idx){
@@ -1077,6 +1120,7 @@ function checkAnswer(){
     document.getElementById('btn-next').disabled=false;
     document.getElementById('btn-check').disabled=true;
   }
+  triggerFeedback();
   updMap();updSess();
 }
 
@@ -1112,6 +1156,18 @@ function showResults(){
   showArea('result');
 }
 
+// Review graded questions at end of session
+function reviewSession(){
+  reviewMode=true;
+  examMode=false;
+  cur=0;
+  showArea('quiz');
+  buildMap();
+  renderQ();
+  document.getElementById('btn-check').classList.add('hidden');
+  document.getElementById('btn-next').disabled=false;
+}
+
 // =====================================================================
 // QUESTION MAP
 // =====================================================================
@@ -1135,7 +1191,7 @@ function updMap(){
       else{
         const q=sessionQs[i];let ok=false;
         if(q.type==='mcq')ok=answers[i]===q.ans;
-        else if(q.type==='multi')ok=[...(answers[i]||[])].sort().join(',')===([...q.ans]).sort().join(',');
+        else if(q.type==='multi')ok=Array.isArray(answers[i])&&[...answers[i]].sort().join(',')===([...q.ans]).sort().join(',');
         else if(q.type==='short')ok=String(answers[i]).trim().toLowerCase()===String(q.ans).trim().toLowerCase();
         else if(q.type==='fill')ok=Array.isArray(answers[i])&&answers[i].every((val,idx)=>val===q.ans[idx]);
         else ok=true;
@@ -1150,15 +1206,31 @@ function updMap(){
 // =====================================================================
 function startTimer(){
   const box=document.getElementById('timer-box');
-  box.classList.remove('hidden','urgent');
+  box.classList.remove('hidden','timer-safe','timer-warning','timer-danger');
   box.textContent=fmtSec(secLeft);
+  
+  updTimerColor();
+  
   timerInt=setInterval(()=>{
     secLeft--;
     box.textContent=fmtSec(secLeft);
-    if(secLeft<=60)box.classList.add('urgent');
+    updTimerColor();
     if(secLeft<=0){clearTimer();gradeExam();}
   },1000);
 }
+
+function updTimerColor(){
+  const box=document.getElementById('timer-box');
+  box.classList.remove('timer-safe','timer-warning','timer-danger');
+  if(secLeft>300){
+    box.classList.add('timer-safe');
+  }else if(secLeft>60){
+    box.classList.add('timer-warning');
+  }else{
+    box.classList.add('timer-danger');
+  }
+}
+
 function clearTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}}
 function fmtSec(s){const m=Math.floor(s/60),sec=s%60;return `${m}:${sec<10?'0':''}${sec}`;}
 
@@ -1209,9 +1281,9 @@ if ('serviceWorker' in navigator) {
 function endSession(){clearTimer();backToLanding();}
 
 function backToLanding(){
-  clearTimer();multiSel={};
+  clearTimer();multiSel={};reviewMode=false;
   const box=document.getElementById('timer-box');
-  box.classList.add('hidden');box.classList.remove('urgent');
+  box.classList.add('hidden');box.classList.remove('urgent','timer-safe','timer-warning','timer-danger');
   showArea('landing');
 }
 

@@ -326,6 +326,130 @@ body{
   .stat-cell:nth-child(2){border-right:none;}
   .stat-cell:nth-child(1),.stat-cell:nth-child(2){border-bottom:1px solid var(--rule-soft);}
 }
+/* ============ LANDSCAPE MODE ENFORCEMENT ============ */
+@media (max-width: 1024px) and (orientation: portrait) {
+  #portrait-warning {
+    display: flex !important;
+  }
+  body > *:not(#portrait-warning) {
+    display: none !important;
+  }
+}
+#portrait-warning {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: var(--paper);
+  z-index: 100000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+#portrait-warning .warning-glyph {
+  font-size: 54px;
+  color: var(--maroon);
+  margin-bottom: 16px;
+  animation: rotateWarning 2s infinite ease-in-out;
+}
+@keyframes rotateWarning {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+#portrait-warning h2 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+#portrait-warning p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* ============ PWA INSTALL BUTTON ============ */
+.btn-install {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--paper);
+  background: var(--maroon);
+  border: 1px solid var(--maroon-deep);
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+.btn-install:hover {
+  background: var(--maroon-deep);
+  transform: translateY(-1px);
+}
+
+/* ============ FEEDBACK BANNER ============ */
+.q-feedback-banner {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.25s ease-out;
+  border-radius: var(--radius);
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 0 solid transparent;
+}
+.q-feedback-banner.show-correct {
+  height: 38px;
+  background: var(--moss-light);
+  border: 1px solid var(--moss);
+  color: var(--moss);
+  margin-bottom: 18px;
+}
+.q-feedback-banner.show-wrong {
+  height: 38px;
+  background: #f6e3e0;
+  border: 1px solid var(--maroon);
+  color: var(--maroon);
+  margin-bottom: 18px;
+}
+
+/* ============ TIMER STYLING ============ */
+.timer-box {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+.timer-box.timer-safe {
+  background: var(--moss-light);
+  border: 1px solid var(--moss);
+  color: var(--moss);
+}
+.timer-box.timer-warning {
+  background: var(--gold-light);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.timer-box.timer-danger {
+  background: #f6e3e0;
+  border: 1px solid var(--maroon);
+  color: var(--maroon);
+  animation: timerPulse 0.8s infinite alternate;
+}
+@keyframes timerPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
 /* ============ FOOTER & INTERACTIVE ============ */
 .site-footer {
   position: fixed;
