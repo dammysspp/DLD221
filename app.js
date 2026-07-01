@@ -693,6 +693,14 @@ let selTopics=['all'];
 let deferredPrompt=null;
 let checked={}; // stores whether a question has been clicked 'Check Answer' in Study Mode
 
+// Intercept ? keypress to block real-time counter popup
+window.addEventListener('keydown', (e) => {
+  if ((e.key === '?' || e.keyCode === 191) && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+}, true);
+
 // PWA installation trigger
 window.addEventListener('beforeinstallprompt',(e)=>{
   e.preventDefault();deferredPrompt=e;
@@ -1342,9 +1350,6 @@ function updTimerColor(){
     box.classList.add('timer-danger');
   }
 }
-
-function clearTimer(){if(timerInt){clearInterval(timerInt);timerInt=null;}}
-function fmtSec(s){const m=Math.floor(s/60),sec=s%60;return `${m}:${sec<10?'0':''}${sec}`;}
 
 // =====================================================================
 // FLASHCARDS

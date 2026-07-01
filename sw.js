@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dld221-cache-v3';
+const CACHE_NAME = 'dld221-cache-v4';
 const ASSETS = [
   './',
   './index.html',
